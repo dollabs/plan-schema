@@ -12,7 +12,7 @@ Check out the [CHANGELOG](CHANGELOG.md)
 
 The **plan-schema** library is part of the [PAMELA](https://github.com/dollabs/pamela) suite of tools.
 
-*TBD* API docs
+*TBD* API docs (will be linked from [dollabs.github.io](http://dollabs.github.io/))
 
 ## Building
 

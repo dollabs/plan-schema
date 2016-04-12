@@ -19,9 +19,22 @@ The **plan-schema** library is part of the [PAMELA](https://github.com/dollabs/p
 The **plan-schema** library uses [boot](http://boot-clj.com/) as a build tool. For
 more on boot see [Sean's blog](http://seancorfield.github.io/blog/2016/02/02/boot-new/) and the [boot Wiki](https://github.com/boot-clj/boot/wiki).
 
-Install **boot** if you haven't done so already.
+Install [boot](http://boot-clj.com/) if you haven't done so already.
 
-You can install **plan-schema** locally with `boot build`.
+Copy [boot.properties](doc/config/boot.properties) to `~/.boot/boot.properties` (if you haven't customized it yet).
+
+Copy [profile.boot](doc/config/profile.boot) to `~/.boot/boot.properties` (if you haven't customized it yet).
+
+ * Emacs users: when you are ready for interactive development see the comment
+   about the `cider-boot` task in [build.boot](build.boot)
+ * [Cursive](https://github.com/cursive-ide/cursive) users: use this to
+   create a **project.clj** file that Cursive will like.
+
+ ````
+boot lein-generate
+````
+
+You can install **plan-schema** locally with `boot local`.
 
 You can get help for all available boot tasks with `boot -h`.
 
@@ -81,6 +94,8 @@ tmarble@cerise 243 :)
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details on
 how to make a contribution.
+
+*NOTE* The tests are (obviously) incomplete!
 
 ## Copyright and license
 

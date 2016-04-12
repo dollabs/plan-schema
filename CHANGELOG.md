@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. This change
 Added
 - *TBD*
 
-## [0.2.0] - 2016-04-11
+## [0.2.0] - 2016-04-12
 
 Changed
 * Initial publication on github

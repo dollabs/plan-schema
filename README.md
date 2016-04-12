@@ -67,28 +67,26 @@ Actions:
 tmarble@cerise 243 :)
 ````
 
-*NOTE* the input files used as examples here are *not* part of this git repository.
-
 
 * Validate TPN JSON
 
-`plan-schema -i ../mission-models-lisp/sept14/tpn.flat.json -o html/examples/sept14/sept14.tpn.json -f json tpn`
+`plan-schema -i examples/seattle-2016/seattle.tpn.json -o seattle.tpn.json -f json tpn`
 
 * Validate HTN JSON
 
-`plan-schema -i ../mission-models-lisp/sept14/htn.flat.json -o html/examples/sept14/sept14.htn.json -f json htn`
+`plan-schema -i examples/seattle-2016/seattle.htn.json -o seattle.htn.json -f json htn`
 
 * Validate TPN JSON and coerce to EDN
 
-`plan-schema -i ../mission-models-lisp/sept14/tpn.flat.json -o html/examples/sept14/sept14.tpn.edn -f edn tpn`
+`plan-schema -i examples/seattle-2016/seattle.tpn.json -o examples/seattle-2016/seattle.tpn.edn -f edn tpn`
 
 * Validate HTN JSON and coerce to EDN
 
-`plan-schema -i ../mission-models-lisp/sept14/htn.flat.json -o html/examples/sept14/sept14.htn.edn -f edn htn`
+`plan-schema -i examples/seattle-2016/seattle.htn.json -o examples/seattle-2016/seattle.htn.edn -f edn htn`
 
 * Merge TPN and HTN
 
-`plan-schema -i html/examples/sept14/sept14.tpn.edn -i html/examples/sept14/sept14.htn.edn -o html/examples/sept14/sept14.merged.edn -f edn merge`
+`plan-schema -i examples/seattle-2016/seattle.htn.edn -i examples/seattle-2016/seattle.tpn.edn -o examples/seattle-2016/seattle.merged.edn -f edn merge`
 
 ## Development status and Contributing
 

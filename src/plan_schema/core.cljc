@@ -615,19 +615,23 @@
 (defn json-filename? [filename]
   (kind-filename? "json" filename))
 
+(defn validate-input [input cwd]
+  #?(:clj (if (fs/exists? input)
+            input
+            (let [cwd-input (str cwd "/" input)]
+              (if (fs/exists? cwd-input)
+                cwd-input
+                {:error (str "input does not exist: " input)})))
+     :cljs {:error (str "CLJS input parsing not implemented: " input)}))
+
 ;; returns a network map -or- {:error "error message"}
 (defn parse-network
   "Parse TPN"
   {:added "0.1.0"}
   [network-type options]
-  (let [{:keys [verbose file-format input output]} options
+  (let [{:keys [verbose file-format input output cwd]} options
         verbose? (and (not (nil? verbose)) (pos? verbose))
-        input (if (vector? input) (first input) input)
-        input (if (and input
-                    #?(:clj (fs/exists? input)
-                       :cljs false))
-                input
-                {:error (str "parse-network input does not exist: " input)})
+        input (validate-input (if (vector? input) (first input) input) cwd)
         data #?(:clj (if (:error input) input (slurp input))
                 :cljs {:error "not implemented yet"})
         data (if (:error data)
@@ -1331,7 +1335,7 @@
   {:added "0.1.0"}
   [options]
   ;; (println "merge-networks options" options)
-  (let [{:keys [verbose file-format input output]} options
+  (let [{:keys [verbose file-format input output cwd]} options
         error (if (or (not (vector? input)) (not= 2 (count input)))
                 "input must include exactly one HTN and one TPN file")
         htn-filename (if (and (not error)
@@ -1345,13 +1349,10 @@
                   (str "HTN file not one of: " input)
                   (if (empty? tpn-filename)
                     (str "TPN file not one of: " input))))
-        error (or error
-                (if-not #?(:clj (fs/exists? htn-filename)
-                           :cljs false)
-                  (str "HTN file not found: " htn-filename))
-                (if-not #?(:clj (fs/exists? tpn-filename)
-                           :cljs false)
-                  (str "TPN file not found: " tpn-filename)))
+        htn-filename (if-not error (validate-input htn-filename cwd))
+        error (or error (:error htn-filename))
+        tpn-filename (if-not error (validate-input tpn-filename cwd))
+        error (or error (:error tpn-filename))
         htn (if (not error) (parse-htn {:input htn-filename :output "-"}))
         error (or error (:error htn))
         tpn (if (not error) (parse-tpn {:input tpn-filename :output "-"}))

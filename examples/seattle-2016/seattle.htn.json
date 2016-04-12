@@ -1,0 +1,919 @@
+{
+  "net-757826067" : {
+    "uid" : "net-757826067",
+    "label" : "EvidenceAndInterpret\nEvidenceAndInterpret(A)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1926" ],
+    "parentid" : "hid-1928"
+  },
+  "hid-1977" : {
+    "uid" : "hid-1977",
+    "incidence-set" : [ "hedge-2176" ],
+    "label" : "Interpret(C)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1978" : {
+    "uid" : "hid-1978",
+    "incidence-set" : [ "hedge-2187" ],
+    "edges" : [ "hedge-2180", "hedge-2179", "hedge-2178", "hedge-2177" ],
+    "label" : "EvidenceAndInterpret\nEvidenceAndInterpret(C)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-464531693"
+  },
+  "hid-1975" : {
+    "uid" : "hid-1975",
+    "incidence-set" : [ "hedge-2170" ],
+    "edges" : [ "hedge-2187", "hedge-2186" ],
+    "label" : "GetDataAndInterpret\nGetDataAndInterpret(C D)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-31566537"
+  },
+  "net-1030057282" : {
+    "uid" : "net-1030057282",
+    "label" : "Interpret2\nInterpret(D)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-2012" ],
+    "parentid" : "hid-2013"
+  },
+  "hid-1976" : {
+    "uid" : "hid-1976",
+    "incidence-set" : [ ],
+    "edges" : [ "hedge-2176" ],
+    "label" : "Evidence(C)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1973" : {
+    "uid" : "hid-1973",
+    "incidence-set" : [ ],
+    "label" : "EvidenceAndInterpret(C)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1974" : {
+    "uid" : "hid-1974",
+    "incidence-set" : [ ],
+    "label" : "GetDataAt(D)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1971" : {
+    "uid" : "hid-1971",
+    "incidence-set" : [ "hedge-2162" ],
+    "label" : "GetDataAt\nGetDataAt(C)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-1230535760"
+  },
+  "net-1611782350" : {
+    "uid" : "net-1611782350",
+    "label" : "Evidence\nEvidence(A)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1931" ],
+    "parentid" : "hid-1932"
+  },
+  "net-1230535760" : {
+    "uid" : "net-1230535760",
+    "label" : "GetDataAt\nGetDataAt(C)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1968" ],
+    "parentid" : "hid-1971"
+  },
+  "hid-1970" : {
+    "uid" : "hid-1970",
+    "incidence-set" : [ "hedge-2174" ],
+    "label" : "Capture(C)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "net-665025644" : {
+    "uid" : "net-665025644",
+    "label" : "Interpret1\nInterpret(C)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1987" ],
+    "parentid" : "hid-1988"
+  },
+  "net-934727584" : {
+    "uid" : "net-934727584",
+    "label" : "GetDataAt\nGetDataAt(D)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1993" ],
+    "parentid" : "hid-1996"
+  },
+  "hid-1909" : {
+    "uid" : "hid-1909",
+    "incidence-set" : [ ],
+    "edges" : [ "hedge-2164" ],
+    "label" : "clojure-west Mission()",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "net-1955152757" : {
+    "uid" : "net-1955152757",
+    "label" : "EvidenceAndInterpret\nEvidenceAndInterpret(D)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1998" ],
+    "parentid" : "hid-2000"
+  },
+  "hid-1988" : {
+    "uid" : "hid-1988",
+    "incidence-set" : [ "hedge-2178" ],
+    "label" : "Interpret1\nInterpret(C)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-665025644"
+  },
+  "hid-1987" : {
+    "uid" : "hid-1987",
+    "incidence-set" : [ ],
+    "label" : "Interpret 1(C)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1984" : {
+    "uid" : "hid-1984",
+    "incidence-set" : [ ],
+    "label" : "Interpret 3(C)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1985" : {
+    "uid" : "hid-1985",
+    "incidence-set" : [ "hedge-2179" ],
+    "label" : "Interpret3\nInterpret(C)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-728020159"
+  },
+  "hid-1982" : {
+    "uid" : "hid-1982",
+    "incidence-set" : [ "hedge-2180" ],
+    "label" : "Evidence\nEvidence(C)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-747723576"
+  },
+  "hid-1981" : {
+    "uid" : "hid-1981",
+    "incidence-set" : [ ],
+    "label" : "Evidence(C)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "net-1014790698" : {
+    "uid" : "net-1014790698",
+    "label" : "clojure-west Mission()",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1909" ]
+  },
+  "hid-1918" : {
+    "uid" : "hid-1918",
+    "incidence-set" : [ ],
+    "edges" : [ "hedge-2148" ],
+    "label" : "GoTo(A)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hedge-2180" : {
+    "uid" : "hedge-2180",
+    "end-node" : "hid-1982",
+    "label" : "1",
+    "type" : "edge"
+  },
+  "hid-1915" : {
+    "uid" : "hid-1915",
+    "incidence-set" : [ "hedge-2164" ],
+    "edges" : [ "hedge-2173", "hedge-2172", "hedge-2171", "hedge-2170", "hedge-2169" ],
+    "label" : "clojure-west Mission\nclojure-west Mission()",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-154697093"
+  },
+  "hid-1913" : {
+    "uid" : "hid-1913",
+    "incidence-set" : [ "hedge-2167" ],
+    "edges" : [ "hedge-2168" ],
+    "label" : "GetDataAndInterpret(C D)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1914" : {
+    "uid" : "hid-1914",
+    "incidence-set" : [ "hedge-2168" ],
+    "label" : "EvidenceAndInterpret(D)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1911" : {
+    "uid" : "hid-1911",
+    "incidence-set" : [ "hedge-2165" ],
+    "edges" : [ "hedge-2166" ],
+    "label" : "GetDataAndInterpret(A B)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1999" : {
+    "uid" : "hid-1999",
+    "incidence-set" : [ "hedge-2154" ],
+    "label" : "Interpret(D)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1912" : {
+    "uid" : "hid-1912",
+    "incidence-set" : [ "hedge-2166" ],
+    "edges" : [ "hedge-2167" ],
+    "label" : "GetDataAndInterpret(B C)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1910" : {
+    "uid" : "hid-1910",
+    "incidence-set" : [ ],
+    "edges" : [ "hedge-2165" ],
+    "label" : "GetDataAt(A)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1998" : {
+    "uid" : "hid-1998",
+    "incidence-set" : [ ],
+    "edges" : [ "hedge-2154" ],
+    "label" : "Evidence(D)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1995" : {
+    "uid" : "hid-1995",
+    "incidence-set" : [ "hedge-2161" ],
+    "label" : "Capture(D)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hedge-2178" : {
+    "uid" : "hedge-2178",
+    "end-node" : "hid-1988",
+    "edge-type" : "choice",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "hid-1996" : {
+    "uid" : "hid-1996",
+    "incidence-set" : [ "hedge-2186" ],
+    "label" : "GetDataAt\nGetDataAt(D)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-934727584"
+  },
+  "hedge-2179" : {
+    "uid" : "hedge-2179",
+    "end-node" : "hid-1985",
+    "edge-type" : "choice",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "hid-1993" : {
+    "uid" : "hid-1993",
+    "incidence-set" : [ ],
+    "edges" : [ "hedge-2161" ],
+    "label" : "GoTo(D)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1991" : {
+    "uid" : "hid-1991",
+    "incidence-set" : [ "hedge-2177" ],
+    "label" : "Interpret2\nInterpret(C)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-554040712"
+  },
+  "net-420364894" : {
+    "uid" : "net-420364894",
+    "label" : "Interpret3\nInterpret(A)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1934" ],
+    "parentid" : "hid-1935"
+  },
+  "hid-1990" : {
+    "uid" : "hid-1990",
+    "incidence-set" : [ ],
+    "label" : "Interpret 2(C)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "net-1437629752" : {
+    "uid" : "net-1437629752",
+    "label" : "Interpret3\nInterpret(B)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1959" ],
+    "parentid" : "hid-1960"
+  },
+  "net-2070854419" : {
+    "uid" : "net-2070854419",
+    "label" : "Interpret3\nInterpret(D)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-2006" ],
+    "parentid" : "hid-2007"
+  },
+  "hedge-2170" : {
+    "uid" : "hedge-2170",
+    "end-node" : "hid-1975",
+    "label" : "4",
+    "type" : "edge"
+  },
+  "hedge-2171" : {
+    "uid" : "hedge-2171",
+    "end-node" : "hid-1950",
+    "label" : "3",
+    "type" : "edge"
+  },
+  "hedge-2172" : {
+    "uid" : "hedge-2172",
+    "end-node" : "hid-1925",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "hedge-2173" : {
+    "uid" : "hedge-2173",
+    "end-node" : "hid-1921",
+    "label" : "1",
+    "type" : "edge"
+  },
+  "hedge-2174" : {
+    "uid" : "hedge-2174",
+    "end-node" : "hid-1970",
+    "type" : "edge"
+  },
+  "hedge-2175" : {
+    "uid" : "hedge-2175",
+    "end-node" : "hid-1945",
+    "type" : "edge"
+  },
+  "hedge-2176" : {
+    "uid" : "hedge-2176",
+    "end-node" : "hid-1977",
+    "type" : "edge"
+  },
+  "hedge-2177" : {
+    "uid" : "hedge-2177",
+    "end-node" : "hid-1991",
+    "edge-type" : "choice",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "net-1941908368" : {
+    "uid" : "net-1941908368",
+    "label" : "Evidence\nEvidence(B)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1956" ],
+    "parentid" : "hid-1957"
+  },
+  "hid-1928" : {
+    "uid" : "hid-1928",
+    "incidence-set" : [ "hedge-2160" ],
+    "edges" : [ "hedge-2185", "hedge-2184", "hedge-2183", "hedge-2182" ],
+    "label" : "EvidenceAndInterpret\nEvidenceAndInterpret(A)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-757826067"
+  },
+  "hid-1926" : {
+    "uid" : "hid-1926",
+    "incidence-set" : [ ],
+    "edges" : [ "hedge-2181" ],
+    "label" : "Evidence(A)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1927" : {
+    "uid" : "hid-1927",
+    "incidence-set" : [ "hedge-2181" ],
+    "label" : "Interpret(A)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1924" : {
+    "uid" : "hid-1924",
+    "incidence-set" : [ ],
+    "label" : "GetDataAt(B)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1925" : {
+    "uid" : "hid-1925",
+    "incidence-set" : [ "hedge-2172" ],
+    "edges" : [ "hedge-2160", "hedge-2159" ],
+    "label" : "GetDataAndInterpret\nGetDataAndInterpret(A B)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-1122024022"
+  },
+  "hid-1923" : {
+    "uid" : "hid-1923",
+    "incidence-set" : [ ],
+    "label" : "EvidenceAndInterpret(A)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1920" : {
+    "uid" : "hid-1920",
+    "incidence-set" : [ "hedge-2148" ],
+    "label" : "Capture(A)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1921" : {
+    "uid" : "hid-1921",
+    "incidence-set" : [ "hedge-2173" ],
+    "label" : "GetDataAt\nGetDataAt(A)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-470269522"
+  },
+  "net-177039531" : {
+    "uid" : "net-177039531",
+    "label" : "Interpret2\nInterpret(A)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1940" ],
+    "parentid" : "hid-1941"
+  },
+  "net-406249839" : {
+    "uid" : "net-406249839",
+    "label" : "Interpret1\nInterpret(B)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1962" ],
+    "parentid" : "hid-1963"
+  },
+  "hedge-2181" : {
+    "uid" : "hedge-2181",
+    "end-node" : "hid-1927",
+    "type" : "edge"
+  },
+  "net-470269522" : {
+    "uid" : "net-470269522",
+    "label" : "GetDataAt\nGetDataAt(A)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1918" ],
+    "parentid" : "hid-1921"
+  },
+  "hedge-2182" : {
+    "uid" : "hedge-2182",
+    "end-node" : "hid-1941",
+    "edge-type" : "choice",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "hedge-2183" : {
+    "uid" : "hedge-2183",
+    "end-node" : "hid-1938",
+    "edge-type" : "choice",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "hedge-2184" : {
+    "uid" : "hedge-2184",
+    "end-node" : "hid-1935",
+    "edge-type" : "choice",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "net-691169891" : {
+    "uid" : "net-691169891",
+    "label" : "GetDataAndInterpret\nGetDataAndInterpret(B C)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1948", "hid-1949" ],
+    "parentid" : "hid-1950"
+  },
+  "hedge-2185" : {
+    "uid" : "hedge-2185",
+    "end-node" : "hid-1932",
+    "label" : "1",
+    "type" : "edge"
+  },
+  "hedge-2186" : {
+    "uid" : "hedge-2186",
+    "end-node" : "hid-1996",
+    "type" : "edge"
+  },
+  "hedge-2187" : {
+    "uid" : "hedge-2187",
+    "end-node" : "hid-1978",
+    "type" : "edge"
+  },
+  "net-554040712" : {
+    "uid" : "net-554040712",
+    "label" : "Interpret2\nInterpret(C)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1990" ],
+    "parentid" : "hid-1991"
+  },
+  "hid-1937" : {
+    "uid" : "hid-1937",
+    "incidence-set" : [ ],
+    "label" : "Interpret 1(A)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1938" : {
+    "uid" : "hid-1938",
+    "incidence-set" : [ "hedge-2183" ],
+    "label" : "Interpret1\nInterpret(A)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-1062235020"
+  },
+  "hid-1935" : {
+    "uid" : "hid-1935",
+    "incidence-set" : [ "hedge-2184" ],
+    "label" : "Interpret3\nInterpret(A)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-420364894"
+  },
+  "net-728020159" : {
+    "uid" : "net-728020159",
+    "label" : "Interpret3\nInterpret(C)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1984" ],
+    "parentid" : "hid-1985"
+  },
+  "hid-1934" : {
+    "uid" : "hid-1934",
+    "incidence-set" : [ ],
+    "label" : "Interpret 3(A)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1931" : {
+    "uid" : "hid-1931",
+    "incidence-set" : [ ],
+    "label" : "Evidence(A)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1932" : {
+    "uid" : "hid-1932",
+    "incidence-set" : [ "hedge-2185" ],
+    "label" : "Evidence\nEvidence(A)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-1611782350"
+  },
+  "hedge-2156" : {
+    "uid" : "hedge-2156",
+    "end-node" : "hid-2010",
+    "edge-type" : "choice",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "hedge-2157" : {
+    "uid" : "hedge-2157",
+    "end-node" : "hid-2007",
+    "edge-type" : "choice",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "hedge-2158" : {
+    "uid" : "hedge-2158",
+    "end-node" : "hid-2004",
+    "label" : "1",
+    "type" : "edge"
+  },
+  "hedge-2159" : {
+    "uid" : "hedge-2159",
+    "end-node" : "hid-1946",
+    "type" : "edge"
+  },
+  "hedge-2150" : {
+    "uid" : "hedge-2150",
+    "end-node" : "hid-1966",
+    "edge-type" : "choice",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "hedge-2151" : {
+    "uid" : "hedge-2151",
+    "end-node" : "hid-1963",
+    "edge-type" : "choice",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "hedge-2152" : {
+    "uid" : "hedge-2152",
+    "end-node" : "hid-1960",
+    "edge-type" : "choice",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "hedge-2153" : {
+    "uid" : "hedge-2153",
+    "end-node" : "hid-1957",
+    "label" : "1",
+    "type" : "edge"
+  },
+  "net-154697093" : {
+    "uid" : "net-154697093",
+    "label" : "clojure-west Mission\nclojure-west Mission()",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1910" ],
+    "parentid" : "hid-1915"
+  },
+  "hedge-2154" : {
+    "uid" : "hedge-2154",
+    "end-node" : "hid-1999",
+    "type" : "edge"
+  },
+  "hedge-2155" : {
+    "uid" : "hedge-2155",
+    "end-node" : "hid-2013",
+    "edge-type" : "choice",
+    "label" : "2",
+    "type" : "edge"
+  },
+  "net-1062235020" : {
+    "uid" : "net-1062235020",
+    "label" : "Interpret1\nInterpret(A)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1937" ],
+    "parentid" : "hid-1938"
+  },
+  "hid-1948" : {
+    "uid" : "hid-1948",
+    "incidence-set" : [ ],
+    "label" : "EvidenceAndInterpret(B)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1949" : {
+    "uid" : "hid-1949",
+    "incidence-set" : [ ],
+    "label" : "GetDataAt(C)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-1946" : {
+    "uid" : "hid-1946",
+    "incidence-set" : [ "hedge-2159" ],
+    "label" : "GetDataAt\nGetDataAt(B)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-973439690"
+  },
+  "hid-1945" : {
+    "uid" : "hid-1945",
+    "incidence-set" : [ "hedge-2175" ],
+    "label" : "Capture(B)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1943" : {
+    "uid" : "hid-1943",
+    "incidence-set" : [ ],
+    "edges" : [ "hedge-2175" ],
+    "label" : "GoTo(B)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1940" : {
+    "uid" : "hid-1940",
+    "incidence-set" : [ ],
+    "label" : "Interpret 2(A)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hedge-2167" : {
+    "uid" : "hedge-2167",
+    "end-node" : "hid-1913",
+    "type" : "edge"
+  },
+  "hid-1941" : {
+    "uid" : "hid-1941",
+    "incidence-set" : [ "hedge-2182" ],
+    "label" : "Interpret2\nInterpret(A)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-177039531"
+  },
+  "hedge-2168" : {
+    "uid" : "hedge-2168",
+    "end-node" : "hid-1914",
+    "type" : "edge"
+  },
+  "hedge-2169" : {
+    "uid" : "hedge-2169",
+    "end-node" : "hid-2000",
+    "label" : "5",
+    "type" : "edge"
+  },
+  "net-464531693" : {
+    "uid" : "net-464531693",
+    "label" : "EvidenceAndInterpret\nEvidenceAndInterpret(C)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1976" ],
+    "parentid" : "hid-1978"
+  },
+  "hedge-2160" : {
+    "uid" : "hedge-2160",
+    "end-node" : "hid-1928",
+    "type" : "edge"
+  },
+  "hedge-2161" : {
+    "uid" : "hedge-2161",
+    "end-node" : "hid-1995",
+    "type" : "edge"
+  },
+  "hedge-2162" : {
+    "uid" : "hedge-2162",
+    "end-node" : "hid-1971",
+    "type" : "edge"
+  },
+  "hedge-2163" : {
+    "uid" : "hedge-2163",
+    "end-node" : "hid-1953",
+    "type" : "edge"
+  },
+  "hedge-2164" : {
+    "uid" : "hedge-2164",
+    "end-node" : "hid-1915",
+    "type" : "edge"
+  },
+  "hedge-2165" : {
+    "uid" : "hedge-2165",
+    "end-node" : "hid-1911",
+    "type" : "edge"
+  },
+  "hedge-2166" : {
+    "uid" : "hedge-2166",
+    "end-node" : "hid-1912",
+    "type" : "edge"
+  },
+  "net-1122024022" : {
+    "uid" : "net-1122024022",
+    "label" : "GetDataAndInterpret\nGetDataAndInterpret(A B)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1923", "hid-1924" ],
+    "parentid" : "hid-1925"
+  },
+  "hid-1959" : {
+    "uid" : "hid-1959",
+    "incidence-set" : [ ],
+    "label" : "Interpret 3(B)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1957" : {
+    "uid" : "hid-1957",
+    "incidence-set" : [ "hedge-2153" ],
+    "label" : "Evidence\nEvidence(B)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-1941908368"
+  },
+  "hid-1956" : {
+    "uid" : "hid-1956",
+    "incidence-set" : [ ],
+    "label" : "Evidence(B)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1953" : {
+    "uid" : "hid-1953",
+    "incidence-set" : [ "hedge-2163" ],
+    "edges" : [ "hedge-2153", "hedge-2152", "hedge-2151", "hedge-2150" ],
+    "label" : "EvidenceAndInterpret\nEvidenceAndInterpret(B)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-308019815"
+  },
+  "hid-2009" : {
+    "uid" : "hid-2009",
+    "incidence-set" : [ ],
+    "label" : "Interpret 1(D)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "net-1012664018" : {
+    "uid" : "net-1012664018",
+    "label" : "Interpret1\nInterpret(D)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-2009" ],
+    "parentid" : "hid-2010"
+  },
+  "network" : "net-1014790698",
+  "hid-1951" : {
+    "uid" : "hid-1951",
+    "incidence-set" : [ ],
+    "edges" : [ "hedge-2149" ],
+    "label" : "Evidence(B)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-2006" : {
+    "uid" : "hid-2006",
+    "incidence-set" : [ ],
+    "label" : "Interpret 3(D)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1952" : {
+    "uid" : "hid-1952",
+    "incidence-set" : [ "hedge-2149" ],
+    "label" : "Interpret(B)",
+    "type" : "HTN-EXPANDED-NONPRIMITIVE-TASK"
+  },
+  "hid-2007" : {
+    "uid" : "hid-2007",
+    "incidence-set" : [ "hedge-2157" ],
+    "label" : "Interpret3\nInterpret(D)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-2070854419"
+  },
+  "hid-2004" : {
+    "uid" : "hid-2004",
+    "incidence-set" : [ "hedge-2158" ],
+    "label" : "Evidence\nEvidence(D)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-1817397046"
+  },
+  "hid-1950" : {
+    "uid" : "hid-1950",
+    "incidence-set" : [ "hedge-2171" ],
+    "edges" : [ "hedge-2163", "hedge-2162" ],
+    "label" : "GetDataAndInterpret\nGetDataAndInterpret(B C)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-691169891"
+  },
+  "hid-2003" : {
+    "uid" : "hid-2003",
+    "incidence-set" : [ ],
+    "label" : "Evidence(D)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "net-973439690" : {
+    "uid" : "net-973439690",
+    "label" : "GetDataAt\nGetDataAt(B)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1943" ],
+    "parentid" : "hid-1946"
+  },
+  "net-308019815" : {
+    "uid" : "net-308019815",
+    "label" : "EvidenceAndInterpret\nEvidenceAndInterpret(B)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1951" ],
+    "parentid" : "hid-1953"
+  },
+  "hid-2000" : {
+    "uid" : "hid-2000",
+    "incidence-set" : [ "hedge-2169" ],
+    "edges" : [ "hedge-2158", "hedge-2157", "hedge-2156", "hedge-2155" ],
+    "label" : "EvidenceAndInterpret\nEvidenceAndInterpret(D)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-1955152757"
+  },
+  "net-31566537" : {
+    "uid" : "net-31566537",
+    "label" : "GetDataAndInterpret\nGetDataAndInterpret(C D)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1973", "hid-1974" ],
+    "parentid" : "hid-1975"
+  },
+  "net-1578565048" : {
+    "uid" : "net-1578565048",
+    "label" : "Interpret2\nInterpret(B)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1965" ],
+    "parentid" : "hid-1966"
+  },
+  "net-747723576" : {
+    "uid" : "net-747723576",
+    "label" : "Evidence\nEvidence(C)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-1981" ],
+    "parentid" : "hid-1982"
+  },
+  "hid-1968" : {
+    "uid" : "hid-1968",
+    "incidence-set" : [ ],
+    "edges" : [ "hedge-2174" ],
+    "label" : "GoTo(C)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1966" : {
+    "uid" : "hid-1966",
+    "incidence-set" : [ "hedge-2150" ],
+    "label" : "Interpret2\nInterpret(B)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-1578565048"
+  },
+  "hid-1965" : {
+    "uid" : "hid-1965",
+    "incidence-set" : [ ],
+    "label" : "Interpret 2(B)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1962" : {
+    "uid" : "hid-1962",
+    "incidence-set" : [ ],
+    "label" : "Interpret 1(B)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-1963" : {
+    "uid" : "hid-1963",
+    "incidence-set" : [ "hedge-2151" ],
+    "label" : "Interpret1\nInterpret(B)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-406249839"
+  },
+  "hid-1960" : {
+    "uid" : "hid-1960",
+    "incidence-set" : [ "hedge-2152" ],
+    "label" : "Interpret3\nInterpret(B)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-1437629752"
+  },
+  "hedge-2148" : {
+    "uid" : "hedge-2148",
+    "end-node" : "hid-1920",
+    "type" : "edge"
+  },
+  "hedge-2149" : {
+    "uid" : "hedge-2149",
+    "end-node" : "hid-1952",
+    "type" : "edge"
+  },
+  "hid-2013" : {
+    "uid" : "hid-2013",
+    "incidence-set" : [ "hedge-2155" ],
+    "label" : "Interpret2\nInterpret(D)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-1030057282"
+  },
+  "net-1817397046" : {
+    "uid" : "net-1817397046",
+    "label" : "Evidence\nEvidence(D)",
+    "type" : "htn-network",
+    "rootnodes" : [ "hid-2003" ],
+    "parentid" : "hid-2004"
+  },
+  "hid-2012" : {
+    "uid" : "hid-2012",
+    "incidence-set" : [ ],
+    "label" : "Interpret 2(D)",
+    "type" : "HTN-PRIMITIVE-TASK"
+  },
+  "hid-2010" : {
+    "uid" : "hid-2010",
+    "incidence-set" : [ "hedge-2156" ],
+    "label" : "Interpret1\nInterpret(D)",
+    "type" : "HTN-EXPANDED-METHOD",
+    "network" : "net-1012664018"
+  }
+}

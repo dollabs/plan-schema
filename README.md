@@ -54,7 +54,7 @@ Actions:
 tmarble@cerise 243 :)
 ````
 
-*NOTE* the input files used as examples here are not part of this git repository.
+*NOTE* the input files used as examples here are *not* part of this git repository.
 
 
 * Validate TPN JSON

@@ -4,9 +4,9 @@
    {:plan/plid :seattle.htn,
     :plan/name "seattle.htn",
     :plan/type :htn-network,
-    :plan/begin :seattle.htn:net-4720,
+    :plan/begin :seattle.htn:net-4731,
     :plan/networks
-    [:seattle.htn:net-4720
+    [:seattle.htn:net-4731
      :seattle.htn:net-154697093
      :seattle.htn:net-470269522
      :seattle.htn:net-1122024022
@@ -154,54 +154,9 @@
     :network/label "GetDataAt\nGetDataAt(A)",
     :network/rootnodes #{:seattle.htn:hid-1918},
     :network/parent :seattle.htn:hid-1921},
-   :seattle.htn:net-1941908368
+   :seattle.htn:net-4731
    {:plan/plid :seattle.htn,
-    :network/id :net-1941908368,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1956],
-    :network/edges [],
-    :network/label "Evidence\nEvidence(B)",
-    :network/rootnodes #{:seattle.htn:hid-1956},
-    :network/parent :seattle.htn:hid-1957},
-   :seattle.htn:net-1817397046
-   {:plan/plid :seattle.htn,
-    :network/id :net-1817397046,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-2003],
-    :network/edges [],
-    :network/label "Evidence\nEvidence(D)",
-    :network/rootnodes #{:seattle.htn:hid-2003},
-    :network/parent :seattle.htn:hid-2004},
-   :seattle.htn:net-1012664018
-   {:plan/plid :seattle.htn,
-    :network/id :net-1012664018,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-2009],
-    :network/edges [],
-    :network/label "Interpret1\nInterpret(D)",
-    :network/rootnodes #{:seattle.htn:hid-2009},
-    :network/parent :seattle.htn:hid-2010},
-   :seattle.htn:net-406249839
-   {:plan/plid :seattle.htn,
-    :network/id :net-406249839,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1962],
-    :network/edges [],
-    :network/label "Interpret1\nInterpret(B)",
-    :network/rootnodes #{:seattle.htn:hid-1962},
-    :network/parent :seattle.htn:hid-1963},
-   :seattle.htn:net-1030057282
-   {:plan/plid :seattle.htn,
-    :network/id :net-1030057282,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-2012],
-    :network/edges [],
-    :network/label "Interpret2\nInterpret(D)",
-    :network/rootnodes #{:seattle.htn:hid-2012},
-    :network/parent :seattle.htn:hid-2013},
-   :seattle.htn:net-4720
-   {:plan/plid :seattle.htn,
-    :network/id :net-4720,
+    :network/id :net-4731,
     :network/type :hem-network,
     :network/begin :seattle.htn:hid-1915,
     :network/nodes
@@ -261,6 +216,51 @@
      :seattle.htn:hedge-2157
      :seattle.htn:hedge-2156
      :seattle.htn:hedge-2155]},
+   :seattle.htn:net-1941908368
+   {:plan/plid :seattle.htn,
+    :network/id :net-1941908368,
+    :network/type :htn-network,
+    :network/nodes [:seattle.htn:hid-1956],
+    :network/edges [],
+    :network/label "Evidence\nEvidence(B)",
+    :network/rootnodes #{:seattle.htn:hid-1956},
+    :network/parent :seattle.htn:hid-1957},
+   :seattle.htn:net-1817397046
+   {:plan/plid :seattle.htn,
+    :network/id :net-1817397046,
+    :network/type :htn-network,
+    :network/nodes [:seattle.htn:hid-2003],
+    :network/edges [],
+    :network/label "Evidence\nEvidence(D)",
+    :network/rootnodes #{:seattle.htn:hid-2003},
+    :network/parent :seattle.htn:hid-2004},
+   :seattle.htn:net-1012664018
+   {:plan/plid :seattle.htn,
+    :network/id :net-1012664018,
+    :network/type :htn-network,
+    :network/nodes [:seattle.htn:hid-2009],
+    :network/edges [],
+    :network/label "Interpret1\nInterpret(D)",
+    :network/rootnodes #{:seattle.htn:hid-2009},
+    :network/parent :seattle.htn:hid-2010},
+   :seattle.htn:net-406249839
+   {:plan/plid :seattle.htn,
+    :network/id :net-406249839,
+    :network/type :htn-network,
+    :network/nodes [:seattle.htn:hid-1962],
+    :network/edges [],
+    :network/label "Interpret1\nInterpret(B)",
+    :network/rootnodes #{:seattle.htn:hid-1962},
+    :network/parent :seattle.htn:hid-1963},
+   :seattle.htn:net-1030057282
+   {:plan/plid :seattle.htn,
+    :network/id :net-1030057282,
+    :network/type :htn-network,
+    :network/nodes [:seattle.htn:hid-2012],
+    :network/edges [],
+    :network/label "Interpret2\nInterpret(D)",
+    :network/rootnodes #{:seattle.htn:hid-2012},
+    :network/parent :seattle.htn:hid-2013},
    :seattle.htn:net-2070854419
    {:plan/plid :seattle.htn,
     :network/id :net-2070854419,
@@ -1156,7 +1156,7 @@
     :network/id :net-8138,
     :network/type :tpn-network,
     :network/begin :seattle.tpn:node-2146,
-    :network/end :seattle.tpn,
+    :network/end :seattle.tpn:node-2013,
     :network/nodes
     [:seattle.tpn:node-2146
      :seattle.tpn:node-2145

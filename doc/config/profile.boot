@@ -3,9 +3,9 @@
   []
   (require 'boot.repl)
   (swap! @(resolve 'boot.repl/*default-dependencies*)
-    concat '[[org.clojure/tools.nrepl "0.2.12" :exclusions [org.clojure/clojure]]
-             [cider/cider-nrepl "0.12.0-SNAPSHOT" :exclusions [org.clojure/clojure]]
-             [refactor-nrepl "2.2.0" :exclusions [org.clojure/clojure]]
+    concat '[[org.clojure/tools.nrepl "0.2.12"]
+             [cider/cider-nrepl "0.12.0-SNAPSHOT"]
+             [refactor-nrepl "2.2.0"]
              ])
 
   (swap! @(resolve 'boot.repl/*default-middleware*)

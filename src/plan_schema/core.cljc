@@ -954,25 +954,34 @@
               plid-id end-node net)))
         nil))))
 
+(declare find-end)
+
 ;; nil on success
 (defn add-tpn-network [plans plan-id network-id net]
   (let [net-network (get net network-id)
         {:keys [begin-node end-node]} net-network
+        begin-id (composite-key plan-id begin-node)
         end-node (or end-node
-                   (:end-node (get net begin-node)))
-        plid-id (composite-key plan-id network-id)
+                   (:end-node (get net begin-node))
+                   ::walk)
+        end-id (composite-key plan-id end-node)
+        network-plid-id (composite-key plan-id network-id)
         network {:plan/plid plan-id
                  :network/id network-id
                  :network/type :tpn-network
-                 :network/begin (composite-key plan-id begin-node)
-                 :network/end (composite-key plan-id end-node)
+                 :network/begin begin-id
+                 :network/end end-id
                  :network/nodes []
                  :network/edges []}]
     (swap! plans update-in [:network/network-by-plid-id]
-      assoc plid-id network)
+      assoc network-plid-id network)
     (swap! plans update-in [:plan/by-plid plan-id :plan/networks]
-      conj plid-id)
-    (add-tpn-node plans plan-id plid-id begin-node net)))
+      conj network-plid-id)
+    (add-tpn-node plans plan-id network-plid-id begin-node net)
+    (when (= end-node ::walk) ;; must walk the graph to find the end node
+      (let [end-id (find-end plans plan-id begin-id)]
+        (swap! plans assoc-in [:network/network-by-plid-id
+                               network-plid-id :network/end] end-id)))))
 
 ;; nil on success
 (defn add-plan [plans network-type plan-id plan-name net & [corresponding-id]]
@@ -1096,6 +1105,24 @@
                       (if (= (:edge/from edge) node-id) edge)))
         outgoing (remove nil? (map from-node edges))]
     (doall (map edge-fn outgoing))))
+
+;; returns end-id
+(defn find-end [plan plan-id begin-id]
+  (let [the-end (atom :end-not-found)]
+    (visit-nodes plan begin-id #{}
+      (fn [node]
+        (when (= @the-end :end-not-found)
+          (reset! the-end (composite-key plan-id (:node/id node)))
+          (remove nil?
+            (map-outgoing plan node
+              (fn [edge]
+                (let [{:keys [edge/type edge/to]} edge
+                      follow? (#{:activity :null-activity} type)]
+                  (if to ;; that was not the end
+                    (reset! the-end :end-not-found))
+                  (if follow?
+                    to))))))))
+    @the-end))
 
 (defn is-within? [tpn-plan sel id]
   (let [node (get-node tpn-plan id)

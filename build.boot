@@ -13,7 +13,7 @@
 (set-env! :resource-paths #{"src"}
   :source-paths   #{"test"}
   :dependencies   '[[org.clojure/clojure "1.8.0" :scope "provided"]
-                    [org.clojure/clojurescript "1.7.228" :scope "provided"]
+                    [org.clojure/clojurescript "1.8.40" :scope "provided"]
                     [environ "1.0.2"]
                     [org.clojure/tools.cli "0.3.3"]
                     [prismatic/schema "1.1.0"]
@@ -24,7 +24,7 @@
                     [com.cemerick/piggieback "0.2.1"     :scope "test"]
                     [weasel                 "0.7.0"      :scope "test"]
                     [org.clojure/tools.nrepl "0.2.12"    :scope "test"]
-                    [adzerk/boot-reload     "0.4.5"      :scope "test"]
+                    [adzerk/boot-reload     "0.4.7"      :scope "test"]
                     [pandeiro/boot-http "0.7.3" :scope "test"]
                     [adzerk/boot-cljs       "1.7.228-1"  :scope "test"]
                     [adzerk/boot-cljs-repl  "0.3.0"      :scope "test"]

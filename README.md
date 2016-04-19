@@ -34,9 +34,15 @@ Copy [profile.boot](doc/config/profile.boot) to `~/.boot/boot.properties` (if yo
 boot lein-generate
 ````
 
-You can install **plan-schema** locally with `boot local`.
+In order to use the **plan-schema** with other programs
+(e.g. [planviz](https://github.com/dollabs/planviz))
+you need to install it in your local repository
+(i.e. where Maven puts files, usually `~/.m2`):
 
-You can get help for all available boot tasks with `boot -h`.
+````
+boot local
+````
+
 
 ## Usage
 

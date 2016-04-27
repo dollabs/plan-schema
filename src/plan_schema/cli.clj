@@ -11,6 +11,8 @@
             [clojure.tools.cli :refer [parse-opts]]
             [environ.core :refer [env]]
             [plan-schema.core :as pschema])
+  (:import [java.security
+            PrivilegedActionException]) ;; for debugging
   (:gen-class))
 
 (def #^{:added "0.1.0"}
@@ -151,6 +153,9 @@
       (try
         (action options)
         (catch Throwable e ;; note AssertionError not derived from Exception
+          ;; (catch PrivilegedActionException e
+          ;; NOTE: this alternate exception is to help generate a stack trace
+          ;; for debugging purposes
           ;; FIXME: use proper logging
           (binding [*out* *err*]
             (println "ERROR caught exception:" (.getMessage e)))

@@ -1,2206 +1,2245 @@
-[{:plans/plans [:seattle.htn],
+[{:plans/plans [:v2.htn],
   :plan/by-plid
-  {:seattle.htn
-   {:plan/plid :seattle.htn,
-    :plan/name "seattle.htn",
+  {:v2.htn
+   {:plan/plid :v2.htn,
+    :plan/name "v2.htn",
     :plan/type :htn-network,
-    :plan/begin :seattle.htn:net-4731,
+    :plan/begin :v2.htn:net-4761,
     :plan/networks
-    [:seattle.htn:net-4731
-     :seattle.htn:net-154697093
-     :seattle.htn:net-470269522
-     :seattle.htn:net-1122024022
-     :seattle.htn:net-757826067
-     :seattle.htn:net-1611782350
-     :seattle.htn:net-420364894
-     :seattle.htn:net-1062235020
-     :seattle.htn:net-177039531
-     :seattle.htn:net-973439690
-     :seattle.htn:net-691169891
-     :seattle.htn:net-308019815
-     :seattle.htn:net-1941908368
-     :seattle.htn:net-1437629752
-     :seattle.htn:net-406249839
-     :seattle.htn:net-1578565048
-     :seattle.htn:net-1230535760
-     :seattle.htn:net-31566537
-     :seattle.htn:net-464531693
-     :seattle.htn:net-747723576
-     :seattle.htn:net-728020159
-     :seattle.htn:net-665025644
-     :seattle.htn:net-554040712
-     :seattle.htn:net-934727584
-     :seattle.htn:net-1955152757
-     :seattle.htn:net-1817397046
-     :seattle.htn:net-2070854419
-     :seattle.htn:net-1012664018
-     :seattle.htn:net-1030057282],
-    :plan/corresponding :seattle.tpn}},
+    [:v2.htn:net-4761
+     :v2.htn:net-1014790698
+     :v2.htn:net-154697093
+     :v2.htn:net-470269522
+     :v2.htn:net-1122024022
+     :v2.htn:net-757826067
+     :v2.htn:net-1611782350
+     :v2.htn:net-420364894
+     :v2.htn:net-1062235020
+     :v2.htn:net-177039531
+     :v2.htn:net-973439690
+     :v2.htn:net-691169891
+     :v2.htn:net-308019815
+     :v2.htn:net-1941908368
+     :v2.htn:net-1437629752
+     :v2.htn:net-406249839
+     :v2.htn:net-1578565048
+     :v2.htn:net-1230535760
+     :v2.htn:net-31566537
+     :v2.htn:net-464531693
+     :v2.htn:net-747723576
+     :v2.htn:net-728020159
+     :v2.htn:net-665025644
+     :v2.htn:net-554040712
+     :v2.htn:net-934727584
+     :v2.htn:net-1955152757
+     :v2.htn:net-1817397046
+     :v2.htn:net-2070854419
+     :v2.htn:net-1012664018
+     :v2.htn:net-1030057282],
+    :plan/corresponding :v2.tpn}},
   :network/network-by-plid-id
-  {:seattle.htn:net-973439690
-   {:plan/plid :seattle.htn,
+  {:v2.htn:net-691169891
+   {:plan/plid :v2.htn,
+    :network/id :net-691169891,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1948 :v2.htn:hid-1949],
+    :network/edges [],
+    :network/label "GetDataAndInterpret\nGetDataAndInterpret(B C)",
+    :network/rootnodes #{:v2.htn:hid-1948 :v2.htn:hid-1949},
+    :network/parent :v2.htn:hid-1950},
+   :v2.htn:net-31566537
+   {:plan/plid :v2.htn,
+    :network/id :net-31566537,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1974 :v2.htn:hid-1973],
+    :network/edges [],
+    :network/label "GetDataAndInterpret\nGetDataAndInterpret(C D)",
+    :network/rootnodes #{:v2.htn:hid-1974 :v2.htn:hid-1973},
+    :network/parent :v2.htn:hid-1975},
+   :v2.htn:net-464531693
+   {:plan/plid :v2.htn,
+    :network/id :net-464531693,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1976 :v2.htn:hid-1977],
+    :network/edges [:v2.htn:hedge-2176],
+    :network/label "EvidenceAndInterpret\nEvidenceAndInterpret(C)",
+    :network/rootnodes #{:v2.htn:hid-1976},
+    :network/parent :v2.htn:hid-1978},
+   :v2.htn:net-973439690
+   {:plan/plid :v2.htn,
     :network/id :net-973439690,
     :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1943 :seattle.htn:hid-1945],
-    :network/edges [:seattle.htn:hedge-2175],
+    :network/nodes [:v2.htn:hid-1943 :v2.htn:hid-1945],
+    :network/edges [:v2.htn:hedge-2175],
     :network/label "GetDataAt\nGetDataAt(B)",
-    :network/rootnodes #{:seattle.htn:hid-1943},
-    :network/parent :seattle.htn:hid-1946},
-   :seattle.htn:net-154697093
-   {:plan/plid :seattle.htn,
+    :network/rootnodes #{:v2.htn:hid-1943},
+    :network/parent :v2.htn:hid-1946},
+   :v2.htn:net-728020159
+   {:plan/plid :v2.htn,
+    :network/id :net-728020159,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1984],
+    :network/edges [],
+    :network/label "Interpret3\nInterpret(C)",
+    :network/rootnodes #{:v2.htn:hid-1984},
+    :network/parent :v2.htn:hid-1985},
+   :v2.htn:net-1122024022
+   {:plan/plid :v2.htn,
+    :network/id :net-1122024022,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1923 :v2.htn:hid-1924],
+    :network/edges [],
+    :network/label "GetDataAndInterpret\nGetDataAndInterpret(A B)",
+    :network/rootnodes #{:v2.htn:hid-1924 :v2.htn:hid-1923},
+    :network/parent :v2.htn:hid-1925},
+   :v2.htn:net-1230535760
+   {:plan/plid :v2.htn,
+    :network/id :net-1230535760,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1968 :v2.htn:hid-1970],
+    :network/edges [:v2.htn:hedge-2174],
+    :network/label "GetDataAt\nGetDataAt(C)",
+    :network/rootnodes #{:v2.htn:hid-1968},
+    :network/parent :v2.htn:hid-1971},
+   :v2.htn:net-308019815
+   {:plan/plid :v2.htn,
+    :network/id :net-308019815,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1951 :v2.htn:hid-1952],
+    :network/edges [:v2.htn:hedge-2149],
+    :network/label "EvidenceAndInterpret\nEvidenceAndInterpret(B)",
+    :network/rootnodes #{:v2.htn:hid-1951},
+    :network/parent :v2.htn:hid-1953},
+   :v2.htn:net-1611782350
+   {:plan/plid :v2.htn,
+    :network/id :net-1611782350,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1931],
+    :network/edges [],
+    :network/label "Evidence\nEvidence(A)",
+    :network/rootnodes #{:v2.htn:hid-1931},
+    :network/parent :v2.htn:hid-1932},
+   :v2.htn:net-1012664018
+   {:plan/plid :v2.htn,
+    :network/id :net-1012664018,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-2009],
+    :network/edges [],
+    :network/label "Interpret1\nInterpret(D)",
+    :network/rootnodes #{:v2.htn:hid-2009},
+    :network/parent :v2.htn:hid-2010},
+   :v2.htn:net-470269522
+   {:plan/plid :v2.htn,
+    :network/id :net-470269522,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1918 :v2.htn:hid-1920],
+    :network/edges [:v2.htn:hedge-2148],
+    :network/label "GetDataAt\nGetDataAt(A)",
+    :network/rootnodes #{:v2.htn:hid-1918},
+    :network/parent :v2.htn:hid-1921},
+   :v2.htn:net-406249839
+   {:plan/plid :v2.htn,
+    :network/id :net-406249839,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1962],
+    :network/edges [],
+    :network/label "Interpret1\nInterpret(B)",
+    :network/rootnodes #{:v2.htn:hid-1962},
+    :network/parent :v2.htn:hid-1963},
+   :v2.htn:net-177039531
+   {:plan/plid :v2.htn,
+    :network/id :net-177039531,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1940],
+    :network/edges [],
+    :network/label "Interpret2\nInterpret(A)",
+    :network/rootnodes #{:v2.htn:hid-1940},
+    :network/parent :v2.htn:hid-1941},
+   :v2.htn:net-665025644
+   {:plan/plid :v2.htn,
+    :network/id :net-665025644,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1987],
+    :network/edges [],
+    :network/label "Interpret1\nInterpret(C)",
+    :network/rootnodes #{:v2.htn:hid-1987},
+    :network/parent :v2.htn:hid-1988},
+   :v2.htn:net-747723576
+   {:plan/plid :v2.htn,
+    :network/id :net-747723576,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1981],
+    :network/edges [],
+    :network/label "Evidence\nEvidence(C)",
+    :network/rootnodes #{:v2.htn:hid-1981},
+    :network/parent :v2.htn:hid-1982},
+   :v2.htn:net-1955152757
+   {:plan/plid :v2.htn,
+    :network/id :net-1955152757,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1998 :v2.htn:hid-1999],
+    :network/edges [:v2.htn:hedge-2154],
+    :network/label "EvidenceAndInterpret\nEvidenceAndInterpret(D)",
+    :network/rootnodes #{:v2.htn:hid-1998},
+    :network/parent :v2.htn:hid-2000},
+   :v2.htn:net-154697093
+   {:plan/plid :v2.htn,
     :network/id :net-154697093,
     :network/type :htn-network,
     :network/nodes
-    [:seattle.htn:hid-1910
-     :seattle.htn:hid-1911
-     :seattle.htn:hid-1912
-     :seattle.htn:hid-1913
-     :seattle.htn:hid-1914],
+    [:v2.htn:hid-1910
+     :v2.htn:hid-1911
+     :v2.htn:hid-1912
+     :v2.htn:hid-1913
+     :v2.htn:hid-1914],
     :network/edges
-    [:seattle.htn:hedge-2165
-     :seattle.htn:hedge-2166
-     :seattle.htn:hedge-2167
-     :seattle.htn:hedge-2168],
+    [:v2.htn:hedge-2165
+     :v2.htn:hedge-2166
+     :v2.htn:hedge-2167
+     :v2.htn:hedge-2168],
     :network/label "clojure-west Mission\nclojure-west Mission()",
-    :network/rootnodes #{:seattle.htn:hid-1910},
-    :network/parent :seattle.htn:hid-1915},
-   :seattle.htn:net-177039531
-   {:plan/plid :seattle.htn,
-    :network/id :net-177039531,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1940],
-    :network/edges [],
-    :network/label "Interpret2\nInterpret(A)",
-    :network/rootnodes #{:seattle.htn:hid-1940},
-    :network/parent :seattle.htn:hid-1941},
-   :seattle.htn:net-554040712
-   {:plan/plid :seattle.htn,
-    :network/id :net-554040712,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1990],
-    :network/edges [],
-    :network/label "Interpret2\nInterpret(C)",
-    :network/rootnodes #{:seattle.htn:hid-1990},
-    :network/parent :seattle.htn:hid-1991},
-   :seattle.htn:net-728020159
-   {:plan/plid :seattle.htn,
-    :network/id :net-728020159,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1984],
-    :network/edges [],
-    :network/label "Interpret3\nInterpret(C)",
-    :network/rootnodes #{:seattle.htn:hid-1984},
-    :network/parent :seattle.htn:hid-1985},
-   :seattle.htn:net-1062235020
-   {:plan/plid :seattle.htn,
-    :network/id :net-1062235020,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1937],
-    :network/edges [],
-    :network/label "Interpret1\nInterpret(A)",
-    :network/rootnodes #{:seattle.htn:hid-1937},
-    :network/parent :seattle.htn:hid-1938},
-   :seattle.htn:net-1955152757
-   {:plan/plid :seattle.htn,
-    :network/id :net-1955152757,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1998 :seattle.htn:hid-1999],
-    :network/edges [:seattle.htn:hedge-2154],
-    :network/label "EvidenceAndInterpret\nEvidenceAndInterpret(D)",
-    :network/rootnodes #{:seattle.htn:hid-1998},
-    :network/parent :seattle.htn:hid-2000},
-   :seattle.htn:net-691169891
-   {:plan/plid :seattle.htn,
-    :network/id :net-691169891,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1948 :seattle.htn:hid-1949],
-    :network/edges [],
-    :network/label "GetDataAndInterpret\nGetDataAndInterpret(B C)",
-    :network/rootnodes #{:seattle.htn:hid-1948 :seattle.htn:hid-1949},
-    :network/parent :seattle.htn:hid-1950},
-   :seattle.htn:net-308019815
-   {:plan/plid :seattle.htn,
-    :network/id :net-308019815,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1951 :seattle.htn:hid-1952],
-    :network/edges [:seattle.htn:hedge-2149],
-    :network/label "EvidenceAndInterpret\nEvidenceAndInterpret(B)",
-    :network/rootnodes #{:seattle.htn:hid-1951},
-    :network/parent :seattle.htn:hid-1953},
-   :seattle.htn:net-665025644
-   {:plan/plid :seattle.htn,
-    :network/id :net-665025644,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1987],
-    :network/edges [],
-    :network/label "Interpret1\nInterpret(C)",
-    :network/rootnodes #{:seattle.htn:hid-1987},
-    :network/parent :seattle.htn:hid-1988},
-   :seattle.htn:net-1578565048
-   {:plan/plid :seattle.htn,
+    :network/rootnodes #{:v2.htn:hid-1910},
+    :network/parent :v2.htn:hid-1915},
+   :v2.htn:net-1578565048
+   {:plan/plid :v2.htn,
     :network/id :net-1578565048,
     :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1965],
+    :network/nodes [:v2.htn:hid-1965],
     :network/edges [],
     :network/label "Interpret2\nInterpret(B)",
-    :network/rootnodes #{:seattle.htn:hid-1965},
-    :network/parent :seattle.htn:hid-1966},
-   :seattle.htn:net-470269522
-   {:plan/plid :seattle.htn,
-    :network/id :net-470269522,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1918 :seattle.htn:hid-1920],
-    :network/edges [:seattle.htn:hedge-2148],
-    :network/label "GetDataAt\nGetDataAt(A)",
-    :network/rootnodes #{:seattle.htn:hid-1918},
-    :network/parent :seattle.htn:hid-1921},
-   :seattle.htn:net-4731
-   {:plan/plid :seattle.htn,
-    :network/id :net-4731,
-    :network/type :hem-network,
-    :network/begin :seattle.htn:hid-1915,
-    :network/nodes
-    [:seattle.htn:hid-1915
-     :seattle.htn:hid-1921
-     :seattle.htn:hid-1925
-     :seattle.htn:hid-1928
-     :seattle.htn:hid-1932
-     :seattle.htn:hid-1935
-     :seattle.htn:hid-1938
-     :seattle.htn:hid-1941
-     :seattle.htn:hid-1946
-     :seattle.htn:hid-1950
-     :seattle.htn:hid-1953
-     :seattle.htn:hid-1957
-     :seattle.htn:hid-1960
-     :seattle.htn:hid-1963
-     :seattle.htn:hid-1966
-     :seattle.htn:hid-1971
-     :seattle.htn:hid-1975
-     :seattle.htn:hid-1978
-     :seattle.htn:hid-1982
-     :seattle.htn:hid-1985
-     :seattle.htn:hid-1988
-     :seattle.htn:hid-1991
-     :seattle.htn:hid-1996
-     :seattle.htn:hid-2000
-     :seattle.htn:hid-2004
-     :seattle.htn:hid-2007
-     :seattle.htn:hid-2010
-     :seattle.htn:hid-2013],
-    :network/edges
-    [:seattle.htn:hedge-2173
-     :seattle.htn:hedge-2172
-     :seattle.htn:hedge-2160
-     :seattle.htn:hedge-2185
-     :seattle.htn:hedge-2184
-     :seattle.htn:hedge-2183
-     :seattle.htn:hedge-2182
-     :seattle.htn:hedge-2159
-     :seattle.htn:hedge-2171
-     :seattle.htn:hedge-2163
-     :seattle.htn:hedge-2153
-     :seattle.htn:hedge-2152
-     :seattle.htn:hedge-2151
-     :seattle.htn:hedge-2150
-     :seattle.htn:hedge-2162
-     :seattle.htn:hedge-2170
-     :seattle.htn:hedge-2187
-     :seattle.htn:hedge-2180
-     :seattle.htn:hedge-2179
-     :seattle.htn:hedge-2178
-     :seattle.htn:hedge-2177
-     :seattle.htn:hedge-2186
-     :seattle.htn:hedge-2169
-     :seattle.htn:hedge-2158
-     :seattle.htn:hedge-2157
-     :seattle.htn:hedge-2156
-     :seattle.htn:hedge-2155]},
-   :seattle.htn:net-1941908368
-   {:plan/plid :seattle.htn,
-    :network/id :net-1941908368,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1956],
-    :network/edges [],
-    :network/label "Evidence\nEvidence(B)",
-    :network/rootnodes #{:seattle.htn:hid-1956},
-    :network/parent :seattle.htn:hid-1957},
-   :seattle.htn:net-1817397046
-   {:plan/plid :seattle.htn,
-    :network/id :net-1817397046,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-2003],
-    :network/edges [],
-    :network/label "Evidence\nEvidence(D)",
-    :network/rootnodes #{:seattle.htn:hid-2003},
-    :network/parent :seattle.htn:hid-2004},
-   :seattle.htn:net-1012664018
-   {:plan/plid :seattle.htn,
-    :network/id :net-1012664018,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-2009],
-    :network/edges [],
-    :network/label "Interpret1\nInterpret(D)",
-    :network/rootnodes #{:seattle.htn:hid-2009},
-    :network/parent :seattle.htn:hid-2010},
-   :seattle.htn:net-406249839
-   {:plan/plid :seattle.htn,
-    :network/id :net-406249839,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1962],
-    :network/edges [],
-    :network/label "Interpret1\nInterpret(B)",
-    :network/rootnodes #{:seattle.htn:hid-1962},
-    :network/parent :seattle.htn:hid-1963},
-   :seattle.htn:net-1030057282
-   {:plan/plid :seattle.htn,
-    :network/id :net-1030057282,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-2012],
-    :network/edges [],
-    :network/label "Interpret2\nInterpret(D)",
-    :network/rootnodes #{:seattle.htn:hid-2012},
-    :network/parent :seattle.htn:hid-2013},
-   :seattle.htn:net-2070854419
-   {:plan/plid :seattle.htn,
-    :network/id :net-2070854419,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-2006],
-    :network/edges [],
-    :network/label "Interpret3\nInterpret(D)",
-    :network/rootnodes #{:seattle.htn:hid-2006},
-    :network/parent :seattle.htn:hid-2007},
-   :seattle.htn:net-1122024022
-   {:plan/plid :seattle.htn,
-    :network/id :net-1122024022,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1923 :seattle.htn:hid-1924],
-    :network/edges [],
-    :network/label "GetDataAndInterpret\nGetDataAndInterpret(A B)",
-    :network/rootnodes #{:seattle.htn:hid-1924 :seattle.htn:hid-1923},
-    :network/parent :seattle.htn:hid-1925},
-   :seattle.htn:net-1230535760
-   {:plan/plid :seattle.htn,
-    :network/id :net-1230535760,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1968 :seattle.htn:hid-1970],
-    :network/edges [:seattle.htn:hedge-2174],
-    :network/label "GetDataAt\nGetDataAt(C)",
-    :network/rootnodes #{:seattle.htn:hid-1968},
-    :network/parent :seattle.htn:hid-1971},
-   :seattle.htn:net-757826067
-   {:plan/plid :seattle.htn,
-    :network/id :net-757826067,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1926 :seattle.htn:hid-1927],
-    :network/edges [:seattle.htn:hedge-2181],
-    :network/label "EvidenceAndInterpret\nEvidenceAndInterpret(A)",
-    :network/rootnodes #{:seattle.htn:hid-1926},
-    :network/parent :seattle.htn:hid-1928},
-   :seattle.htn:net-464531693
-   {:plan/plid :seattle.htn,
-    :network/id :net-464531693,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1976 :seattle.htn:hid-1977],
-    :network/edges [:seattle.htn:hedge-2176],
-    :network/label "EvidenceAndInterpret\nEvidenceAndInterpret(C)",
-    :network/rootnodes #{:seattle.htn:hid-1976},
-    :network/parent :seattle.htn:hid-1978},
-   :seattle.htn:net-1437629752
-   {:plan/plid :seattle.htn,
+    :network/rootnodes #{:v2.htn:hid-1965},
+    :network/parent :v2.htn:hid-1966},
+   :v2.htn:net-1437629752
+   {:plan/plid :v2.htn,
     :network/id :net-1437629752,
     :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1959],
+    :network/nodes [:v2.htn:hid-1959],
     :network/edges [],
     :network/label "Interpret3\nInterpret(B)",
-    :network/rootnodes #{:seattle.htn:hid-1959},
-    :network/parent :seattle.htn:hid-1960},
-   :seattle.htn:net-747723576
-   {:plan/plid :seattle.htn,
-    :network/id :net-747723576,
+    :network/rootnodes #{:v2.htn:hid-1959},
+    :network/parent :v2.htn:hid-1960},
+   :v2.htn:net-554040712
+   {:plan/plid :v2.htn,
+    :network/id :net-554040712,
     :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1981],
+    :network/nodes [:v2.htn:hid-1990],
     :network/edges [],
-    :network/label "Evidence\nEvidence(C)",
-    :network/rootnodes #{:seattle.htn:hid-1981},
-    :network/parent :seattle.htn:hid-1982},
-   :seattle.htn:net-31566537
-   {:plan/plid :seattle.htn,
-    :network/id :net-31566537,
+    :network/label "Interpret2\nInterpret(C)",
+    :network/rootnodes #{:v2.htn:hid-1990},
+    :network/parent :v2.htn:hid-1991},
+   :v2.htn:net-757826067
+   {:plan/plid :v2.htn,
+    :network/id :net-757826067,
     :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1974 :seattle.htn:hid-1973],
-    :network/edges [],
-    :network/label "GetDataAndInterpret\nGetDataAndInterpret(C D)",
-    :network/rootnodes #{:seattle.htn:hid-1973 :seattle.htn:hid-1974},
-    :network/parent :seattle.htn:hid-1975},
-   :seattle.htn:net-420364894
-   {:plan/plid :seattle.htn,
-    :network/id :net-420364894,
+    :network/nodes [:v2.htn:hid-1926 :v2.htn:hid-1927],
+    :network/edges [:v2.htn:hedge-2181],
+    :network/label "EvidenceAndInterpret\nEvidenceAndInterpret(A)",
+    :network/rootnodes #{:v2.htn:hid-1926},
+    :network/parent :v2.htn:hid-1928},
+   :v2.htn:net-1014790698
+   {:plan/plid :v2.htn,
+    :network/id :net-1014790698,
     :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1934],
+    :network/parent :v2.htn:net-4761,
+    :network/nodes [:v2.htn:hid-1909],
     :network/edges [],
-    :network/label "Interpret3\nInterpret(A)",
-    :network/rootnodes #{:seattle.htn:hid-1934},
-    :network/parent :seattle.htn:hid-1935},
-   :seattle.htn:net-1611782350
-   {:plan/plid :seattle.htn,
-    :network/id :net-1611782350,
-    :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1931],
-    :network/edges [],
-    :network/label "Evidence\nEvidence(A)",
-    :network/rootnodes #{:seattle.htn:hid-1931},
-    :network/parent :seattle.htn:hid-1932},
-   :seattle.htn:net-934727584
-   {:plan/plid :seattle.htn,
+    :network/label "clojure-west Mission()",
+    :network/rootnodes #{:v2.htn:hid-1909}},
+   :v2.htn:net-934727584
+   {:plan/plid :v2.htn,
     :network/id :net-934727584,
     :network/type :htn-network,
-    :network/nodes [:seattle.htn:hid-1993 :seattle.htn:hid-1995],
-    :network/edges [:seattle.htn:hedge-2161],
+    :network/nodes [:v2.htn:hid-1993 :v2.htn:hid-1995],
+    :network/edges [:v2.htn:hedge-2161],
     :network/label "GetDataAt\nGetDataAt(D)",
-    :network/rootnodes #{:seattle.htn:hid-1993},
-    :network/parent :seattle.htn:hid-1996}},
+    :network/rootnodes #{:v2.htn:hid-1993},
+    :network/parent :v2.htn:hid-1996},
+   :v2.htn:net-1062235020
+   {:plan/plid :v2.htn,
+    :network/id :net-1062235020,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1937],
+    :network/edges [],
+    :network/label "Interpret1\nInterpret(A)",
+    :network/rootnodes #{:v2.htn:hid-1937},
+    :network/parent :v2.htn:hid-1938},
+   :v2.htn:net-2070854419
+   {:plan/plid :v2.htn,
+    :network/id :net-2070854419,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-2006],
+    :network/edges [],
+    :network/label "Interpret3\nInterpret(D)",
+    :network/rootnodes #{:v2.htn:hid-2006},
+    :network/parent :v2.htn:hid-2007},
+   :v2.htn:net-1941908368
+   {:plan/plid :v2.htn,
+    :network/id :net-1941908368,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1956],
+    :network/edges [],
+    :network/label "Evidence\nEvidence(B)",
+    :network/rootnodes #{:v2.htn:hid-1956},
+    :network/parent :v2.htn:hid-1957},
+   :v2.htn:net-4761
+   {:plan/plid :v2.htn,
+    :network/id :net-4761,
+    :network/type :hem-network,
+    :network/begin :v2.htn:hid-4762,
+    :network/nodes
+    [:v2.htn:hid-4762
+     :v2.htn:hid-1915
+     :v2.htn:hid-1921
+     :v2.htn:hid-1925
+     :v2.htn:hid-1928
+     :v2.htn:hid-1932
+     :v2.htn:hid-1935
+     :v2.htn:hid-1938
+     :v2.htn:hid-1941
+     :v2.htn:hid-1946
+     :v2.htn:hid-1950
+     :v2.htn:hid-1953
+     :v2.htn:hid-1957
+     :v2.htn:hid-1960
+     :v2.htn:hid-1963
+     :v2.htn:hid-1966
+     :v2.htn:hid-1971
+     :v2.htn:hid-1975
+     :v2.htn:hid-1978
+     :v2.htn:hid-1982
+     :v2.htn:hid-1985
+     :v2.htn:hid-1988
+     :v2.htn:hid-1991
+     :v2.htn:hid-1996
+     :v2.htn:hid-2000
+     :v2.htn:hid-2004
+     :v2.htn:hid-2007
+     :v2.htn:hid-2010
+     :v2.htn:hid-2013],
+    :network/edges
+    [:v2.htn:hedge-2164
+     :v2.htn:hedge-2173
+     :v2.htn:hedge-2172
+     :v2.htn:hedge-2160
+     :v2.htn:hedge-2185
+     :v2.htn:hedge-2184
+     :v2.htn:hedge-2183
+     :v2.htn:hedge-2182
+     :v2.htn:hedge-2159
+     :v2.htn:hedge-2171
+     :v2.htn:hedge-2163
+     :v2.htn:hedge-2153
+     :v2.htn:hedge-2152
+     :v2.htn:hedge-2151
+     :v2.htn:hedge-2150
+     :v2.htn:hedge-2162
+     :v2.htn:hedge-2170
+     :v2.htn:hedge-2187
+     :v2.htn:hedge-2180
+     :v2.htn:hedge-2179
+     :v2.htn:hedge-2178
+     :v2.htn:hedge-2177
+     :v2.htn:hedge-2186
+     :v2.htn:hedge-2169
+     :v2.htn:hedge-2158
+     :v2.htn:hedge-2157
+     :v2.htn:hedge-2156
+     :v2.htn:hedge-2155]},
+   :v2.htn:net-420364894
+   {:plan/plid :v2.htn,
+    :network/id :net-420364894,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-1934],
+    :network/edges [],
+    :network/label "Interpret3\nInterpret(A)",
+    :network/rootnodes #{:v2.htn:hid-1934},
+    :network/parent :v2.htn:hid-1935},
+   :v2.htn:net-1030057282
+   {:plan/plid :v2.htn,
+    :network/id :net-1030057282,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-2012],
+    :network/edges [],
+    :network/label "Interpret2\nInterpret(D)",
+    :network/rootnodes #{:v2.htn:hid-2012},
+    :network/parent :v2.htn:hid-2013},
+   :v2.htn:net-1817397046
+   {:plan/plid :v2.htn,
+    :network/id :net-1817397046,
+    :network/type :htn-network,
+    :network/nodes [:v2.htn:hid-2003],
+    :network/edges [],
+    :network/label "Evidence\nEvidence(D)",
+    :network/rootnodes #{:v2.htn:hid-2003},
+    :network/parent :v2.htn:hid-2004}},
   :edge/edge-by-plid-id
-  {:seattle.htn:hedge-2153
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2153,
-    :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1953,
-    :edge/to :seattle.htn:hid-1957,
-    :edge/order 0,
-    :edge/label "1"},
-   :seattle.htn:hedge-2187
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2187,
-    :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1975,
-    :edge/to :seattle.htn:hid-1978,
-    :edge/order 0},
-   :seattle.htn:hedge-2148
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2148,
-    :edge/type :sequence-edge,
-    :edge/from :seattle.htn:hid-1918,
-    :edge/to :seattle.htn:hid-1920},
-   :seattle.htn:hedge-2176
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2176,
-    :edge/type :sequence-edge,
-    :edge/from :seattle.htn:hid-1976,
-    :edge/to :seattle.htn:hid-1977},
-   :seattle.htn:hedge-2162
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2162,
-    :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1950,
-    :edge/to :seattle.htn:hid-1971,
-    :edge/order 1},
-   :seattle.htn:hedge-2170
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2170,
-    :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1915,
-    :edge/to :seattle.htn:hid-1975,
-    :edge/order 3,
-    :edge/label "4"},
-   :seattle.htn:hedge-2161
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2161,
-    :edge/type :sequence-edge,
-    :edge/from :seattle.htn:hid-1993,
-    :edge/to :seattle.htn:hid-1995},
-   :seattle.htn:hedge-2167
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2167,
-    :edge/type :sequence-edge,
-    :edge/from :seattle.htn:hid-1912,
-    :edge/to :seattle.htn:hid-1913},
-   :seattle.htn:hedge-2185
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2185,
-    :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1928,
-    :edge/to :seattle.htn:hid-1932,
-    :edge/order 0,
-    :edge/label "1"},
-   :seattle.htn:hedge-2181
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2181,
-    :edge/type :sequence-edge,
-    :edge/from :seattle.htn:hid-1926,
-    :edge/to :seattle.htn:hid-1927},
-   :seattle.htn:hedge-2175
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2175,
-    :edge/type :sequence-edge,
-    :edge/from :seattle.htn:hid-1943,
-    :edge/to :seattle.htn:hid-1945},
-   :seattle.htn:hedge-2157
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2157,
-    :edge/type :choice-edge,
-    :edge/from :seattle.htn:hid-2000,
-    :edge/to :seattle.htn:hid-2007,
-    :edge/order 1,
-    :edge/label "2"},
-   :seattle.htn:hedge-2178
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2178,
-    :edge/type :choice-edge,
-    :edge/from :seattle.htn:hid-1978,
-    :edge/to :seattle.htn:hid-1988,
-    :edge/order 2,
-    :edge/label "2"},
-   :seattle.htn:hedge-2155
-   {:plan/plid :seattle.htn,
+  {:v2.htn:hedge-2155
+   {:plan/plid :v2.htn,
     :edge/id :hedge-2155,
     :edge/type :choice-edge,
-    :edge/from :seattle.htn:hid-2000,
-    :edge/to :seattle.htn:hid-2013,
+    :edge/from :v2.htn:hid-2000,
+    :edge/to :v2.htn:hid-2013,
     :edge/order 3,
     :edge/label "2"},
-   :seattle.htn:hedge-2179
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2179,
-    :edge/type :choice-edge,
-    :edge/from :seattle.htn:hid-1978,
-    :edge/to :seattle.htn:hid-1985,
-    :edge/order 1,
-    :edge/label "2"},
-   :seattle.htn:hedge-2165
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2165,
-    :edge/type :sequence-edge,
-    :edge/from :seattle.htn:hid-1910,
-    :edge/to :seattle.htn:hid-1911},
-   :seattle.htn:hedge-2166
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2166,
-    :edge/type :sequence-edge,
-    :edge/from :seattle.htn:hid-1911,
-    :edge/to :seattle.htn:hid-1912},
-   :seattle.htn:hedge-2158
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2158,
-    :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-2000,
-    :edge/to :seattle.htn:hid-2004,
-    :edge/order 0,
-    :edge/label "1"},
-   :seattle.htn:hedge-2151
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2151,
-    :edge/type :choice-edge,
-    :edge/from :seattle.htn:hid-1953,
-    :edge/to :seattle.htn:hid-1963,
-    :edge/order 2,
-    :edge/label "2"},
-   :seattle.htn:hedge-2159
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2159,
-    :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1925,
-    :edge/to :seattle.htn:hid-1946,
-    :edge/order 1},
-   :seattle.htn:hedge-2171
-   {:plan/plid :seattle.htn,
+   :v2.htn:hedge-2171
+   {:plan/plid :v2.htn,
     :edge/id :hedge-2171,
     :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1915,
-    :edge/to :seattle.htn:hid-1950,
+    :edge/from :v2.htn:hid-1915,
+    :edge/to :v2.htn:hid-1950,
     :edge/order 2,
     :edge/label "3"},
-   :seattle.htn:hedge-2184
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2184,
-    :edge/type :choice-edge,
-    :edge/from :seattle.htn:hid-1928,
-    :edge/to :seattle.htn:hid-1935,
-    :edge/order 1,
-    :edge/label "2"},
-   :seattle.htn:hedge-2174
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2174,
-    :edge/type :sequence-edge,
-    :edge/from :seattle.htn:hid-1968,
-    :edge/to :seattle.htn:hid-1970},
-   :seattle.htn:hedge-2152
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2152,
-    :edge/type :choice-edge,
-    :edge/from :seattle.htn:hid-1953,
-    :edge/to :seattle.htn:hid-1960,
-    :edge/order 1,
-    :edge/label "2"},
-   :seattle.htn:hedge-2182
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2182,
-    :edge/type :choice-edge,
-    :edge/from :seattle.htn:hid-1928,
-    :edge/to :seattle.htn:hid-1941,
-    :edge/order 3,
-    :edge/label "2"},
-   :seattle.htn:hedge-2169
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2169,
-    :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1915,
-    :edge/to :seattle.htn:hid-2000,
-    :edge/order 4,
-    :edge/label "5"},
-   :seattle.htn:hedge-2149
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2149,
-    :edge/type :sequence-edge,
-    :edge/from :seattle.htn:hid-1951,
-    :edge/to :seattle.htn:hid-1952},
-   :seattle.htn:hedge-2163
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2163,
-    :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1950,
-    :edge/to :seattle.htn:hid-1953,
-    :edge/order 0},
-   :seattle.htn:hedge-2177
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2177,
-    :edge/type :choice-edge,
-    :edge/from :seattle.htn:hid-1978,
-    :edge/to :seattle.htn:hid-1991,
-    :edge/order 3,
-    :edge/label "2"},
-   :seattle.htn:hedge-2154
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2154,
-    :edge/type :sequence-edge,
-    :edge/from :seattle.htn:hid-1998,
-    :edge/to :seattle.htn:hid-1999},
-   :seattle.htn:hedge-2156
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2156,
-    :edge/type :choice-edge,
-    :edge/from :seattle.htn:hid-2000,
-    :edge/to :seattle.htn:hid-2010,
-    :edge/order 2,
-    :edge/label "2"},
-   :seattle.htn:hedge-2168
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2168,
-    :edge/type :sequence-edge,
-    :edge/from :seattle.htn:hid-1913,
-    :edge/to :seattle.htn:hid-1914},
-   :seattle.htn:hedge-2160
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2160,
-    :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1925,
-    :edge/to :seattle.htn:hid-1928,
-    :edge/order 0},
-   :seattle.htn:hedge-2150
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2150,
-    :edge/type :choice-edge,
-    :edge/from :seattle.htn:hid-1953,
-    :edge/to :seattle.htn:hid-1966,
-    :edge/order 3,
-    :edge/label "2"},
-   :seattle.htn:hedge-2172
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2172,
-    :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1915,
-    :edge/to :seattle.htn:hid-1925,
-    :edge/order 1,
-    :edge/label "2"},
-   :seattle.htn:hedge-2183
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2183,
-    :edge/type :choice-edge,
-    :edge/from :seattle.htn:hid-1928,
-    :edge/to :seattle.htn:hid-1938,
-    :edge/order 2,
-    :edge/label "2"},
-   :seattle.htn:hedge-2180
-   {:plan/plid :seattle.htn,
-    :edge/id :hedge-2180,
-    :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1978,
-    :edge/to :seattle.htn:hid-1982,
-    :edge/order 0,
-    :edge/label "1"},
-   :seattle.htn:hedge-2186
-   {:plan/plid :seattle.htn,
+   :v2.htn:hedge-2186
+   {:plan/plid :v2.htn,
     :edge/id :hedge-2186,
     :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1975,
-    :edge/to :seattle.htn:hid-1996,
+    :edge/from :v2.htn:hid-1975,
+    :edge/to :v2.htn:hid-1996,
     :edge/order 1},
-   :seattle.htn:hedge-2173
-   {:plan/plid :seattle.htn,
+   :v2.htn:hedge-2180
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2180,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-1978,
+    :edge/to :v2.htn:hid-1982,
+    :edge/order 0,
+    :edge/label "1"},
+   :v2.htn:hedge-2170
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2170,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-1915,
+    :edge/to :v2.htn:hid-1975,
+    :edge/order 3,
+    :edge/label "4"},
+   :v2.htn:hedge-2158
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2158,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-2000,
+    :edge/to :v2.htn:hid-2004,
+    :edge/order 0,
+    :edge/label "1"},
+   :v2.htn:hedge-2187
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2187,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-1975,
+    :edge/to :v2.htn:hid-1978,
+    :edge/order 0},
+   :v2.htn:hedge-2152
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2152,
+    :edge/type :choice-edge,
+    :edge/from :v2.htn:hid-1953,
+    :edge/to :v2.htn:hid-1960,
+    :edge/order 1,
+    :edge/label "2"},
+   :v2.htn:hedge-2178
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2178,
+    :edge/type :choice-edge,
+    :edge/from :v2.htn:hid-1978,
+    :edge/to :v2.htn:hid-1988,
+    :edge/order 2,
+    :edge/label "2"},
+   :v2.htn:hedge-2174
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2174,
+    :edge/type :sequence-edge,
+    :edge/from :v2.htn:hid-1968,
+    :edge/to :v2.htn:hid-1970},
+   :v2.htn:hedge-2166
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2166,
+    :edge/type :sequence-edge,
+    :edge/from :v2.htn:hid-1911,
+    :edge/to :v2.htn:hid-1912},
+   :v2.htn:hedge-2167
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2167,
+    :edge/type :sequence-edge,
+    :edge/from :v2.htn:hid-1912,
+    :edge/to :v2.htn:hid-1913},
+   :v2.htn:hedge-2157
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2157,
+    :edge/type :choice-edge,
+    :edge/from :v2.htn:hid-2000,
+    :edge/to :v2.htn:hid-2007,
+    :edge/order 1,
+    :edge/label "2"},
+   :v2.htn:hedge-2184
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2184,
+    :edge/type :choice-edge,
+    :edge/from :v2.htn:hid-1928,
+    :edge/to :v2.htn:hid-1935,
+    :edge/order 1,
+    :edge/label "2"},
+   :v2.htn:hedge-2175
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2175,
+    :edge/type :sequence-edge,
+    :edge/from :v2.htn:hid-1943,
+    :edge/to :v2.htn:hid-1945},
+   :v2.htn:hedge-2148
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2148,
+    :edge/type :sequence-edge,
+    :edge/from :v2.htn:hid-1918,
+    :edge/to :v2.htn:hid-1920},
+   :v2.htn:hedge-2164
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2164,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-4762,
+    :edge/to :v2.htn:hid-1915,
+    :edge/order 0},
+   :v2.htn:hedge-2163
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2163,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-1950,
+    :edge/to :v2.htn:hid-1953,
+    :edge/order 0},
+   :v2.htn:hedge-2177
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2177,
+    :edge/type :choice-edge,
+    :edge/from :v2.htn:hid-1978,
+    :edge/to :v2.htn:hid-1991,
+    :edge/order 3,
+    :edge/label "2"},
+   :v2.htn:hedge-2181
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2181,
+    :edge/type :sequence-edge,
+    :edge/from :v2.htn:hid-1926,
+    :edge/to :v2.htn:hid-1927},
+   :v2.htn:hedge-2169
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2169,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-1915,
+    :edge/to :v2.htn:hid-2000,
+    :edge/order 4,
+    :edge/label "5"},
+   :v2.htn:hedge-2156
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2156,
+    :edge/type :choice-edge,
+    :edge/from :v2.htn:hid-2000,
+    :edge/to :v2.htn:hid-2010,
+    :edge/order 2,
+    :edge/label "2"},
+   :v2.htn:hedge-2161
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2161,
+    :edge/type :sequence-edge,
+    :edge/from :v2.htn:hid-1993,
+    :edge/to :v2.htn:hid-1995},
+   :v2.htn:hedge-2159
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2159,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-1925,
+    :edge/to :v2.htn:hid-1946,
+    :edge/order 1},
+   :v2.htn:hedge-2165
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2165,
+    :edge/type :sequence-edge,
+    :edge/from :v2.htn:hid-1910,
+    :edge/to :v2.htn:hid-1911},
+   :v2.htn:hedge-2162
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2162,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-1950,
+    :edge/to :v2.htn:hid-1971,
+    :edge/order 1},
+   :v2.htn:hedge-2160
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2160,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-1925,
+    :edge/to :v2.htn:hid-1928,
+    :edge/order 0},
+   :v2.htn:hedge-2150
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2150,
+    :edge/type :choice-edge,
+    :edge/from :v2.htn:hid-1953,
+    :edge/to :v2.htn:hid-1966,
+    :edge/order 3,
+    :edge/label "2"},
+   :v2.htn:hedge-2179
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2179,
+    :edge/type :choice-edge,
+    :edge/from :v2.htn:hid-1978,
+    :edge/to :v2.htn:hid-1985,
+    :edge/order 1,
+    :edge/label "2"},
+   :v2.htn:hedge-2149
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2149,
+    :edge/type :sequence-edge,
+    :edge/from :v2.htn:hid-1951,
+    :edge/to :v2.htn:hid-1952},
+   :v2.htn:hedge-2153
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2153,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-1953,
+    :edge/to :v2.htn:hid-1957,
+    :edge/order 0,
+    :edge/label "1"},
+   :v2.htn:hedge-2168
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2168,
+    :edge/type :sequence-edge,
+    :edge/from :v2.htn:hid-1913,
+    :edge/to :v2.htn:hid-1914},
+   :v2.htn:hedge-2151
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2151,
+    :edge/type :choice-edge,
+    :edge/from :v2.htn:hid-1953,
+    :edge/to :v2.htn:hid-1963,
+    :edge/order 2,
+    :edge/label "2"},
+   :v2.htn:hedge-2182
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2182,
+    :edge/type :choice-edge,
+    :edge/from :v2.htn:hid-1928,
+    :edge/to :v2.htn:hid-1941,
+    :edge/order 3,
+    :edge/label "2"},
+   :v2.htn:hedge-2173
+   {:plan/plid :v2.htn,
     :edge/id :hedge-2173,
     :edge/type :parallel-edge,
-    :edge/from :seattle.htn:hid-1915,
-    :edge/to :seattle.htn:hid-1921,
+    :edge/from :v2.htn:hid-1915,
+    :edge/to :v2.htn:hid-1921,
     :edge/order 0,
-    :edge/label "1"}},
+    :edge/label "1"},
+   :v2.htn:hedge-2172
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2172,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-1915,
+    :edge/to :v2.htn:hid-1925,
+    :edge/order 1,
+    :edge/label "2"},
+   :v2.htn:hedge-2176
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2176,
+    :edge/type :sequence-edge,
+    :edge/from :v2.htn:hid-1976,
+    :edge/to :v2.htn:hid-1977},
+   :v2.htn:hedge-2183
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2183,
+    :edge/type :choice-edge,
+    :edge/from :v2.htn:hid-1928,
+    :edge/to :v2.htn:hid-1938,
+    :edge/order 2,
+    :edge/label "2"},
+   :v2.htn:hedge-2185
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2185,
+    :edge/type :parallel-edge,
+    :edge/from :v2.htn:hid-1928,
+    :edge/to :v2.htn:hid-1932,
+    :edge/order 0,
+    :edge/label "1"},
+   :v2.htn:hedge-2154
+   {:plan/plid :v2.htn,
+    :edge/id :hedge-2154,
+    :edge/type :sequence-edge,
+    :edge/from :v2.htn:hid-1998,
+    :edge/to :v2.htn:hid-1999}},
   :node/node-by-plid-id
-  {:seattle.htn:hid-2012
-   {:plan/plid :seattle.htn,
-    :node/id :hid-2012,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-1030057282,
-    :node/label "Interpret 2(D)",
-    :node/tpn-edge :seattle.tpn:arc-2015},
-   :seattle.htn:hid-1940
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1940,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-177039531,
-    :node/label "Interpret 2(A)",
-    :node/tpn-edge :seattle.tpn:arc-2110},
-   :seattle.htn:hid-1921
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1921,
-    :node/type :htn-expanded-method,
-    :node/label "GetDataAt\nGetDataAt(A)",
-    :node/htn-network :seattle.htn:net-470269522,
-    :node/tpn-selection
-    [[:edge :seattle.tpn:arc-2146] [:edge :seattle.tpn:arc-2144]]},
-   :seattle.htn:hid-1957
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1957,
-    :node/type :htn-expanded-method,
-    :node/label "Evidence\nEvidence(B)",
-    :node/htn-network :seattle.htn:net-1941908368,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2092]]},
-   :seattle.htn:hid-1914
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1914,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-154697093,
-    :node/label "EvidenceAndInterpret(D)"},
-   :seattle.htn:hid-1924
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1924,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-1122024022,
-    :node/label "GetDataAt(B)"},
-   :seattle.htn:hid-2009
-   {:plan/plid :seattle.htn,
-    :node/id :hid-2009,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-1012664018,
-    :node/label "Interpret 1(D)",
-    :node/tpn-edge :seattle.tpn:arc-2021},
-   :seattle.htn:hid-1975
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1975,
-    :node/type :htn-expanded-method,
-    :node/label "GetDataAndInterpret\nGetDataAndInterpret(C D)",
-    :node/htn-network :seattle.htn:net-31566537,
-    :node/tpn-selection [[:node :seattle.tpn:node-2035]]},
-   :seattle.htn:hid-1923
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1923,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-1122024022,
-    :node/label "EvidenceAndInterpret(A)"},
-   :seattle.htn:hid-1948
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1948,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-691169891,
-    :node/label "EvidenceAndInterpret(B)"},
-   :seattle.htn:hid-1973
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1973,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-31566537,
-    :node/label "EvidenceAndInterpret(C)"},
-   :seattle.htn:hid-1976
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1976,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-464531693,
-    :node/label "Evidence(C)"},
-   :seattle.htn:hid-2013
-   {:plan/plid :seattle.htn,
-    :node/id :hid-2013,
-    :node/type :htn-expanded-method,
-    :node/label "Interpret2\nInterpret(D)",
-    :node/htn-network :seattle.htn:net-1030057282,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2015]]},
-   :seattle.htn:hid-1991
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1991,
-    :node/type :htn-expanded-method,
-    :node/label "Interpret2\nInterpret(C)",
-    :node/htn-network :seattle.htn:net-554040712,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2038]]},
-   :seattle.htn:hid-1931
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1931,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-1611782350,
-    :node/label "Evidence(A)",
-    :node/tpn-edge :seattle.tpn:arc-2128},
-   :seattle.htn:hid-1949
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1949,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-691169891,
-    :node/label "GetDataAt(C)"},
-   :seattle.htn:hid-1998
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1998,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-1955152757,
-    :node/label "Evidence(D)"},
-   :seattle.htn:hid-1993
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1993,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-934727584,
-    :node/label "GoTo(D)",
-    :node/tpn-edge :seattle.tpn:arc-2064},
-   :seattle.htn:hid-2004
-   {:plan/plid :seattle.htn,
-    :node/id :hid-2004,
-    :node/type :htn-expanded-method,
-    :node/label "Evidence\nEvidence(D)",
-    :node/htn-network :seattle.htn:net-1817397046,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2033]]},
-   :seattle.htn:hid-1928
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1928,
-    :node/type :htn-expanded-method,
-    :node/label "EvidenceAndInterpret\nEvidenceAndInterpret(A)",
-    :node/htn-network :seattle.htn:net-757826067,
-    :node/tpn-selection
-    [[:node :seattle.tpn:node-2109] [:edge :seattle.tpn:arc-2128]]},
-   :seattle.htn:hid-1951
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1951,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-308019815,
-    :node/label "Evidence(B)"},
-   :seattle.htn:hid-2000
-   {:plan/plid :seattle.htn,
-    :node/id :hid-2000,
-    :node/type :htn-expanded-method,
-    :node/label "EvidenceAndInterpret\nEvidenceAndInterpret(D)",
-    :node/htn-network :seattle.htn:net-1955152757,
-    :node/tpn-selection
-    [[:node :seattle.tpn:node-2014] [:edge :seattle.tpn:arc-2033]]},
-   :seattle.htn:hid-1915
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1915,
-    :node/type :htn-expanded-method,
-    :node/label "clojure-west Mission\nclojure-west Mission()",
-    :node/htn-network :seattle.htn:net-154697093,
-    :node/tpn-selection
-    [[:node :seattle.tpn:node-2107]
-     [:node :seattle.tpn:node-2014]
-     [:node :seattle.tpn:node-2035]
-     [:node :seattle.tpn:node-2071]
-     [:edge :seattle.tpn:arc-2146]
-     [:edge :seattle.tpn:arc-2144]
-     [:edge :seattle.tpn:arc-2033]]},
-   :seattle.htn:hid-1945
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1945,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-973439690,
-    :node/label "Capture(B)",
-    :node/tpn-edge :seattle.tpn:arc-2134},
-   :seattle.htn:hid-1999
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1999,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-1955152757,
-    :node/label "Interpret(D)",
-    :node/tpn-node :seattle.tpn:node-2014},
-   :seattle.htn:hid-1934
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1934,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-420364894,
-    :node/label "Interpret 3(A)",
-    :node/tpn-edge :seattle.tpn:arc-2122},
-   :seattle.htn:hid-1985
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1985,
-    :node/type :htn-expanded-method,
-    :node/label "Interpret3\nInterpret(C)",
-    :node/htn-network :seattle.htn:net-728020159,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2050]]},
-   :seattle.htn:hid-1981
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1981,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-747723576,
-    :node/label "Evidence(C)",
-    :node/tpn-edge :seattle.tpn:arc-2056},
-   :seattle.htn:hid-1952
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1952,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-308019815,
-    :node/label "Interpret(B)",
-    :node/tpn-node :seattle.tpn:node-2073},
-   :seattle.htn:hid-1911
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1911,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-154697093,
-    :node/label "GetDataAndInterpret(A B)"},
-   :seattle.htn:hid-1995
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1995,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-934727584,
-    :node/label "Capture(D)",
-    :node/tpn-edge :seattle.tpn:arc-2062},
-   :seattle.htn:hid-1977
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1977,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-464531693,
-    :node/label "Interpret(C)",
-    :node/tpn-node :seattle.tpn:node-2037},
-   :seattle.htn:hid-1965
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1965,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-1578565048,
-    :node/label "Interpret 2(B)",
-    :node/tpn-edge :seattle.tpn:arc-2074},
-   :seattle.htn:hid-1912
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1912,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-154697093,
-    :node/label "GetDataAndInterpret(B C)"},
-   :seattle.htn:hid-1988
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1988,
-    :node/type :htn-expanded-method,
-    :node/label "Interpret1\nInterpret(C)",
-    :node/htn-network :seattle.htn:net-665025644,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2044]]},
-   :seattle.htn:hid-1984
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1984,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-728020159,
-    :node/label "Interpret 3(C)",
-    :node/tpn-edge :seattle.tpn:arc-2050},
-   :seattle.htn:hid-1974
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1974,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-31566537,
-    :node/label "GetDataAt(D)"},
-   :seattle.htn:hid-1978
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1978,
-    :node/type :htn-expanded-method,
-    :node/label "EvidenceAndInterpret\nEvidenceAndInterpret(C)",
-    :node/htn-network :seattle.htn:net-464531693,
-    :node/tpn-selection
-    [[:node :seattle.tpn:node-2037] [:edge :seattle.tpn:arc-2056]]},
-   :seattle.htn:hid-1910
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1910,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-154697093,
-    :node/label "GetDataAt(A)"},
-   :seattle.htn:hid-1925
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1925,
-    :node/type :htn-expanded-method,
-    :node/label "GetDataAndInterpret\nGetDataAndInterpret(A B)",
-    :node/htn-network :seattle.htn:net-1122024022,
-    :node/tpn-selection [[:node :seattle.tpn:node-2107]]},
-   :seattle.htn:hid-1959
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1959,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-1437629752,
-    :node/label "Interpret 3(B)",
-    :node/tpn-edge :seattle.tpn:arc-2086},
-   :seattle.htn:hid-1938
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1938,
-    :node/type :htn-expanded-method,
-    :node/label "Interpret1\nInterpret(A)",
-    :node/htn-network :seattle.htn:net-1062235020,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2116]]},
-   :seattle.htn:hid-1927
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1927,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-757826067,
-    :node/label "Interpret(A)",
-    :node/tpn-node :seattle.tpn:node-2109},
-   :seattle.htn:hid-1963
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1963,
-    :node/type :htn-expanded-method,
-    :node/label "Interpret1\nInterpret(B)",
-    :node/htn-network :seattle.htn:net-406249839,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2080]]},
-   :seattle.htn:hid-1920
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1920,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-470269522,
-    :node/label "Capture(A)",
-    :node/tpn-edge :seattle.tpn:arc-2144},
-   :seattle.htn:hid-2006
-   {:plan/plid :seattle.htn,
-    :node/id :hid-2006,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-2070854419,
-    :node/label "Interpret 3(D)",
-    :node/tpn-edge :seattle.tpn:arc-2027},
-   :seattle.htn:hid-1990
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1990,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-554040712,
-    :node/label "Interpret 2(C)",
-    :node/tpn-edge :seattle.tpn:arc-2038},
-   :seattle.htn:hid-1918
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1918,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-470269522,
-    :node/label "GoTo(A)",
-    :node/tpn-edge :seattle.tpn:arc-2146},
-   :seattle.htn:hid-1932
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1932,
-    :node/type :htn-expanded-method,
-    :node/label "Evidence\nEvidence(A)",
-    :node/htn-network :seattle.htn:net-1611782350,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2128]]},
-   :seattle.htn:hid-1953
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1953,
-    :node/type :htn-expanded-method,
-    :node/label "EvidenceAndInterpret\nEvidenceAndInterpret(B)",
-    :node/htn-network :seattle.htn:net-308019815,
-    :node/tpn-selection
-    [[:node :seattle.tpn:node-2073] [:edge :seattle.tpn:arc-2092]]},
-   :seattle.htn:hid-1913
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1913,
-    :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-154697093,
-    :node/label "GetDataAndInterpret(C D)"},
-   :seattle.htn:hid-1943
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1943,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-973439690,
-    :node/label "GoTo(B)",
-    :node/tpn-edge :seattle.tpn:arc-2136},
-   :seattle.htn:hid-1960
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1960,
-    :node/type :htn-expanded-method,
-    :node/label "Interpret3\nInterpret(B)",
-    :node/htn-network :seattle.htn:net-1437629752,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2086]]},
-   :seattle.htn:hid-1966
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1966,
-    :node/type :htn-expanded-method,
-    :node/label "Interpret2\nInterpret(B)",
-    :node/htn-network :seattle.htn:net-1578565048,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2074]]},
-   :seattle.htn:hid-1941
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1941,
-    :node/type :htn-expanded-method,
-    :node/label "Interpret2\nInterpret(A)",
-    :node/htn-network :seattle.htn:net-177039531,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2110]]},
-   :seattle.htn:hid-1956
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1956,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-1941908368,
-    :node/label "Evidence(B)",
-    :node/tpn-edge :seattle.tpn:arc-2092},
-   :seattle.htn:hid-1962
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1962,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-406249839,
-    :node/label "Interpret 1(B)",
-    :node/tpn-edge :seattle.tpn:arc-2080},
-   :seattle.htn:hid-1937
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1937,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-1062235020,
-    :node/label "Interpret 1(A)",
-    :node/tpn-edge :seattle.tpn:arc-2116},
-   :seattle.htn:hid-2007
-   {:plan/plid :seattle.htn,
-    :node/id :hid-2007,
-    :node/type :htn-expanded-method,
-    :node/label "Interpret3\nInterpret(D)",
-    :node/htn-network :seattle.htn:net-2070854419,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2027]]},
-   :seattle.htn:hid-2003
-   {:plan/plid :seattle.htn,
+  {:v2.htn:hid-2003
+   {:plan/plid :v2.htn,
     :node/id :hid-2003,
     :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-1817397046,
+    :node/parent :v2.htn:net-1817397046,
     :node/label "Evidence(D)",
-    :node/tpn-edge :seattle.tpn:arc-2033},
-   :seattle.htn:hid-1950
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1950,
-    :node/type :htn-expanded-method,
-    :node/label "GetDataAndInterpret\nGetDataAndInterpret(B C)",
-    :node/htn-network :seattle.htn:net-691169891,
-    :node/tpn-selection [[:node :seattle.tpn:node-2071]]},
-   :seattle.htn:hid-1971
-   {:plan/plid :seattle.htn,
+    :node/tpn-edge :v2.tpn:arc-2033},
+   :v2.htn:hid-1971
+   {:plan/plid :v2.htn,
     :node/id :hid-1971,
     :node/type :htn-expanded-method,
     :node/label "GetDataAt\nGetDataAt(C)",
-    :node/htn-network :seattle.htn:net-1230535760,
+    :node/htn-network :v2.htn:net-1230535760,
     :node/tpn-selection
-    [[:edge :seattle.tpn:arc-2100] [:edge :seattle.tpn:arc-2098]]},
-   :seattle.htn:hid-1996
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1996,
+    [[:edge :v2.tpn:arc-2100] [:edge :v2.tpn:arc-2098]]},
+   :v2.htn:hid-1952
+   {:plan/plid :v2.htn,
+    :node/id :hid-1952,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-308019815,
+    :node/label "Interpret(B)",
+    :node/tpn-node :v2.tpn:node-2073},
+   :v2.htn:hid-2000
+   {:plan/plid :v2.htn,
+    :node/id :hid-2000,
     :node/type :htn-expanded-method,
-    :node/label "GetDataAt\nGetDataAt(D)",
-    :node/htn-network :seattle.htn:net-934727584,
+    :node/label "EvidenceAndInterpret\nEvidenceAndInterpret(D)",
+    :node/htn-network :v2.htn:net-1955152757,
     :node/tpn-selection
-    [[:edge :seattle.tpn:arc-2064] [:edge :seattle.tpn:arc-2062]]},
-   :seattle.htn:hid-1970
-   {:plan/plid :seattle.htn,
+    [[:node :v2.tpn:node-2014] [:edge :v2.tpn:arc-2033]]},
+   :v2.htn:hid-1981
+   {:plan/plid :v2.htn,
+    :node/id :hid-1981,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-747723576,
+    :node/label "Evidence(C)",
+    :node/tpn-edge :v2.tpn:arc-2056},
+   :v2.htn:hid-1965
+   {:plan/plid :v2.htn,
+    :node/id :hid-1965,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-1578565048,
+    :node/label "Interpret 2(B)",
+    :node/tpn-edge :v2.tpn:arc-2074},
+   :v2.htn:hid-2004
+   {:plan/plid :v2.htn,
+    :node/id :hid-2004,
+    :node/type :htn-expanded-method,
+    :node/label "Evidence\nEvidence(D)",
+    :node/htn-network :v2.htn:net-1817397046,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2033]]},
+   :v2.htn:hid-1913
+   {:plan/plid :v2.htn,
+    :node/id :hid-1913,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-154697093,
+    :node/label "GetDataAndInterpret(C D)"},
+   :v2.htn:hid-1966
+   {:plan/plid :v2.htn,
+    :node/id :hid-1966,
+    :node/type :htn-expanded-method,
+    :node/label "Interpret2\nInterpret(B)",
+    :node/htn-network :v2.htn:net-1578565048,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2074]]},
+   :v2.htn:hid-1950
+   {:plan/plid :v2.htn,
+    :node/id :hid-1950,
+    :node/type :htn-expanded-method,
+    :node/label "GetDataAndInterpret\nGetDataAndInterpret(B C)",
+    :node/htn-network :v2.htn:net-691169891,
+    :node/tpn-selection [[:node :v2.tpn:node-2071]]},
+   :v2.htn:hid-1914
+   {:plan/plid :v2.htn,
+    :node/id :hid-1914,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-154697093,
+    :node/label "EvidenceAndInterpret(D)"},
+   :v2.htn:hid-1927
+   {:plan/plid :v2.htn,
+    :node/id :hid-1927,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-757826067,
+    :node/label "Interpret(A)",
+    :node/tpn-node :v2.tpn:node-2109},
+   :v2.htn:hid-1970
+   {:plan/plid :v2.htn,
     :node/id :hid-1970,
     :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-1230535760,
+    :node/parent :v2.htn:net-1230535760,
     :node/label "Capture(C)",
-    :node/tpn-edge :seattle.tpn:arc-2098},
-   :seattle.htn:hid-1968
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1968,
-    :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-1230535760,
-    :node/label "GoTo(C)",
-    :node/tpn-edge :seattle.tpn:arc-2100},
-   :seattle.htn:hid-1982
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1982,
+    :node/tpn-edge :v2.tpn:arc-2098},
+   :v2.htn:hid-1932
+   {:plan/plid :v2.htn,
+    :node/id :hid-1932,
     :node/type :htn-expanded-method,
-    :node/label "Evidence\nEvidence(C)",
-    :node/htn-network :seattle.htn:net-747723576,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2056]]},
-   :seattle.htn:hid-1946
-   {:plan/plid :seattle.htn,
+    :node/label "Evidence\nEvidence(A)",
+    :node/htn-network :v2.htn:net-1611782350,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2128]]},
+   :v2.htn:hid-1946
+   {:plan/plid :v2.htn,
     :node/id :hid-1946,
     :node/type :htn-expanded-method,
     :node/label "GetDataAt\nGetDataAt(B)",
-    :node/htn-network :seattle.htn:net-973439690,
+    :node/htn-network :v2.htn:net-973439690,
     :node/tpn-selection
-    [[:edge :seattle.tpn:arc-2134] [:edge :seattle.tpn:arc-2136]]},
-   :seattle.htn:hid-1987
-   {:plan/plid :seattle.htn,
+    [[:edge :v2.tpn:arc-2134] [:edge :v2.tpn:arc-2136]]},
+   :v2.htn:hid-1987
+   {:plan/plid :v2.htn,
     :node/id :hid-1987,
     :node/type :htn-primitive-task,
-    :node/parent :seattle.htn:net-665025644,
+    :node/parent :v2.htn:net-665025644,
     :node/label "Interpret 1(C)",
-    :node/tpn-edge :seattle.tpn:arc-2044},
-   :seattle.htn:hid-1926
-   {:plan/plid :seattle.htn,
-    :node/id :hid-1926,
+    :node/tpn-edge :v2.tpn:arc-2044},
+   :v2.htn:hid-1988
+   {:plan/plid :v2.htn,
+    :node/id :hid-1988,
+    :node/type :htn-expanded-method,
+    :node/label "Interpret1\nInterpret(C)",
+    :node/htn-network :v2.htn:net-665025644,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2044]]},
+   :v2.htn:hid-1990
+   {:plan/plid :v2.htn,
+    :node/id :hid-1990,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-554040712,
+    :node/label "Interpret 2(C)",
+    :node/tpn-edge :v2.tpn:arc-2038},
+   :v2.htn:hid-1921
+   {:plan/plid :v2.htn,
+    :node/id :hid-1921,
+    :node/type :htn-expanded-method,
+    :node/label "GetDataAt\nGetDataAt(A)",
+    :node/htn-network :v2.htn:net-470269522,
+    :node/tpn-selection
+    [[:edge :v2.tpn:arc-2144] [:edge :v2.tpn:arc-2146]]},
+   :v2.htn:hid-1940
+   {:plan/plid :v2.htn,
+    :node/id :hid-1940,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-177039531,
+    :node/label "Interpret 2(A)",
+    :node/tpn-edge :v2.tpn:arc-2110},
+   :v2.htn:hid-1948
+   {:plan/plid :v2.htn,
+    :node/id :hid-1948,
     :node/type :htn-expanded-nonprimitive-task,
-    :node/parent :seattle.htn:net-757826067,
-    :node/label "Evidence(A)"},
-   :seattle.htn:hid-1935
-   {:plan/plid :seattle.htn,
+    :node/parent :v2.htn:net-691169891,
+    :node/label "EvidenceAndInterpret(B)"},
+   :v2.htn:hid-1959
+   {:plan/plid :v2.htn,
+    :node/id :hid-1959,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-1437629752,
+    :node/label "Interpret 3(B)",
+    :node/tpn-edge :v2.tpn:arc-2086},
+   :v2.htn:hid-1949
+   {:plan/plid :v2.htn,
+    :node/id :hid-1949,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-691169891,
+    :node/label "GetDataAt(C)"},
+   :v2.htn:hid-1924
+   {:plan/plid :v2.htn,
+    :node/id :hid-1924,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-1122024022,
+    :node/label "GetDataAt(B)"},
+   :v2.htn:hid-1977
+   {:plan/plid :v2.htn,
+    :node/id :hid-1977,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-464531693,
+    :node/label "Interpret(C)",
+    :node/tpn-node :v2.tpn:node-2037},
+   :v2.htn:hid-1937
+   {:plan/plid :v2.htn,
+    :node/id :hid-1937,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-1062235020,
+    :node/label "Interpret 1(A)",
+    :node/tpn-edge :v2.tpn:arc-2116},
+   :v2.htn:hid-1956
+   {:plan/plid :v2.htn,
+    :node/id :hid-1956,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-1941908368,
+    :node/label "Evidence(B)",
+    :node/tpn-edge :v2.tpn:arc-2092},
+   :v2.htn:hid-1953
+   {:plan/plid :v2.htn,
+    :node/id :hid-1953,
+    :node/type :htn-expanded-method,
+    :node/label "EvidenceAndInterpret\nEvidenceAndInterpret(B)",
+    :node/htn-network :v2.htn:net-308019815,
+    :node/tpn-selection
+    [[:node :v2.tpn:node-2073] [:edge :v2.tpn:arc-2092]]},
+   :v2.htn:hid-4762
+   {:plan/plid :v2.htn,
+    :node/id :hid-4762,
+    :node/type :htn-expanded-method,
+    :node/label "clojure-west Mission()",
+    :node/htn-network :net-1014790698,
+    :node/tpn-selection
+    [[:node :v2.tpn:node-2107]
+     [:node :v2.tpn:node-2071]
+     [:node :v2.tpn:node-2014]
+     [:node :v2.tpn:node-2035]
+     [:edge :v2.tpn:arc-2033]
+     [:edge :v2.tpn:arc-2144]
+     [:edge :v2.tpn:arc-2146]]},
+   :v2.htn:hid-1938
+   {:plan/plid :v2.htn,
+    :node/id :hid-1938,
+    :node/type :htn-expanded-method,
+    :node/label "Interpret1\nInterpret(A)",
+    :node/htn-network :v2.htn:net-1062235020,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2116]]},
+   :v2.htn:hid-1935
+   {:plan/plid :v2.htn,
     :node/id :hid-1935,
     :node/type :htn-expanded-method,
     :node/label "Interpret3\nInterpret(A)",
-    :node/htn-network :seattle.htn:net-420364894,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2122]]},
-   :seattle.htn:hid-2010
-   {:plan/plid :seattle.htn,
+    :node/htn-network :v2.htn:net-420364894,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2122]]},
+   :v2.htn:hid-1923
+   {:plan/plid :v2.htn,
+    :node/id :hid-1923,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-1122024022,
+    :node/label "EvidenceAndInterpret(A)"},
+   :v2.htn:hid-1999
+   {:plan/plid :v2.htn,
+    :node/id :hid-1999,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-1955152757,
+    :node/label "Interpret(D)",
+    :node/tpn-node :v2.tpn:node-2014},
+   :v2.htn:hid-1984
+   {:plan/plid :v2.htn,
+    :node/id :hid-1984,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-728020159,
+    :node/label "Interpret 3(C)",
+    :node/tpn-edge :v2.tpn:arc-2050},
+   :v2.htn:hid-1960
+   {:plan/plid :v2.htn,
+    :node/id :hid-1960,
+    :node/type :htn-expanded-method,
+    :node/label "Interpret3\nInterpret(B)",
+    :node/htn-network :v2.htn:net-1437629752,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2086]]},
+   :v2.htn:hid-1925
+   {:plan/plid :v2.htn,
+    :node/id :hid-1925,
+    :node/type :htn-expanded-method,
+    :node/label "GetDataAndInterpret\nGetDataAndInterpret(A B)",
+    :node/htn-network :v2.htn:net-1122024022,
+    :node/tpn-selection [[:node :v2.tpn:node-2107]]},
+   :v2.htn:hid-1963
+   {:plan/plid :v2.htn,
+    :node/id :hid-1963,
+    :node/type :htn-expanded-method,
+    :node/label "Interpret1\nInterpret(B)",
+    :node/htn-network :v2.htn:net-406249839,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2080]]},
+   :v2.htn:hid-1912
+   {:plan/plid :v2.htn,
+    :node/id :hid-1912,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-154697093,
+    :node/label "GetDataAndInterpret(B C)"},
+   :v2.htn:hid-1931
+   {:plan/plid :v2.htn,
+    :node/id :hid-1931,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-1611782350,
+    :node/label "Evidence(A)",
+    :node/tpn-edge :v2.tpn:arc-2128},
+   :v2.htn:hid-1945
+   {:plan/plid :v2.htn,
+    :node/id :hid-1945,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-973439690,
+    :node/label "Capture(B)",
+    :node/tpn-edge :v2.tpn:arc-2134},
+   :v2.htn:hid-1991
+   {:plan/plid :v2.htn,
+    :node/id :hid-1991,
+    :node/type :htn-expanded-method,
+    :node/label "Interpret2\nInterpret(C)",
+    :node/htn-network :v2.htn:net-554040712,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2038]]},
+   :v2.htn:hid-1934
+   {:plan/plid :v2.htn,
+    :node/id :hid-1934,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-420364894,
+    :node/label "Interpret 3(A)",
+    :node/tpn-edge :v2.tpn:arc-2122},
+   :v2.htn:hid-2007
+   {:plan/plid :v2.htn,
+    :node/id :hid-2007,
+    :node/type :htn-expanded-method,
+    :node/label "Interpret3\nInterpret(D)",
+    :node/htn-network :v2.htn:net-2070854419,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2027]]},
+   :v2.htn:hid-1918
+   {:plan/plid :v2.htn,
+    :node/id :hid-1918,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-470269522,
+    :node/label "GoTo(A)",
+    :node/tpn-edge :v2.tpn:arc-2146},
+   :v2.htn:hid-1993
+   {:plan/plid :v2.htn,
+    :node/id :hid-1993,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-934727584,
+    :node/label "GoTo(D)",
+    :node/tpn-edge :v2.tpn:arc-2064},
+   :v2.htn:hid-1982
+   {:plan/plid :v2.htn,
+    :node/id :hid-1982,
+    :node/type :htn-expanded-method,
+    :node/label "Evidence\nEvidence(C)",
+    :node/htn-network :v2.htn:net-747723576,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2056]]},
+   :v2.htn:hid-1974
+   {:plan/plid :v2.htn,
+    :node/id :hid-1974,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-31566537,
+    :node/label "GetDataAt(D)"},
+   :v2.htn:hid-1911
+   {:plan/plid :v2.htn,
+    :node/id :hid-1911,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-154697093,
+    :node/label "GetDataAndInterpret(A B)"},
+   :v2.htn:hid-1909
+   {:plan/plid :v2.htn,
+    :node/id :hid-1909,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-1014790698,
+    :node/label "clojure-west Mission()"},
+   :v2.htn:hid-2006
+   {:plan/plid :v2.htn,
+    :node/id :hid-2006,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-2070854419,
+    :node/label "Interpret 3(D)",
+    :node/tpn-edge :v2.tpn:arc-2027},
+   :v2.htn:hid-2009
+   {:plan/plid :v2.htn,
+    :node/id :hid-2009,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-1012664018,
+    :node/label "Interpret 1(D)",
+    :node/tpn-edge :v2.tpn:arc-2021},
+   :v2.htn:hid-1920
+   {:plan/plid :v2.htn,
+    :node/id :hid-1920,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-470269522,
+    :node/label "Capture(A)",
+    :node/tpn-edge :v2.tpn:arc-2144},
+   :v2.htn:hid-1978
+   {:plan/plid :v2.htn,
+    :node/id :hid-1978,
+    :node/type :htn-expanded-method,
+    :node/label "EvidenceAndInterpret\nEvidenceAndInterpret(C)",
+    :node/htn-network :v2.htn:net-464531693,
+    :node/tpn-selection
+    [[:node :v2.tpn:node-2037] [:edge :v2.tpn:arc-2056]]},
+   :v2.htn:hid-2013
+   {:plan/plid :v2.htn,
+    :node/id :hid-2013,
+    :node/type :htn-expanded-method,
+    :node/label "Interpret2\nInterpret(D)",
+    :node/htn-network :v2.htn:net-1030057282,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2015]]},
+   :v2.htn:hid-1951
+   {:plan/plid :v2.htn,
+    :node/id :hid-1951,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-308019815,
+    :node/label "Evidence(B)"},
+   :v2.htn:hid-1985
+   {:plan/plid :v2.htn,
+    :node/id :hid-1985,
+    :node/type :htn-expanded-method,
+    :node/label "Interpret3\nInterpret(C)",
+    :node/htn-network :v2.htn:net-728020159,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2050]]},
+   :v2.htn:hid-1928
+   {:plan/plid :v2.htn,
+    :node/id :hid-1928,
+    :node/type :htn-expanded-method,
+    :node/label "EvidenceAndInterpret\nEvidenceAndInterpret(A)",
+    :node/htn-network :v2.htn:net-757826067,
+    :node/tpn-selection
+    [[:node :v2.tpn:node-2109] [:edge :v2.tpn:arc-2128]]},
+   :v2.htn:hid-1973
+   {:plan/plid :v2.htn,
+    :node/id :hid-1973,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-31566537,
+    :node/label "EvidenceAndInterpret(C)"},
+   :v2.htn:hid-1962
+   {:plan/plid :v2.htn,
+    :node/id :hid-1962,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-406249839,
+    :node/label "Interpret 1(B)",
+    :node/tpn-edge :v2.tpn:arc-2080},
+   :v2.htn:hid-1926
+   {:plan/plid :v2.htn,
+    :node/id :hid-1926,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-757826067,
+    :node/label "Evidence(A)"},
+   :v2.htn:hid-1995
+   {:plan/plid :v2.htn,
+    :node/id :hid-1995,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-934727584,
+    :node/label "Capture(D)",
+    :node/tpn-edge :v2.tpn:arc-2062},
+   :v2.htn:hid-1915
+   {:plan/plid :v2.htn,
+    :node/id :hid-1915,
+    :node/type :htn-expanded-method,
+    :node/label "clojure-west Mission\nclojure-west Mission()",
+    :node/htn-network :v2.htn:net-154697093,
+    :node/tpn-selection
+    [[:node :v2.tpn:node-2107]
+     [:node :v2.tpn:node-2071]
+     [:node :v2.tpn:node-2014]
+     [:node :v2.tpn:node-2035]
+     [:edge :v2.tpn:arc-2033]
+     [:edge :v2.tpn:arc-2144]
+     [:edge :v2.tpn:arc-2146]]},
+   :v2.htn:hid-1996
+   {:plan/plid :v2.htn,
+    :node/id :hid-1996,
+    :node/type :htn-expanded-method,
+    :node/label "GetDataAt\nGetDataAt(D)",
+    :node/htn-network :v2.htn:net-934727584,
+    :node/tpn-selection
+    [[:edge :v2.tpn:arc-2064] [:edge :v2.tpn:arc-2062]]},
+   :v2.htn:hid-1976
+   {:plan/plid :v2.htn,
+    :node/id :hid-1976,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-464531693,
+    :node/label "Evidence(C)"},
+   :v2.htn:hid-1941
+   {:plan/plid :v2.htn,
+    :node/id :hid-1941,
+    :node/type :htn-expanded-method,
+    :node/label "Interpret2\nInterpret(A)",
+    :node/htn-network :v2.htn:net-177039531,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2110]]},
+   :v2.htn:hid-1910
+   {:plan/plid :v2.htn,
+    :node/id :hid-1910,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-154697093,
+    :node/label "GetDataAt(A)"},
+   :v2.htn:hid-1957
+   {:plan/plid :v2.htn,
+    :node/id :hid-1957,
+    :node/type :htn-expanded-method,
+    :node/label "Evidence\nEvidence(B)",
+    :node/htn-network :v2.htn:net-1941908368,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2092]]},
+   :v2.htn:hid-1968
+   {:plan/plid :v2.htn,
+    :node/id :hid-1968,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-1230535760,
+    :node/label "GoTo(C)",
+    :node/tpn-edge :v2.tpn:arc-2100},
+   :v2.htn:hid-1943
+   {:plan/plid :v2.htn,
+    :node/id :hid-1943,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-973439690,
+    :node/label "GoTo(B)",
+    :node/tpn-edge :v2.tpn:arc-2136},
+   :v2.htn:hid-1975
+   {:plan/plid :v2.htn,
+    :node/id :hid-1975,
+    :node/type :htn-expanded-method,
+    :node/label "GetDataAndInterpret\nGetDataAndInterpret(C D)",
+    :node/htn-network :v2.htn:net-31566537,
+    :node/tpn-selection [[:node :v2.tpn:node-2035]]},
+   :v2.htn:hid-2010
+   {:plan/plid :v2.htn,
     :node/id :hid-2010,
     :node/type :htn-expanded-method,
     :node/label "Interpret1\nInterpret(D)",
-    :node/htn-network :seattle.htn:net-1012664018,
-    :node/tpn-selection [[:edge :seattle.tpn:arc-2021]]}}}
- {:plans/plans [:seattle.tpn],
+    :node/htn-network :v2.htn:net-1012664018,
+    :node/tpn-selection [[:edge :v2.tpn:arc-2021]]},
+   :v2.htn:hid-1998
+   {:plan/plid :v2.htn,
+    :node/id :hid-1998,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v2.htn:net-1955152757,
+    :node/label "Evidence(D)"},
+   :v2.htn:hid-2012
+   {:plan/plid :v2.htn,
+    :node/id :hid-2012,
+    :node/type :htn-primitive-task,
+    :node/parent :v2.htn:net-1030057282,
+    :node/label "Interpret 2(D)",
+    :node/tpn-edge :v2.tpn:arc-2015}}}
+ {:plans/plans [:v2.tpn],
   :plan/by-plid
-  {:seattle.tpn
-   {:plan/plid :seattle.tpn,
-    :plan/name "seattle.tpn",
+  {:v2.tpn
+   {:plan/plid :v2.tpn,
+    :plan/name "v2.tpn",
     :plan/type :tpn-network,
-    :plan/begin :seattle.tpn:net-8138,
-    :plan/networks [:seattle.tpn:net-8138],
-    :plan/corresponding :seattle.htn}},
+    :plan/begin :v2.tpn:net-8138,
+    :plan/networks [:v2.tpn:net-8138],
+    :plan/corresponding :v2.htn}},
   :network/network-by-plid-id
-  {:seattle.tpn:net-8138
-   {:plan/plid :seattle.tpn,
+  {:v2.tpn:net-8138
+   {:plan/plid :v2.tpn,
     :network/id :net-8138,
     :network/type :tpn-network,
-    :network/begin :seattle.tpn:node-2146,
-    :network/end :seattle.tpn:node-2013,
+    :network/begin :v2.tpn:node-2146,
+    :network/end :v2.tpn:node-2013,
     :network/nodes
-    [:seattle.tpn:node-2146
-     :seattle.tpn:node-2145
-     :seattle.tpn:node-2144
-     :seattle.tpn:node-2107
-     :seattle.tpn:node-2128
-     :seattle.tpn:node-2109
-     :seattle.tpn:node-2112
-     :seattle.tpn:node-2110
-     :seattle.tpn:node-2108
-     :seattle.tpn:node-2106
-     :seattle.tpn:node-2071
-     :seattle.tpn:node-2092
-     :seattle.tpn:node-2073
-     :seattle.tpn:node-2082
-     :seattle.tpn:node-2080
-     :seattle.tpn:node-2072
-     :seattle.tpn:node-2070
-     :seattle.tpn:node-2035
-     :seattle.tpn:node-2064
-     :seattle.tpn:node-2063
-     :seattle.tpn:node-2062
-     :seattle.tpn:node-2034
-     :seattle.tpn:node-2033
-     :seattle.tpn:node-2014
-     :seattle.tpn:node-2017
-     :seattle.tpn:node-2015
-     :seattle.tpn:node-2013
-     :seattle.tpn:node-2023
-     :seattle.tpn:node-2021
-     :seattle.tpn:node-2029
-     :seattle.tpn:node-2027
-     :seattle.tpn:node-2056
-     :seattle.tpn:node-2037
-     :seattle.tpn:node-2040
-     :seattle.tpn:node-2038
-     :seattle.tpn:node-2036
-     :seattle.tpn:node-2052
-     :seattle.tpn:node-2050
-     :seattle.tpn:node-2046
-     :seattle.tpn:node-2044
-     :seattle.tpn:node-2076
-     :seattle.tpn:node-2074
-     :seattle.tpn:node-2088
-     :seattle.tpn:node-2086
-     :seattle.tpn:node-2100
-     :seattle.tpn:node-2099
-     :seattle.tpn:node-2098
-     :seattle.tpn:node-2124
-     :seattle.tpn:node-2122
-     :seattle.tpn:node-2118
-     :seattle.tpn:node-2116
-     :seattle.tpn:node-2136
-     :seattle.tpn:node-2135
-     :seattle.tpn:node-2134],
+    [:v2.tpn:node-2146
+     :v2.tpn:node-2145
+     :v2.tpn:node-2144
+     :v2.tpn:node-2107
+     :v2.tpn:node-2128
+     :v2.tpn:node-2109
+     :v2.tpn:node-2112
+     :v2.tpn:node-2110
+     :v2.tpn:node-2108
+     :v2.tpn:node-2106
+     :v2.tpn:node-2071
+     :v2.tpn:node-2092
+     :v2.tpn:node-2073
+     :v2.tpn:node-2082
+     :v2.tpn:node-2080
+     :v2.tpn:node-2072
+     :v2.tpn:node-2070
+     :v2.tpn:node-2035
+     :v2.tpn:node-2064
+     :v2.tpn:node-2063
+     :v2.tpn:node-2062
+     :v2.tpn:node-2034
+     :v2.tpn:node-2033
+     :v2.tpn:node-2014
+     :v2.tpn:node-2017
+     :v2.tpn:node-2015
+     :v2.tpn:node-2013
+     :v2.tpn:node-2023
+     :v2.tpn:node-2021
+     :v2.tpn:node-2029
+     :v2.tpn:node-2027
+     :v2.tpn:node-2056
+     :v2.tpn:node-2037
+     :v2.tpn:node-2040
+     :v2.tpn:node-2038
+     :v2.tpn:node-2036
+     :v2.tpn:node-2052
+     :v2.tpn:node-2050
+     :v2.tpn:node-2046
+     :v2.tpn:node-2044
+     :v2.tpn:node-2076
+     :v2.tpn:node-2074
+     :v2.tpn:node-2088
+     :v2.tpn:node-2086
+     :v2.tpn:node-2100
+     :v2.tpn:node-2099
+     :v2.tpn:node-2098
+     :v2.tpn:node-2124
+     :v2.tpn:node-2122
+     :v2.tpn:node-2118
+     :v2.tpn:node-2116
+     :v2.tpn:node-2136
+     :v2.tpn:node-2135
+     :v2.tpn:node-2134],
     :network/edges
-    [:seattle.tpn:arc-2146
-     :seattle.tpn:cnstr-8146
-     :seattle.tpn:arc-2144
-     :seattle.tpn:cnstr-8155
-     :seattle.tpn:arc-2147
-     :seattle.tpn:arc-2131
-     :seattle.tpn:arc-2128
-     :seattle.tpn:cnstr-8139
-     :seattle.tpn:arc-2113
-     :seattle.tpn:arc-2110
-     :seattle.tpn:cnstr-8149
-     :seattle.tpn:arc-2111
-     :seattle.tpn:arc-2129
-     :seattle.tpn:arc-2141
-     :seattle.tpn:arc-2095
-     :seattle.tpn:arc-2092
-     :seattle.tpn:cnstr-8158
-     :seattle.tpn:arc-2083
-     :seattle.tpn:arc-2080
-     :seattle.tpn:cnstr-8145
-     :seattle.tpn:arc-2081
-     :seattle.tpn:arc-2093
-     :seattle.tpn:arc-2105
-     :seattle.tpn:arc-2067
-     :seattle.tpn:arc-2064
-     :seattle.tpn:cnstr-8143
-     :seattle.tpn:arc-2062
-     :seattle.tpn:cnstr-8142
-     :seattle.tpn:arc-2065
-     :seattle.tpn:arc-2069
-     :seattle.tpn:arc-2033
-     :seattle.tpn:cnstr-8144
-     :seattle.tpn:arc-2018
-     :seattle.tpn:arc-2015
-     :seattle.tpn:cnstr-8140
-     :seattle.tpn:arc-2016
-     :seattle.tpn:arc-2024
-     :seattle.tpn:arc-2021
-     :seattle.tpn:cnstr-8162
-     :seattle.tpn:arc-2022
-     :seattle.tpn:arc-2030
-     :seattle.tpn:arc-2027
-     :seattle.tpn:cnstr-8141
-     :seattle.tpn:arc-2028
-     :seattle.tpn:arc-2059
-     :seattle.tpn:arc-2056
-     :seattle.tpn:cnstr-8159
-     :seattle.tpn:arc-2041
-     :seattle.tpn:arc-2038
-     :seattle.tpn:cnstr-8157
-     :seattle.tpn:arc-2039
-     :seattle.tpn:arc-2057
-     :seattle.tpn:arc-2053
-     :seattle.tpn:arc-2050
-     :seattle.tpn:cnstr-8148
-     :seattle.tpn:arc-2051
-     :seattle.tpn:arc-2047
-     :seattle.tpn:arc-2044
-     :seattle.tpn:cnstr-8147
-     :seattle.tpn:arc-2045
-     :seattle.tpn:arc-2077
-     :seattle.tpn:arc-2074
-     :seattle.tpn:cnstr-8152
-     :seattle.tpn:arc-2075
-     :seattle.tpn:arc-2089
-     :seattle.tpn:arc-2086
-     :seattle.tpn:cnstr-8151
-     :seattle.tpn:arc-2087
-     :seattle.tpn:arc-2103
-     :seattle.tpn:arc-2100
-     :seattle.tpn:cnstr-8154
-     :seattle.tpn:arc-2098
-     :seattle.tpn:cnstr-8160
-     :seattle.tpn:arc-2101
-     :seattle.tpn:arc-2125
-     :seattle.tpn:arc-2122
-     :seattle.tpn:cnstr-8150
-     :seattle.tpn:arc-2123
-     :seattle.tpn:arc-2119
-     :seattle.tpn:arc-2116
-     :seattle.tpn:cnstr-8161
-     :seattle.tpn:arc-2117
-     :seattle.tpn:arc-2139
-     :seattle.tpn:arc-2136
-     :seattle.tpn:cnstr-8153
-     :seattle.tpn:arc-2134
-     :seattle.tpn:cnstr-8156
-     :seattle.tpn:arc-2137]}},
+    [:v2.tpn:arc-2146
+     :v2.tpn:cnstr-8146
+     :v2.tpn:arc-2144
+     :v2.tpn:cnstr-8155
+     :v2.tpn:arc-2147
+     :v2.tpn:arc-2131
+     :v2.tpn:arc-2128
+     :v2.tpn:cnstr-8139
+     :v2.tpn:arc-2113
+     :v2.tpn:arc-2110
+     :v2.tpn:cnstr-8149
+     :v2.tpn:arc-2111
+     :v2.tpn:arc-2129
+     :v2.tpn:arc-2141
+     :v2.tpn:arc-2095
+     :v2.tpn:arc-2092
+     :v2.tpn:cnstr-8158
+     :v2.tpn:arc-2083
+     :v2.tpn:arc-2080
+     :v2.tpn:cnstr-8145
+     :v2.tpn:arc-2081
+     :v2.tpn:arc-2093
+     :v2.tpn:arc-2105
+     :v2.tpn:arc-2067
+     :v2.tpn:arc-2064
+     :v2.tpn:cnstr-8143
+     :v2.tpn:arc-2062
+     :v2.tpn:cnstr-8142
+     :v2.tpn:arc-2065
+     :v2.tpn:arc-2069
+     :v2.tpn:arc-2033
+     :v2.tpn:cnstr-8144
+     :v2.tpn:arc-2018
+     :v2.tpn:arc-2015
+     :v2.tpn:cnstr-8140
+     :v2.tpn:arc-2016
+     :v2.tpn:arc-2024
+     :v2.tpn:arc-2021
+     :v2.tpn:cnstr-8162
+     :v2.tpn:arc-2022
+     :v2.tpn:arc-2030
+     :v2.tpn:arc-2027
+     :v2.tpn:cnstr-8141
+     :v2.tpn:arc-2028
+     :v2.tpn:arc-2059
+     :v2.tpn:arc-2056
+     :v2.tpn:cnstr-8159
+     :v2.tpn:arc-2041
+     :v2.tpn:arc-2038
+     :v2.tpn:cnstr-8157
+     :v2.tpn:arc-2039
+     :v2.tpn:arc-2057
+     :v2.tpn:arc-2053
+     :v2.tpn:arc-2050
+     :v2.tpn:cnstr-8148
+     :v2.tpn:arc-2051
+     :v2.tpn:arc-2047
+     :v2.tpn:arc-2044
+     :v2.tpn:cnstr-8147
+     :v2.tpn:arc-2045
+     :v2.tpn:arc-2077
+     :v2.tpn:arc-2074
+     :v2.tpn:cnstr-8152
+     :v2.tpn:arc-2075
+     :v2.tpn:arc-2089
+     :v2.tpn:arc-2086
+     :v2.tpn:cnstr-8151
+     :v2.tpn:arc-2087
+     :v2.tpn:arc-2103
+     :v2.tpn:arc-2100
+     :v2.tpn:cnstr-8154
+     :v2.tpn:arc-2098
+     :v2.tpn:cnstr-8160
+     :v2.tpn:arc-2101
+     :v2.tpn:arc-2125
+     :v2.tpn:arc-2122
+     :v2.tpn:cnstr-8150
+     :v2.tpn:arc-2123
+     :v2.tpn:arc-2119
+     :v2.tpn:arc-2116
+     :v2.tpn:cnstr-8161
+     :v2.tpn:arc-2117
+     :v2.tpn:arc-2139
+     :v2.tpn:arc-2136
+     :v2.tpn:cnstr-8153
+     :v2.tpn:arc-2134
+     :v2.tpn:cnstr-8156
+     :v2.tpn:arc-2137]}},
   :edge/edge-by-plid-id
-  {:seattle.tpn:arc-2027
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-2006,
-    :edge/name "Interpret 3(D)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2029,
-    :edge/id :arc-2027,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2027},
-   :seattle.tpn:arc-2116
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1937,
-    :edge/name "Interpret 1(A)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2118,
-    :edge/id :arc-2116,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2116},
-   :seattle.tpn:arc-2095
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2095,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2071,
-    :edge/to :seattle.tpn:node-2092},
-   :seattle.tpn:arc-2110
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1940,
-    :edge/name "Interpret 2(A)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2112,
-    :edge/id :arc-2110,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2110},
-   :seattle.tpn:arc-2134
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1945,
-    :edge/name "Capture(B)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2135,
-    :edge/id :arc-2134,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2134},
-   :seattle.tpn:cnstr-8144
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8144,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2033,
-    :edge/to :seattle.tpn:node-2014,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:cnstr-8153
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8153,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2136,
-    :edge/to :seattle.tpn:node-2135,
-    :edge/bounds [20.0 30.0]},
-   :seattle.tpn:arc-2131
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2131,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2107,
-    :edge/to :seattle.tpn:node-2128},
-   :seattle.tpn:arc-2111
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2111,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2110,
-    :edge/to :seattle.tpn:node-2108},
-   :seattle.tpn:arc-2028
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2028,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2027,
-    :edge/to :seattle.tpn:node-2013},
-   :seattle.tpn:cnstr-8141
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8141,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2029,
-    :edge/to :seattle.tpn:node-2027,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:arc-2105
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2105,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2070,
-    :edge/to :seattle.tpn:node-2035},
-   :seattle.tpn:arc-2044
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1987,
-    :edge/name "Interpret 1(C)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2046,
-    :edge/id :arc-2044,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2044},
-   :seattle.tpn:arc-2056
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1981,
-    :edge/name "Evidence(C)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2056,
-    :edge/id :arc-2056,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2037},
-   :seattle.tpn:arc-2057
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2057,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2036,
-    :edge/to :seattle.tpn:node-2034},
-   :seattle.tpn:arc-2067
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2067,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2035,
-    :edge/to :seattle.tpn:node-2064},
-   :seattle.tpn:cnstr-8158
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8158,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2092,
-    :edge/to :seattle.tpn:node-2073,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:cnstr-8157
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8157,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2040,
-    :edge/to :seattle.tpn:node-2038,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:arc-2047
-   {:plan/plid :seattle.tpn,
+  {:v2.tpn:arc-2047
+   {:plan/plid :v2.tpn,
     :edge/id :arc-2047,
     :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2037,
-    :edge/to :seattle.tpn:node-2046},
-   :seattle.tpn:cnstr-8156
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8156,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2135,
-    :edge/to :seattle.tpn:node-2134,
-    :edge/bounds [5.0 10.0]},
-   :seattle.tpn:arc-2125
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2125,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2109,
-    :edge/to :seattle.tpn:node-2124},
-   :seattle.tpn:arc-2144
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1920,
-    :edge/name "Capture(A)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2145,
-    :edge/id :arc-2144,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2144},
-   :seattle.tpn:arc-2030
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2030,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2014,
-    :edge/to :seattle.tpn:node-2029},
-   :seattle.tpn:arc-2098
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1970,
-    :edge/name "Capture(C)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2099,
-    :edge/id :arc-2098,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2098},
-   :seattle.tpn:arc-2069
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2069,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2034,
-    :edge/to :seattle.tpn:node-2033},
-   :seattle.tpn:arc-2041
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2041,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2037,
-    :edge/to :seattle.tpn:node-2040},
-   :seattle.tpn:cnstr-8142
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8142,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2063,
-    :edge/to :seattle.tpn:node-2062,
-    :edge/bounds [5.0 10.0]},
-   :seattle.tpn:arc-2103
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2103,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2071,
-    :edge/to :seattle.tpn:node-2100},
-   :seattle.tpn:cnstr-8152
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8152,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2076,
-    :edge/to :seattle.tpn:node-2074,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:arc-2039
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2039,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2038,
-    :edge/to :seattle.tpn:node-2036},
-   :seattle.tpn:arc-2065
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2065,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2062,
-    :edge/to :seattle.tpn:node-2034},
-   :seattle.tpn:arc-2051
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2051,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2050,
-    :edge/to :seattle.tpn:node-2036},
-   :seattle.tpn:cnstr-8149
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8149,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2112,
-    :edge/to :seattle.tpn:node-2110,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:arc-2083
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2083,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2073,
-    :edge/to :seattle.tpn:node-2082},
-   :seattle.tpn:cnstr-8162
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8162,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2023,
-    :edge/to :seattle.tpn:node-2021,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:cnstr-8154
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8154,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2100,
-    :edge/to :seattle.tpn:node-2099,
-    :edge/bounds [20.0 30.0]},
-   :seattle.tpn:arc-2123
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2123,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2122,
-    :edge/to :seattle.tpn:node-2108},
-   :seattle.tpn:arc-2064
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1993,
-    :edge/name "GoTo(D)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2064,
-    :edge/id :arc-2064,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2063},
-   :seattle.tpn:arc-2018
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2018,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2014,
-    :edge/to :seattle.tpn:node-2017},
-   :seattle.tpn:arc-2137
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2137,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2134,
-    :edge/to :seattle.tpn:node-2106},
-   :seattle.tpn:arc-2141
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2141,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2106,
-    :edge/to :seattle.tpn:node-2071},
-   :seattle.tpn:arc-2038
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1990,
-    :edge/name "Interpret 2(C)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2040,
-    :edge/id :arc-2038,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2038},
-   :seattle.tpn:cnstr-8161
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8161,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2118,
-    :edge/to :seattle.tpn:node-2116,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:arc-2062
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1995,
-    :edge/name "Capture(D)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2063,
-    :edge/id :arc-2062,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2062},
-   :seattle.tpn:cnstr-8140
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8140,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2017,
-    :edge/to :seattle.tpn:node-2015,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:arc-2139
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2139,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2107,
-    :edge/to :seattle.tpn:node-2136},
-   :seattle.tpn:arc-2074
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1965,
-    :edge/name "Interpret 2(B)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2076,
-    :edge/id :arc-2074,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2074},
-   :seattle.tpn:arc-2093
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2093,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2072,
-    :edge/to :seattle.tpn:node-2070},
-   :seattle.tpn:arc-2045
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2045,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2044,
-    :edge/to :seattle.tpn:node-2036},
-   :seattle.tpn:arc-2146
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1918,
-    :edge/name "GoTo(A)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2146,
-    :edge/id :arc-2146,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2145},
-   :seattle.tpn:arc-2059
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2059,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2035,
-    :edge/to :seattle.tpn:node-2056},
-   :seattle.tpn:arc-2147
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2147,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2144,
-    :edge/to :seattle.tpn:node-2107},
-   :seattle.tpn:arc-2089
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2089,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2073,
-    :edge/to :seattle.tpn:node-2088},
-   :seattle.tpn:cnstr-8150
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8150,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2124,
-    :edge/to :seattle.tpn:node-2122,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:cnstr-8139
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8139,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2128,
-    :edge/to :seattle.tpn:node-2109,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:arc-2101
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2101,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2098,
-    :edge/to :seattle.tpn:node-2070},
-   :seattle.tpn:arc-2075
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2075,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2074,
-    :edge/to :seattle.tpn:node-2072},
-   :seattle.tpn:arc-2092
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1956,
-    :edge/name "Evidence(B)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2092,
-    :edge/id :arc-2092,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2073},
-   :seattle.tpn:arc-2024
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2024,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2014,
-    :edge/to :seattle.tpn:node-2023},
-   :seattle.tpn:arc-2122
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1934,
-    :edge/name "Interpret 3(A)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2124,
-    :edge/id :arc-2122,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2122},
-   :seattle.tpn:arc-2129
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2129,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2108,
-    :edge/to :seattle.tpn:node-2106},
-   :seattle.tpn:arc-2087
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2087,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2086,
-    :edge/to :seattle.tpn:node-2072},
-   :seattle.tpn:cnstr-8143
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8143,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2064,
-    :edge/to :seattle.tpn:node-2063,
-    :edge/bounds [20.0 30.0]},
-   :seattle.tpn:arc-2081
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2081,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2080,
-    :edge/to :seattle.tpn:node-2072},
-   :seattle.tpn:arc-2113
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2113,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2109,
-    :edge/to :seattle.tpn:node-2112},
-   :seattle.tpn:cnstr-8146
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8146,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2146,
-    :edge/to :seattle.tpn:node-2145,
-    :edge/bounds [20.0 30.0]},
-   :seattle.tpn:arc-2015
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-2012,
-    :edge/name "Interpret 2(D)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2017,
-    :edge/id :arc-2015,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2015},
-   :seattle.tpn:arc-2050
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1984,
-    :edge/name "Interpret 3(C)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2052,
-    :edge/id :arc-2050,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2050},
-   :seattle.tpn:arc-2136
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1943,
-    :edge/name "GoTo(B)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2136,
-    :edge/id :arc-2136,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2135},
-   :seattle.tpn:arc-2128
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1931,
-    :edge/name "Evidence(A)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2128,
-    :edge/id :arc-2128,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2109},
-   :seattle.tpn:arc-2100
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1968,
-    :edge/name "GoTo(C)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2100,
-    :edge/id :arc-2100,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2099},
-   :seattle.tpn:arc-2117
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2117,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2116,
-    :edge/to :seattle.tpn:node-2108},
-   :seattle.tpn:arc-2033
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-2003,
-    :edge/name "Evidence(D)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2033,
-    :edge/id :arc-2033,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2014},
-   :seattle.tpn:arc-2022
-   {:plan/plid :seattle.tpn,
+    :edge/from :v2.tpn:node-2037,
+    :edge/to :v2.tpn:node-2046},
+   :v2.tpn:arc-2022
+   {:plan/plid :v2.tpn,
     :edge/id :arc-2022,
     :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2021,
-    :edge/to :seattle.tpn:node-2013},
-   :seattle.tpn:arc-2053
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2053,
+    :edge/from :v2.tpn:node-2021,
+    :edge/to :v2.tpn:node-2013},
+   :v2.tpn:arc-2045
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2045,
     :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2037,
-    :edge/to :seattle.tpn:node-2052},
-   :seattle.tpn:arc-2077
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2077,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2073,
-    :edge/to :seattle.tpn:node-2076},
-   :seattle.tpn:cnstr-8159
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8159,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2056,
-    :edge/to :seattle.tpn:node-2037,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:arc-2016
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2016,
-    :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2015,
-    :edge/to :seattle.tpn:node-2013},
-   :seattle.tpn:cnstr-8145
-   {:plan/plid :seattle.tpn,
+    :edge/from :v2.tpn:node-2044,
+    :edge/to :v2.tpn:node-2036},
+   :v2.tpn:cnstr-8145
+   {:plan/plid :v2.tpn,
     :edge/id :cnstr-8145,
     :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2082,
-    :edge/to :seattle.tpn:node-2080,
+    :edge/from :v2.tpn:node-2082,
+    :edge/to :v2.tpn:node-2080,
     :edge/bounds [15.0 25.0]},
-   :seattle.tpn:cnstr-8155
-   {:plan/plid :seattle.tpn,
+   :v2.tpn:arc-2018
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2018,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2014,
+    :edge/to :v2.tpn:node-2017},
+   :v2.tpn:cnstr-8144
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8144,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2033,
+    :edge/to :v2.tpn:node-2014,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:arc-2093
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2093,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2072,
+    :edge/to :v2.tpn:node-2070},
+   :v2.tpn:arc-2141
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2141,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2106,
+    :edge/to :v2.tpn:node-2071},
+   :v2.tpn:arc-2095
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2095,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2071,
+    :edge/to :v2.tpn:node-2092},
+   :v2.tpn:arc-2129
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2129,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2108,
+    :edge/to :v2.tpn:node-2106},
+   :v2.tpn:arc-2065
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2065,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2062,
+    :edge/to :v2.tpn:node-2034},
+   :v2.tpn:arc-2147
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2147,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2144,
+    :edge/to :v2.tpn:node-2107},
+   :v2.tpn:arc-2016
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2016,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2015,
+    :edge/to :v2.tpn:node-2013},
+   :v2.tpn:cnstr-8155
+   {:plan/plid :v2.tpn,
     :edge/id :cnstr-8155,
     :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2145,
-    :edge/to :seattle.tpn:node-2144,
+    :edge/from :v2.tpn:node-2145,
+    :edge/to :v2.tpn:node-2144,
     :edge/bounds [5.0 10.0]},
-   :seattle.tpn:arc-2119
-   {:plan/plid :seattle.tpn,
-    :edge/id :arc-2119,
+   :v2.tpn:arc-2028
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2028,
     :edge/type :null-activity,
-    :edge/from :seattle.tpn:node-2109,
-    :edge/to :seattle.tpn:node-2118},
-   :seattle.tpn:arc-2080
-   {:edge/reward 0,
-    :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1962,
-    :edge/name "Interpret 1(B)",
-    :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2082,
-    :edge/id :arc-2080,
-    :plan/plid :seattle.tpn,
-    :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2080},
-   :seattle.tpn:cnstr-8147
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8147,
+    :edge/from :v2.tpn:node-2027,
+    :edge/to :v2.tpn:node-2013},
+   :v2.tpn:cnstr-8139
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8139,
     :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2046,
-    :edge/to :seattle.tpn:node-2044,
+    :edge/from :v2.tpn:node-2128,
+    :edge/to :v2.tpn:node-2109,
     :edge/bounds [15.0 25.0]},
-   :seattle.tpn:arc-2086
+   :v2.tpn:arc-2027
    {:edge/reward 0,
     :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-1959,
+    :edge/htn-node :v2.htn:hid-2006,
+    :edge/name "Interpret 3(D)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2029,
+    :edge/id :arc-2027,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2027},
+   :v2.tpn:arc-2139
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2139,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2107,
+    :edge/to :v2.tpn:node-2136},
+   :v2.tpn:arc-2137
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2137,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2134,
+    :edge/to :v2.tpn:node-2106},
+   :v2.tpn:arc-2098
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1970,
+    :edge/name "Capture(C)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2099,
+    :edge/id :arc-2098,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2098},
+   :v2.tpn:arc-2067
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2067,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2035,
+    :edge/to :v2.tpn:node-2064},
+   :v2.tpn:arc-2044
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1987,
+    :edge/name "Interpret 1(C)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2046,
+    :edge/id :arc-2044,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2044},
+   :v2.tpn:arc-2111
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2111,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2110,
+    :edge/to :v2.tpn:node-2108},
+   :v2.tpn:arc-2101
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2101,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2098,
+    :edge/to :v2.tpn:node-2070},
+   :v2.tpn:arc-2039
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2039,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2038,
+    :edge/to :v2.tpn:node-2036},
+   :v2.tpn:cnstr-8149
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8149,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2112,
+    :edge/to :v2.tpn:node-2110,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:cnstr-8140
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8140,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2017,
+    :edge/to :v2.tpn:node-2015,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:arc-2069
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2069,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2034,
+    :edge/to :v2.tpn:node-2033},
+   :v2.tpn:arc-2128
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1931,
+    :edge/name "Evidence(A)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2128,
+    :edge/id :arc-2128,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2109},
+   :v2.tpn:cnstr-8158
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8158,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2092,
+    :edge/to :v2.tpn:node-2073,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:arc-2103
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2103,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2071,
+    :edge/to :v2.tpn:node-2100},
+   :v2.tpn:arc-2059
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2059,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2035,
+    :edge/to :v2.tpn:node-2056},
+   :v2.tpn:arc-2086
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1959,
     :edge/name "Interpret 3(B)",
     :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2088,
+    :edge/from :v2.tpn:node-2088,
     :edge/id :arc-2086,
-    :plan/plid :seattle.tpn,
+    :plan/plid :v2.tpn,
     :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2086},
-   :seattle.tpn:cnstr-8148
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8148,
-    :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2052,
-    :edge/to :seattle.tpn:node-2050,
-    :edge/bounds [15.0 25.0]},
-   :seattle.tpn:arc-2021
+    :edge/to :v2.tpn:node-2086},
+   :v2.tpn:arc-2077
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2077,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2073,
+    :edge/to :v2.tpn:node-2076},
+   :v2.tpn:arc-2015
    {:edge/reward 0,
     :edge/type :activity,
-    :edge/htn-node :seattle.htn:hid-2009,
+    :edge/htn-node :v2.htn:hid-2012,
+    :edge/name "Interpret 2(D)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2017,
+    :edge/id :arc-2015,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2015},
+   :v2.tpn:arc-2100
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1968,
+    :edge/name "GoTo(C)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2100,
+    :edge/id :arc-2100,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2099},
+   :v2.tpn:arc-2146
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1918,
+    :edge/name "GoTo(A)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2146,
+    :edge/id :arc-2146,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2145},
+   :v2.tpn:arc-2083
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2083,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2073,
+    :edge/to :v2.tpn:node-2082},
+   :v2.tpn:arc-2057
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2057,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2036,
+    :edge/to :v2.tpn:node-2034},
+   :v2.tpn:arc-2119
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2119,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2109,
+    :edge/to :v2.tpn:node-2118},
+   :v2.tpn:cnstr-8141
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8141,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2029,
+    :edge/to :v2.tpn:node-2027,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:arc-2144
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1920,
+    :edge/name "Capture(A)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2145,
+    :edge/id :arc-2144,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2144},
+   :v2.tpn:arc-2122
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1934,
+    :edge/name "Interpret 3(A)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2124,
+    :edge/id :arc-2122,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2122},
+   :v2.tpn:cnstr-8146
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8146,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2146,
+    :edge/to :v2.tpn:node-2145,
+    :edge/bounds [20.0 30.0]},
+   :v2.tpn:arc-2092
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1956,
+    :edge/name "Evidence(B)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2092,
+    :edge/id :arc-2092,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2073},
+   :v2.tpn:cnstr-8161
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8161,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2118,
+    :edge/to :v2.tpn:node-2116,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:arc-2087
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2087,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2086,
+    :edge/to :v2.tpn:node-2072},
+   :v2.tpn:cnstr-8153
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8153,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2136,
+    :edge/to :v2.tpn:node-2135,
+    :edge/bounds [20.0 30.0]},
+   :v2.tpn:cnstr-8159
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8159,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2056,
+    :edge/to :v2.tpn:node-2037,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:arc-2116
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1937,
+    :edge/name "Interpret 1(A)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2118,
+    :edge/id :arc-2116,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2116},
+   :v2.tpn:arc-2131
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2131,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2107,
+    :edge/to :v2.tpn:node-2128},
+   :v2.tpn:arc-2081
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2081,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2080,
+    :edge/to :v2.tpn:node-2072},
+   :v2.tpn:arc-2021
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-2009,
     :edge/name "Interpret 1(D)",
     :edge/network-flows #{},
-    :edge/from :seattle.tpn:node-2023,
+    :edge/from :v2.tpn:node-2023,
     :edge/id :arc-2021,
-    :plan/plid :seattle.tpn,
+    :plan/plid :v2.tpn,
     :edge/cost 0.0,
-    :edge/to :seattle.tpn:node-2021},
-   :seattle.tpn:cnstr-8160
-   {:plan/plid :seattle.tpn,
-    :edge/id :cnstr-8160,
+    :edge/to :v2.tpn:node-2021},
+   :v2.tpn:cnstr-8143
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8143,
     :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2099,
-    :edge/to :seattle.tpn:node-2098,
-    :edge/bounds [5.0 10.0]},
-   :seattle.tpn:cnstr-8151
-   {:plan/plid :seattle.tpn,
+    :edge/from :v2.tpn:node-2064,
+    :edge/to :v2.tpn:node-2063,
+    :edge/bounds [20.0 30.0]},
+   :v2.tpn:arc-2123
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2123,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2122,
+    :edge/to :v2.tpn:node-2108},
+   :v2.tpn:cnstr-8151
+   {:plan/plid :v2.tpn,
     :edge/id :cnstr-8151,
     :edge/type :temporal-constraint,
-    :edge/from :seattle.tpn:node-2088,
-    :edge/to :seattle.tpn:node-2086,
-    :edge/bounds [15.0 25.0]}},
+    :edge/from :v2.tpn:node-2088,
+    :edge/to :v2.tpn:node-2086,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:arc-2056
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1981,
+    :edge/name "Evidence(C)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2056,
+    :edge/id :arc-2056,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2037},
+   :v2.tpn:arc-2089
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2089,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2073,
+    :edge/to :v2.tpn:node-2088},
+   :v2.tpn:arc-2117
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2117,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2116,
+    :edge/to :v2.tpn:node-2108},
+   :v2.tpn:arc-2062
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1995,
+    :edge/name "Capture(D)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2063,
+    :edge/id :arc-2062,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2062},
+   :v2.tpn:arc-2053
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2053,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2037,
+    :edge/to :v2.tpn:node-2052},
+   :v2.tpn:cnstr-8156
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8156,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2135,
+    :edge/to :v2.tpn:node-2134,
+    :edge/bounds [5.0 10.0]},
+   :v2.tpn:cnstr-8157
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8157,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2040,
+    :edge/to :v2.tpn:node-2038,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:arc-2041
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2041,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2037,
+    :edge/to :v2.tpn:node-2040},
+   :v2.tpn:arc-2136
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1943,
+    :edge/name "GoTo(B)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2136,
+    :edge/id :arc-2136,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2135},
+   :v2.tpn:arc-2050
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1984,
+    :edge/name "Interpret 3(C)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2052,
+    :edge/id :arc-2050,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2050},
+   :v2.tpn:arc-2038
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1990,
+    :edge/name "Interpret 2(C)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2040,
+    :edge/id :arc-2038,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2038},
+   :v2.tpn:arc-2113
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2113,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2109,
+    :edge/to :v2.tpn:node-2112},
+   :v2.tpn:arc-2105
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2105,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2070,
+    :edge/to :v2.tpn:node-2035},
+   :v2.tpn:arc-2051
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2051,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2050,
+    :edge/to :v2.tpn:node-2036},
+   :v2.tpn:arc-2134
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1945,
+    :edge/name "Capture(B)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2135,
+    :edge/id :arc-2134,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2134},
+   :v2.tpn:arc-2110
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1940,
+    :edge/name "Interpret 2(A)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2112,
+    :edge/id :arc-2110,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2110},
+   :v2.tpn:arc-2024
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2024,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2014,
+    :edge/to :v2.tpn:node-2023},
+   :v2.tpn:cnstr-8148
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8148,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2052,
+    :edge/to :v2.tpn:node-2050,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:arc-2064
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1993,
+    :edge/name "GoTo(D)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2064,
+    :edge/id :arc-2064,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2063},
+   :v2.tpn:cnstr-8142
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8142,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2063,
+    :edge/to :v2.tpn:node-2062,
+    :edge/bounds [5.0 10.0]},
+   :v2.tpn:arc-2080
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1962,
+    :edge/name "Interpret 1(B)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2082,
+    :edge/id :arc-2080,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2080},
+   :v2.tpn:cnstr-8154
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8154,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2100,
+    :edge/to :v2.tpn:node-2099,
+    :edge/bounds [20.0 30.0]},
+   :v2.tpn:cnstr-8160
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8160,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2099,
+    :edge/to :v2.tpn:node-2098,
+    :edge/bounds [5.0 10.0]},
+   :v2.tpn:arc-2033
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-2003,
+    :edge/name "Evidence(D)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2033,
+    :edge/id :arc-2033,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2014},
+   :v2.tpn:arc-2075
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2075,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2074,
+    :edge/to :v2.tpn:node-2072},
+   :v2.tpn:cnstr-8162
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8162,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2023,
+    :edge/to :v2.tpn:node-2021,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:cnstr-8152
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8152,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2076,
+    :edge/to :v2.tpn:node-2074,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:arc-2074
+   {:edge/reward 0,
+    :edge/type :activity,
+    :edge/htn-node :v2.htn:hid-1965,
+    :edge/name "Interpret 2(B)",
+    :edge/network-flows #{},
+    :edge/from :v2.tpn:node-2076,
+    :edge/id :arc-2074,
+    :plan/plid :v2.tpn,
+    :edge/cost 0.0,
+    :edge/to :v2.tpn:node-2074},
+   :v2.tpn:cnstr-8150
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8150,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2124,
+    :edge/to :v2.tpn:node-2122,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:arc-2030
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2030,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2014,
+    :edge/to :v2.tpn:node-2029},
+   :v2.tpn:cnstr-8147
+   {:plan/plid :v2.tpn,
+    :edge/id :cnstr-8147,
+    :edge/type :temporal-constraint,
+    :edge/from :v2.tpn:node-2046,
+    :edge/to :v2.tpn:node-2044,
+    :edge/bounds [15.0 25.0]},
+   :v2.tpn:arc-2125
+   {:plan/plid :v2.tpn,
+    :edge/id :arc-2125,
+    :edge/type :null-activity,
+    :edge/from :v2.tpn:node-2109,
+    :edge/to :v2.tpn:node-2124}},
   :node/node-by-plid-id
-  {:seattle.tpn:node-2063
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2063,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1995},
-   :seattle.tpn:node-2146
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2146,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1918},
-   :seattle.tpn:node-2021
-   {:plan/plid :seattle.tpn, :node/id :node-2021, :node/type :state},
-   :seattle.tpn:node-2116
-   {:plan/plid :seattle.tpn, :node/id :node-2116, :node/type :state},
-   :seattle.tpn:node-2118
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2118,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1937},
-   :seattle.tpn:node-2064
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2064,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1993},
-   :seattle.tpn:node-2100
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2100,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1968},
-   :seattle.tpn:node-2017
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2017,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-2012},
-   :seattle.tpn:node-2062
-   {:plan/plid :seattle.tpn, :node/id :node-2062, :node/type :state},
-   :seattle.tpn:node-2070
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2070,
-    :node/type :p-end,
-    :node/begin :seattle.tpn:node-2071},
-   :seattle.tpn:node-2035
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2035,
-    :node/type :p-begin,
-    :node/end :seattle.tpn:node-2034,
-    :node/htn-node :seattle.htn:hid-1975},
-   :seattle.tpn:node-2107
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2107,
-    :node/type :p-begin,
-    :node/end :seattle.tpn:node-2106,
-    :node/htn-node :seattle.htn:hid-1925},
-   :seattle.tpn:node-2144
-   {:plan/plid :seattle.tpn, :node/id :node-2144, :node/type :state},
-   :seattle.tpn:node-2109
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2109,
-    :node/type :c-begin,
-    :node/end :seattle.tpn:node-2108,
-    :node/htn-node :seattle.htn:hid-1927},
-   :seattle.tpn:node-2134
-   {:plan/plid :seattle.tpn, :node/id :node-2134, :node/type :state},
-   :seattle.tpn:node-2023
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2023,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-2009},
-   :seattle.tpn:node-2046
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2046,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1987},
-   :seattle.tpn:node-2086
-   {:plan/plid :seattle.tpn, :node/id :node-2086, :node/type :state},
-   :seattle.tpn:node-2015
-   {:plan/plid :seattle.tpn, :node/id :node-2015, :node/type :state},
-   :seattle.tpn:node-2076
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2076,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1965},
-   :seattle.tpn:node-2036
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2036,
-    :node/type :c-end,
-    :node/begin :seattle.tpn:node-2037},
-   :seattle.tpn:node-2136
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2136,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1943},
-   :seattle.tpn:node-2099
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2099,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1970},
-   :seattle.tpn:node-2112
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2112,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1940},
-   :seattle.tpn:node-2092
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2092,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1956},
-   :seattle.tpn:node-2050
-   {:plan/plid :seattle.tpn, :node/id :node-2050, :node/type :state},
-   :seattle.tpn:node-2044
-   {:plan/plid :seattle.tpn, :node/id :node-2044, :node/type :state},
-   :seattle.tpn:node-2073
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2073,
-    :node/type :c-begin,
-    :node/end :seattle.tpn:node-2072,
-    :node/htn-node :seattle.htn:hid-1952},
-   :seattle.tpn:node-2040
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2040,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1990},
-   :seattle.tpn:node-2033
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2033,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-2003},
-   :seattle.tpn:node-2110
-   {:plan/plid :seattle.tpn, :node/id :node-2110, :node/type :state},
-   :seattle.tpn:node-2037
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2037,
-    :node/type :c-begin,
-    :node/end :seattle.tpn:node-2036,
-    :node/htn-node :seattle.htn:hid-1977},
-   :seattle.tpn:node-2124
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2124,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1934},
-   :seattle.tpn:node-2071
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2071,
-    :node/type :p-begin,
-    :node/end :seattle.tpn:node-2070,
-    :node/htn-node :seattle.htn:hid-1950},
-   :seattle.tpn:node-2014
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2014,
-    :node/type :c-begin,
-    :node/end :seattle.tpn:node-2013,
-    :node/htn-node :seattle.htn:hid-1999},
-   :seattle.tpn:node-2145
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2145,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1920},
-   :seattle.tpn:node-2029
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2029,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-2006},
-   :seattle.tpn:node-2052
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2052,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1984},
-   :seattle.tpn:node-2122
-   {:plan/plid :seattle.tpn, :node/id :node-2122, :node/type :state},
-   :seattle.tpn:node-2074
-   {:plan/plid :seattle.tpn, :node/id :node-2074, :node/type :state},
-   :seattle.tpn:node-2135
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2135,
-    :node/type :state,
-    :node/htn-node :seattle.htn:hid-1945},
-   :seattle.tpn:node-2106
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2106,
-    :node/type :p-end,
-    :node/begin :seattle.tpn:node-2107},
-   :seattle.tpn:node-2034
-   {:plan/plid :seattle.tpn,
+  {:v2.tpn:node-2021
+   {:plan/plid :v2.tpn, :node/id :node-2021, :node/type :state},
+   :v2.tpn:node-2034
+   {:plan/plid :v2.tpn,
     :node/id :node-2034,
     :node/type :p-end,
-    :node/begin :seattle.tpn:node-2035},
-   :seattle.tpn:node-2038
-   {:plan/plid :seattle.tpn, :node/id :node-2038, :node/type :state},
-   :seattle.tpn:node-2056
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2056,
+    :node/begin :v2.tpn:node-2035},
+   :v2.tpn:node-2017
+   {:plan/plid :v2.tpn,
+    :node/id :node-2017,
     :node/type :state,
-    :node/htn-node :seattle.htn:hid-1981},
-   :seattle.tpn:node-2027
-   {:plan/plid :seattle.tpn, :node/id :node-2027, :node/type :state},
-   :seattle.tpn:node-2080
-   {:plan/plid :seattle.tpn, :node/id :node-2080, :node/type :state},
-   :seattle.tpn:node-2108
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2108,
-    :node/type :c-end,
-    :node/begin :seattle.tpn:node-2109},
-   :seattle.tpn:node-2072
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2072,
-    :node/type :c-end,
-    :node/begin :seattle.tpn:node-2073},
-   :seattle.tpn:node-2128
-   {:plan/plid :seattle.tpn,
+    :node/htn-node :v2.htn:hid-2012},
+   :v2.tpn:node-2144
+   {:plan/plid :v2.tpn, :node/id :node-2144, :node/type :state},
+   :v2.tpn:node-2070
+   {:plan/plid :v2.tpn,
+    :node/id :node-2070,
+    :node/type :p-end,
+    :node/begin :v2.tpn:node-2071},
+   :v2.tpn:node-2098
+   {:plan/plid :v2.tpn, :node/id :node-2098, :node/type :state},
+   :v2.tpn:node-2128
+   {:plan/plid :v2.tpn,
     :node/id :node-2128,
     :node/type :state,
-    :node/htn-node :seattle.htn:hid-1931},
-   :seattle.tpn:node-2013
-   {:plan/plid :seattle.tpn,
-    :node/id :node-2013,
-    :node/type :c-end,
-    :node/begin :seattle.tpn:node-2014},
-   :seattle.tpn:node-2082
-   {:plan/plid :seattle.tpn,
+    :node/htn-node :v2.htn:hid-1931},
+   :v2.tpn:node-2082
+   {:plan/plid :v2.tpn,
     :node/id :node-2082,
     :node/type :state,
-    :node/htn-node :seattle.htn:hid-1962},
-   :seattle.tpn:node-2098
-   {:plan/plid :seattle.tpn, :node/id :node-2098, :node/type :state},
-   :seattle.tpn:node-2088
-   {:plan/plid :seattle.tpn,
+    :node/htn-node :v2.htn:hid-1962},
+   :v2.tpn:node-2110
+   {:plan/plid :v2.tpn, :node/id :node-2110, :node/type :state},
+   :v2.tpn:node-2038
+   {:plan/plid :v2.tpn, :node/id :node-2038, :node/type :state},
+   :v2.tpn:node-2134
+   {:plan/plid :v2.tpn, :node/id :node-2134, :node/type :state},
+   :v2.tpn:node-2106
+   {:plan/plid :v2.tpn,
+    :node/id :node-2106,
+    :node/type :p-end,
+    :node/begin :v2.tpn:node-2107},
+   :v2.tpn:node-2052
+   {:plan/plid :v2.tpn,
+    :node/id :node-2052,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1984},
+   :v2.tpn:node-2122
+   {:plan/plid :v2.tpn, :node/id :node-2122, :node/type :state},
+   :v2.tpn:node-2076
+   {:plan/plid :v2.tpn,
+    :node/id :node-2076,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1965},
+   :v2.tpn:node-2112
+   {:plan/plid :v2.tpn,
+    :node/id :node-2112,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1940},
+   :v2.tpn:node-2013
+   {:plan/plid :v2.tpn,
+    :node/id :node-2013,
+    :node/type :c-end,
+    :node/begin :v2.tpn:node-2014},
+   :v2.tpn:node-2027
+   {:plan/plid :v2.tpn, :node/id :node-2027, :node/type :state},
+   :v2.tpn:node-2015
+   {:plan/plid :v2.tpn, :node/id :node-2015, :node/type :state},
+   :v2.tpn:node-2146
+   {:plan/plid :v2.tpn,
+    :node/id :node-2146,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1918},
+   :v2.tpn:node-2050
+   {:plan/plid :v2.tpn, :node/id :node-2050, :node/type :state},
+   :v2.tpn:node-2035
+   {:plan/plid :v2.tpn,
+    :node/id :node-2035,
+    :node/type :p-begin,
+    :node/end :v2.tpn:node-2034,
+    :node/htn-node :v2.htn:hid-1975},
+   :v2.tpn:node-2092
+   {:plan/plid :v2.tpn,
+    :node/id :node-2092,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1956},
+   :v2.tpn:node-2056
+   {:plan/plid :v2.tpn,
+    :node/id :node-2056,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1981},
+   :v2.tpn:node-2062
+   {:plan/plid :v2.tpn, :node/id :node-2062, :node/type :state},
+   :v2.tpn:node-2109
+   {:plan/plid :v2.tpn,
+    :node/id :node-2109,
+    :node/type :c-begin,
+    :node/end :v2.tpn:node-2108,
+    :node/htn-node :v2.htn:hid-1927},
+   :v2.tpn:node-2014
+   {:plan/plid :v2.tpn,
+    :node/id :node-2014,
+    :node/type :c-begin,
+    :node/end :v2.tpn:node-2013,
+    :node/htn-node :v2.htn:hid-1999},
+   :v2.tpn:node-2124
+   {:plan/plid :v2.tpn,
+    :node/id :node-2124,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1934},
+   :v2.tpn:node-2046
+   {:plan/plid :v2.tpn,
+    :node/id :node-2046,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1987},
+   :v2.tpn:node-2118
+   {:plan/plid :v2.tpn,
+    :node/id :node-2118,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1937},
+   :v2.tpn:node-2044
+   {:plan/plid :v2.tpn, :node/id :node-2044, :node/type :state},
+   :v2.tpn:node-2063
+   {:plan/plid :v2.tpn,
+    :node/id :node-2063,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1995},
+   :v2.tpn:node-2036
+   {:plan/plid :v2.tpn,
+    :node/id :node-2036,
+    :node/type :c-end,
+    :node/begin :v2.tpn:node-2037},
+   :v2.tpn:node-2072
+   {:plan/plid :v2.tpn,
+    :node/id :node-2072,
+    :node/type :c-end,
+    :node/begin :v2.tpn:node-2073},
+   :v2.tpn:node-2037
+   {:plan/plid :v2.tpn,
+    :node/id :node-2037,
+    :node/type :c-begin,
+    :node/end :v2.tpn:node-2036,
+    :node/htn-node :v2.htn:hid-1977},
+   :v2.tpn:node-2136
+   {:plan/plid :v2.tpn,
+    :node/id :node-2136,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1943},
+   :v2.tpn:node-2074
+   {:plan/plid :v2.tpn, :node/id :node-2074, :node/type :state},
+   :v2.tpn:node-2064
+   {:plan/plid :v2.tpn,
+    :node/id :node-2064,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1993},
+   :v2.tpn:node-2116
+   {:plan/plid :v2.tpn, :node/id :node-2116, :node/type :state},
+   :v2.tpn:node-2040
+   {:plan/plid :v2.tpn,
+    :node/id :node-2040,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1990},
+   :v2.tpn:node-2033
+   {:plan/plid :v2.tpn,
+    :node/id :node-2033,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-2003},
+   :v2.tpn:node-2100
+   {:plan/plid :v2.tpn,
+    :node/id :node-2100,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1968},
+   :v2.tpn:node-2107
+   {:plan/plid :v2.tpn,
+    :node/id :node-2107,
+    :node/type :p-begin,
+    :node/end :v2.tpn:node-2106,
+    :node/htn-node :v2.htn:hid-1925},
+   :v2.tpn:node-2099
+   {:plan/plid :v2.tpn,
+    :node/id :node-2099,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1970},
+   :v2.tpn:node-2071
+   {:plan/plid :v2.tpn,
+    :node/id :node-2071,
+    :node/type :p-begin,
+    :node/end :v2.tpn:node-2070,
+    :node/htn-node :v2.htn:hid-1950},
+   :v2.tpn:node-2073
+   {:plan/plid :v2.tpn,
+    :node/id :node-2073,
+    :node/type :c-begin,
+    :node/end :v2.tpn:node-2072,
+    :node/htn-node :v2.htn:hid-1952},
+   :v2.tpn:node-2135
+   {:plan/plid :v2.tpn,
+    :node/id :node-2135,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1945},
+   :v2.tpn:node-2029
+   {:plan/plid :v2.tpn,
+    :node/id :node-2029,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-2006},
+   :v2.tpn:node-2023
+   {:plan/plid :v2.tpn,
+    :node/id :node-2023,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-2009},
+   :v2.tpn:node-2088
+   {:plan/plid :v2.tpn,
     :node/id :node-2088,
     :node/type :state,
-    :node/htn-node :seattle.htn:hid-1959}}}]
+    :node/htn-node :v2.htn:hid-1959},
+   :v2.tpn:node-2080
+   {:plan/plid :v2.tpn, :node/id :node-2080, :node/type :state},
+   :v2.tpn:node-2145
+   {:plan/plid :v2.tpn,
+    :node/id :node-2145,
+    :node/type :state,
+    :node/htn-node :v2.htn:hid-1920},
+   :v2.tpn:node-2108
+   {:plan/plid :v2.tpn,
+    :node/id :node-2108,
+    :node/type :c-end,
+    :node/begin :v2.tpn:node-2109},
+   :v2.tpn:node-2086
+   {:plan/plid :v2.tpn, :node/id :node-2086, :node/type :state}}}]

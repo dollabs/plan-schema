@@ -4,9 +4,10 @@
    {:plan/plid :v1.htn,
     :plan/name "v1.htn",
     :plan/type :htn-network,
-    :plan/begin :v1.htn:net-4732,
+    :plan/begin :v1.htn:net-4761,
     :plan/networks
-    [:v1.htn:net-4732
+    [:v1.htn:net-4761
+     :v1.htn:net-801897773
      :v1.htn:net-939095513
      :v1.htn:net-579936876
      :v1.htn:net-166043596
@@ -157,6 +158,72 @@
     :network/label "DoRestOfItAt A\nDoRestOfItAt(A)",
     :network/rootnodes #{:v1.htn:hid-1646 :v1.htn:hid-1647},
     :network/parent :v1.htn:hid-1648},
+   :v1.htn:net-4761
+   {:plan/plid :v1.htn,
+    :network/id :net-4761,
+    :network/type :hem-network,
+    :network/begin :v1.htn:hid-4762,
+    :network/nodes
+    [:v1.htn:hid-4762
+     :v1.htn:hid-1638
+     :v1.htn:hid-1644
+     :v1.htn:hid-1648
+     :v1.htn:hid-1654
+     :v1.htn:hid-1658
+     :v1.htn:hid-1664
+     :v1.htn:hid-1668
+     :v1.htn:hid-1674
+     :v1.htn:hid-1677
+     :v1.htn:hid-1680
+     :v1.htn:hid-1684
+     :v1.htn:hid-1687
+     :v1.htn:hid-1690
+     :v1.htn:hid-1693
+     :v1.htn:hid-1696
+     :v1.htn:hid-1700
+     :v1.htn:hid-1703
+     :v1.htn:hid-1706
+     :v1.htn:hid-1709
+     :v1.htn:hid-1712
+     :v1.htn:hid-1716
+     :v1.htn:hid-1719
+     :v1.htn:hid-1722
+     :v1.htn:hid-1725
+     :v1.htn:hid-1728
+     :v1.htn:hid-1732
+     :v1.htn:hid-1735
+     :v1.htn:hid-1738
+     :v1.htn:hid-1741],
+    :network/edges
+    [:v1.htn:hedge-1868
+     :v1.htn:hedge-1867
+     :v1.htn:hedge-1871
+     :v1.htn:hedge-1883
+     :v1.htn:hedge-1891
+     :v1.htn:hedge-1879
+     :v1.htn:hedge-1899
+     :v1.htn:hedge-1881
+     :v1.htn:hedge-1907
+     :v1.htn:hedge-1872
+     :v1.htn:hedge-1877
+     :v1.htn:hedge-1876
+     :v1.htn:hedge-1875
+     :v1.htn:hedge-1874
+     :v1.htn:hedge-1880
+     :v1.htn:hedge-1904
+     :v1.htn:hedge-1903
+     :v1.htn:hedge-1902
+     :v1.htn:hedge-1901
+     :v1.htn:hedge-1878
+     :v1.htn:hedge-1888
+     :v1.htn:hedge-1887
+     :v1.htn:hedge-1886
+     :v1.htn:hedge-1885
+     :v1.htn:hedge-1882
+     :v1.htn:hedge-1896
+     :v1.htn:hedge-1895
+     :v1.htn:hedge-1894
+     :v1.htn:hedge-1893]},
    :v1.htn:net-1066775904
    {:plan/plid :v1.htn,
     :network/id :net-1066775904,
@@ -294,70 +361,15 @@
     :network/label "Interpret1\nInterpret(D)",
     :network/rootnodes #{:v1.htn:hid-1689},
     :network/parent :v1.htn:hid-1690},
-   :v1.htn:net-4732
+   :v1.htn:net-801897773
    {:plan/plid :v1.htn,
-    :network/id :net-4732,
-    :network/type :hem-network,
-    :network/begin :v1.htn:hid-1638,
-    :network/nodes
-    [:v1.htn:hid-1638
-     :v1.htn:hid-1644
-     :v1.htn:hid-1648
-     :v1.htn:hid-1654
-     :v1.htn:hid-1658
-     :v1.htn:hid-1664
-     :v1.htn:hid-1668
-     :v1.htn:hid-1674
-     :v1.htn:hid-1677
-     :v1.htn:hid-1680
-     :v1.htn:hid-1684
-     :v1.htn:hid-1687
-     :v1.htn:hid-1690
-     :v1.htn:hid-1693
-     :v1.htn:hid-1696
-     :v1.htn:hid-1700
-     :v1.htn:hid-1703
-     :v1.htn:hid-1706
-     :v1.htn:hid-1709
-     :v1.htn:hid-1712
-     :v1.htn:hid-1716
-     :v1.htn:hid-1719
-     :v1.htn:hid-1722
-     :v1.htn:hid-1725
-     :v1.htn:hid-1728
-     :v1.htn:hid-1732
-     :v1.htn:hid-1735
-     :v1.htn:hid-1738
-     :v1.htn:hid-1741],
-    :network/edges
-    [:v1.htn:hedge-1867
-     :v1.htn:hedge-1871
-     :v1.htn:hedge-1883
-     :v1.htn:hedge-1891
-     :v1.htn:hedge-1879
-     :v1.htn:hedge-1899
-     :v1.htn:hedge-1881
-     :v1.htn:hedge-1907
-     :v1.htn:hedge-1872
-     :v1.htn:hedge-1877
-     :v1.htn:hedge-1876
-     :v1.htn:hedge-1875
-     :v1.htn:hedge-1874
-     :v1.htn:hedge-1880
-     :v1.htn:hedge-1904
-     :v1.htn:hedge-1903
-     :v1.htn:hedge-1902
-     :v1.htn:hedge-1901
-     :v1.htn:hedge-1878
-     :v1.htn:hedge-1888
-     :v1.htn:hedge-1887
-     :v1.htn:hedge-1886
-     :v1.htn:hedge-1885
-     :v1.htn:hedge-1882
-     :v1.htn:hedge-1896
-     :v1.htn:hedge-1895
-     :v1.htn:hedge-1894
-     :v1.htn:hedge-1893]},
+    :network/id :net-801897773,
+    :network/type :htn-network,
+    :network/parent :v1.htn:net-4761,
+    :network/nodes [:v1.htn:hid-1636],
+    :network/edges [],
+    :network/label "clojure-west Mission()",
+    :network/rootnodes #{:v1.htn:hid-1636}},
    :v1.htn:net-378095123
    {:plan/plid :v1.htn,
     :network/id :net-378095123,
@@ -368,7 +380,14 @@
     :network/rootnodes #{:v1.htn:hid-1740},
     :network/parent :v1.htn:hid-1741}},
   :edge/edge-by-plid-id
-  {:v1.htn:hedge-1887
+  {:v1.htn:hedge-1868
+   {:plan/plid :v1.htn,
+    :edge/id :hedge-1868,
+    :edge/type :parallel-edge,
+    :edge/from :v1.htn:hid-4762,
+    :edge/to :v1.htn:hid-1638,
+    :edge/order 0},
+   :v1.htn:hedge-1887
    {:plan/plid :v1.htn,
     :edge/id :hedge-1887,
     :edge/type :choice-edge,
@@ -755,6 +774,16 @@
     :node/type :htn-expanded-nonprimitive-task,
     :node/parent :v1.htn:net-1195943518,
     :node/label "DoRestOfItAt(D)"},
+   :v1.htn:hid-4762
+   {:plan/plid :v1.htn,
+    :node/id :hid-4762,
+    :node/type :htn-expanded-method,
+    :node/label "clojure-west Mission()",
+    :node/htn-network :net-801897773,
+    :node/tpn-selection
+    [[:node :v1.tpn:node-1742]
+     [:edge :v1.tpn:arc-1865]
+     [:edge :v1.tpn:arc-1867]]},
    :v1.htn:hid-1678
    {:plan/plid :v1.htn,
     :node/id :hid-1678,
@@ -840,6 +869,12 @@
     :node/parent :v1.htn:net-1465101807,
     :node/label "Evidence(B)",
     :node/tpn-edge :v1.tpn:arc-1827},
+   :v1.htn:hid-1636
+   {:plan/plid :v1.htn,
+    :node/id :hid-1636,
+    :node/type :htn-expanded-nonprimitive-task,
+    :node/parent :v1.htn:net-801897773,
+    :node/label "clojure-west Mission()"},
    :v1.htn:hid-1647
    {:plan/plid :v1.htn,
     :node/id :hid-1647,

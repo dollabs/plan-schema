@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file. This change
 Added
 - *TBD*
 
+### [0.2.2] - 2016-04-27
+
+Changed
+* Updated dependencies
+* Ensure relative pathnames are respsected for output files
+* Merging plans now creates a top level :htn-expanded-method node
+
 ### [0.2.1] - 2016-04-12
 
 Added
@@ -25,6 +32,7 @@ Changed
 Added
 *  Initial version
 
-[0.2.1]: https://github.com/dollabs/plan-schema/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/dollabs/plan-schema/compare/0.1.16...0.2.0
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.1...HEAD
+[0.2.1]: https://github.com/dollabs/plan-schema/compare/0.2.0...0.2.1
+[0.2.1]: https://github.com/dollabs/plan-schema/compare/0.2.1...0.2.2
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.2...HEAD

@@ -28,7 +28,7 @@
   "Returns true if the output file name is STDOUT"
   {:added "0.1.0"}
   [output]
-  (or (nil? output) (= output "-")))
+  (or (empty? output) (= output "-")))
 
 (defn read-json-str
   ([s]
@@ -649,7 +649,11 @@
               result
               (if (su/error? result)
                 {:error (with-out-str (println (:error result)))}
-                result))]
+                result))
+        output (if (and (not (stdout-option? output))
+                     (not (string/starts-with? output "/")))
+                 (str cwd "/" output)
+                 output)]
     (if (stdout-option? output)
       ;; NOTE: this isn't really STDOUT, but simply returns the raw value
       (if (= file-format :json)
@@ -826,41 +830,84 @@
               edge plid-id order net)))))
     nil))
 
-(defn find-top-hem [net]
-  (let [htn-network-id (:network net)
-        htn-network (get net htn-network-id)
-        hent-id (first (get htn-network :rootnodes))
-        hent (get net hent-id)
-        hedge-id (first (get hent :edges))
-        hedge (get net hedge-id)
-        hem-id (get hedge :end-node)]
-    hem-id))
-
-(defn unique-net-id [net]
-  (let [network-id (keyword (gensym "net-"))]
-    (if (get net network-id)
-      (recur net)
-      network-id)))
+(defn unique-id [net prefix]
+  (let [id (keyword (gensym prefix))]
+    (if (get net id)
+      (recur net prefix)
+      id)))
 
 (defn add-hem-network [plans plan-id network-id net]
   (when (= network-id :top-hem-network-id)
-    (let [network-id (unique-net-id net)
-          plid-id (composite-key plan-id network-id)
-          begin (find-top-hem net)
-          network {:plan/plid plan-id
-                   :network/id network-id
-                   :network/type :hem-network
-                   :network/begin (composite-key plan-id begin)
-                   :network/nodes []
-                   :network/edges []}]
+    (let [hem-network-id (unique-id net "net-") ;; for the hem network
+          hem-plid-id (composite-key plan-id hem-network-id)
+          begin-id (unique-id net "hid-") ;; for the top hem
+          begin-plid-id (composite-key plan-id begin-id)
+          htn-network-id (:network net)
+          htn-network (get net htn-network-id)
+          {:keys [label rootnodes]} htn-network
+          htn-plid-id (composite-key plan-id htn-network-id)
+          plid-rootnodes (if rootnodes
+                           (set (doall
+                                  (map (partial composite-key plan-id)
+                                    rootnodes))))
+          htn-network (assoc-if {:plan/plid plan-id
+                                 :network/id htn-network-id
+                                 :network/type :htn-network
+                                 :network/parent hem-plid-id
+                                 :network/nodes []
+                                 :network/edges []}
+                        :network/label label
+                        :network/rootnodes plid-rootnodes)
+          begin {:plan/plid plan-id
+                 :node/id begin-id
+                 :node/type :htn-expanded-method
+                 :node/label (or label "HTN")
+                 :node/htn-network htn-network-id}
+          hem-network {:plan/plid plan-id
+                       :network/id hem-network-id
+                       :network/type :hem-network
+                       :network/begin (composite-key plan-id begin-id)
+                       :network/nodes []
+                       :network/edges []}]
       (swap! plans update-in [:network/network-by-plid-id]
-        assoc plid-id network)
+        assoc hem-plid-id hem-network htn-plid-id htn-network)
       (swap! plans update-in [:plan/by-plid plan-id]
         (fn [p]
           (assoc p
-            :plan/networks (conj (:plan/networks p) plid-id)
-            :plan/begin plid-id)))
-      (add-hem-node plans plan-id plid-id begin net)
+            :plan/networks (conj (:plan/networks p) hem-plid-id htn-plid-id)
+            :plan/begin hem-plid-id)))
+      ;; add begin hem node
+      (swap! plans update-in [:node/node-by-plid-id]
+        assoc begin-plid-id begin)
+      (swap! plans update-in
+        [:network/network-by-plid-id hem-plid-id :network/nodes]
+        conj begin-plid-id)
+      (loop [edges #{} root (first rootnodes) more (rest rootnodes)]
+        (if-not root
+          ;; add hem edges from begin
+          (when-not (empty? edges)
+            (let [edges (vec edges)]
+              (doall
+                (for [order (range (count edges))
+                      :let [edge (get edges order)]]
+                  (do
+                    (add-hem-edge plans plan-id hem-plid-id
+                      edge begin-plid-id order net))))))
+          ;; add this htn-node
+          (let [htn-node (get net root)
+                edges (set/union edges (:edges htn-node))
+                n-plid-id (composite-key plan-id root)
+                node (assoc-if {:plan/plid plan-id
+                                :node/id root
+                                :node/type (:type htn-node)
+                                :node/parent htn-plid-id}
+                       :node/label (:label htn-node))]
+            (swap! plans update-in [:node/node-by-plid-id]
+              assoc n-plid-id node)
+            (swap! plans update-in
+              [:network/network-by-plid-id htn-plid-id :network/nodes]
+              conj n-plid-id)
+            (recur edges (first more) (rest more)))))
       nil)))
 
 ;; TPN ---------------------
@@ -1042,34 +1089,39 @@
       (let [edge (get-edge tpn-plan edge)
             {:keys [edge/type edge/id edge/from edge/htn-node]} edge
             edge-id (composite-key tpn-plan-id id)
-            htn-node (if htn-node (composite-key htn-plan-id htn-node))]
-        (when (and (= type :activity) htn-node)
-          ;; fully qualify the htn-node
-          (update-edge tpn-plan
-            (assoc edge :edge/htn-node htn-node))
-          ;; give the from the htn-node also!
-          (update-node tpn-plan
+            htn-node-id (if htn-node (composite-key htn-plan-id htn-node))
+            hnode (if htn-node-id (get-node htn-plan htn-node-id))]
+        (when (and (= type :activity) htn-node-id (not hnode))
+          (println "ERROR: edge" edge-id "specficies htn-node" htn-node "but"
+            htn-node-id "is not found"))
+        (when (and (= type :activity) htn-node-id hnode)
+          (update-edge tpn-plan ;; fully qualify the htn-node
+            (assoc edge :edge/htn-node htn-node-id))
+          (update-node tpn-plan ;; give the from the htn-node also!
             (assoc (get-node tpn-plan from)
-              :node/htn-node htn-node))
-          ;; backpointer link the htn-node --> edge
-          (update-node htn-plan
-            (assoc (get-node htn-plan htn-node)
-              :node/tpn-edge edge-id)))))
+              :node/htn-node htn-node-id))
+          (update-node htn-plan ;; backpointer link the htn-node --> edge
+            (if (= (:node/type hnode) :htn-expanded-method)
+              (assoc hnode
+                :node/tpn-selection [[:edge edge-id]])
+              (assoc hnode
+                :node/tpn-edge edge-id))))))
     (doseq [node nodes]
       (let [node (get-node tpn-plan node)
             {:keys [node/type node/id node/htn-node node/end]} node
             node-id (composite-key tpn-plan-id id)
-            htn-node (if htn-node (composite-key htn-plan-id htn-node))
-            hnode (if htn-node (get-node htn-plan htn-node))]
+            htn-node-id (if htn-node (composite-key htn-plan-id htn-node))
+            hnode (if htn-node-id (get-node htn-plan htn-node-id))]
         (when (#{:p-begin :c-begin} type)
           ;; create *-end pointer
           (update-node tpn-plan
             (assoc (get-node tpn-plan end) :node/begin node-id))
-          (when htn-node
-            ;; fully qualify the htn-node
-            (update-node tpn-plan
-              (assoc node :node/htn-node htn-node))
-            ;; backpointer link the htn-node --> *-begin
+          (when (and htn-node-id (not hnode))
+            (println "ERROR: node" node-id "specficies htn-node" htn-node "but"
+              htn-node-id "is not found"))
+          (when hnode
+            (update-node tpn-plan ;; fully qualify the htn-node
+              (assoc node :node/htn-node htn-node-id))
             (update-node htn-plan
               (if (= (:node/type hnode) :htn-expanded-method)
                 (assoc hnode
@@ -1175,11 +1227,9 @@
 ;; first find any leader nodes among the nodes
 ;; then add in any non comprised edges
 (defn minimal-selection [tpn-plan sel]
-  ;; (println "\nMIN SEL" sel)
   (let [mnodes (vec (remove nil? (filter #(= :node (first %)) sel)))
         medges (remove nil? (filter #(= :edge (first %)) sel))
         msel (loop [msel [] n (first mnodes) more (rest mnodes)]
-               ;; (println "MNTOP" msel "N" n)
                (if-not n
                  msel
                  (let [node-subset (selection-subset tpn-plan [n] msel)
@@ -1244,6 +1294,7 @@
                           (first more) (rest more)))))
         selection (minimal-selection tpn-plan (vec selection))]
     (update-node htn-plan (assoc hem :node/tpn-selection selection))
+    ;; (println "DEBUG update-tpn-selection" hem-id "=" selection)
     selection))
 
 (defn complete-tpn-selections [htn-plan tpn-plan]
@@ -1297,7 +1348,6 @@
                       (if (empty? tpn-filename)
                         [{:error (str "TPN file not one of: " input)} nil]
                         (let [rv (parse-tpn {:input tpn-filename :output "-"})]
-                          ;; (println "PARSE-TPN rv" rv)
                           (if (:error rv)
                             [rv nil]
                             [nil rv]))))
@@ -1361,7 +1411,6 @@
   "Merge HTN+TPN inputs"
   {:added "0.1.0"}
   [options]
-  ;; (println "merge-networks options" options)
   (let [{:keys [verbose file-format input output cwd]} options
         error (if (or (not (vector? input)) (not= 2 (count input)))
                 "input must include exactly one HTN and one TPN file")
@@ -1384,6 +1433,10 @@
         error (or error (:error htn))
         tpn (if (not error) (parse-tpn {:input tpn-filename :output "-"}))
         error (or error (:error tpn))
+        output (if (and (not (stdout-option? output))
+                     (not (string/starts-with? output "/")))
+                 (str cwd "/" output)
+                 output)
         out
         #?(:clj (if error
                   {:error error}

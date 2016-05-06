@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file. This change
 Added
 * Updated dependencies
 * Added gh-pages and API docs
+* Added PLANVIZ svg diagrams in examples/seattle-2016
 - *TBD*
 
 ### [0.2.2] - 2016-04-27

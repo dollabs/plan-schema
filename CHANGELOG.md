@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file. This change
 ### [Unreleased]
 
 Added
+* Updated dependencies
+* Added gh-pages and API docs
 - *TBD*
 
 ### [0.2.2] - 2016-04-27

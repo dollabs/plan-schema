@@ -139,6 +139,58 @@
 
 (def check-temporal-constraint (s/checker temporal-constraint))
 
+(defn cost<=-constraint? [x]
+  (and (map? x)
+    (#{:cost<=-constraint
+       "cost<=-constraint"
+       "COST<=-CONSTRAINT"} (get x :tpn-type))))
+
+(s/defschema eq-cost<=-constraint?
+  "eq-cost<=-constraint?"
+  (s/conditional
+    keyword? (s/eq :cost<=-constraint)
+    #(and (string? %)
+       (= "cost<=-constraint" (string/lower-case %))) s/Keyword
+    'eq-cost<=-constraint?))
+
+(s/defschema cost<=-constraint
+  "A cost<= constraint"
+  {:tpn-type eq-cost<=-constraint?
+   :uid s/Keyword
+   :value s/Num
+   :end-node s/Keyword
+   (s/optional-key :between) between
+   (s/optional-key :between-ends) between
+   (s/optional-key :between-starts) between})
+
+(def check-cost<=-constraint (s/checker cost<=-constraint))
+
+(defn reward>=-constraint? [x]
+  (and (map? x)
+    (#{:reward>=-constraint
+       "reward>=-constraint"
+       "REWARD>=-CONSTRAINT"} (get x :tpn-type))))
+
+(s/defschema eq-reward>=-constraint?
+  "eq-reward>=-constraint?"
+  (s/conditional
+    keyword? (s/eq :reward>=-constraint)
+    #(and (string? %)
+       (= "reward>=-constraint" (string/lower-case %))) s/Keyword
+    'eq-reward>=-constraint?))
+
+(s/defschema reward>=-constraint
+  "A reward>= constraint"
+  {:tpn-type eq-reward>=-constraint?
+   :uid s/Keyword
+   :value s/Num
+   :end-node s/Keyword
+   (s/optional-key :between) between
+   (s/optional-key :between-ends) between
+   (s/optional-key :between-starts) between})
+
+(def check-reward>=-constraint (s/checker reward>=-constraint))
+
 (defn activity? [x]
   (and (map? x)
     (#{:activity
@@ -171,7 +223,9 @@
    (s/optional-key :plant) s/Str
    (s/optional-key :plantid) s/Str
    (s/optional-key :command) s/Str
-   (s/optional-key :non-primitive) non-primitive})
+   (s/optional-key :non-primitive) non-primitive
+   (s/optional-key :order) s/Num ;; order of activity
+   })
 
 (def check-activity (s/checker activity))
 
@@ -227,7 +281,9 @@
    (s/optional-key :probability) s/Num
    (s/optional-key :cost) s/Num
    (s/optional-key :reward) s/Num
-   (s/optional-key :guard) s/Str})
+   (s/optional-key :guard) s/Str
+   (s/optional-key :order) s/Num ;; order of activity
+   })
 
 (def check-null-activity (s/checker null-activity))
 
@@ -250,9 +306,11 @@
   {:tpn-type eq-state?
    :uid s/Keyword
    :constraints #{s/Keyword}
-   :activities #{s/Keyword}
+   :activities #{s/Keyword} ;; probably wants to be a vector, not a set
    :incidence-set #{s/Keyword}
    (s/optional-key :label) s/Keyword ;; label for between
+   (s/optional-key :cost<=) s/Num
+   (s/optional-key :reward>=) s/Num
    (s/optional-key :sequence-label) s/Keyword ;; label for between
    (s/optional-key :sequence-end) s/Keyword ;; label for between
    (s/optional-key :htn-node) s/Keyword ;; added by the merge operation
@@ -280,10 +338,12 @@
   {:tpn-type eq-c-begin?
    :uid s/Keyword
    :constraints #{s/Keyword}
-   :activities #{s/Keyword}
+   :activities #{s/Keyword} ;; probably wants to be a vector, not a set
    :incidence-set #{s/Keyword}
    :end-node s/Keyword
    (s/optional-key :label) s/Keyword ;; label for between
+   (s/optional-key :cost<=) s/Num
+   (s/optional-key :reward>=) s/Num
    (s/optional-key :sequence-label) s/Keyword ;; label for between
    (s/optional-key :sequence-end) s/Keyword ;; label for between
    (s/optional-key :probability) s/Num
@@ -312,7 +372,7 @@
   "An c-end"
   {:tpn-type eq-c-end?
    :uid s/Keyword
-   :activities #{s/Keyword}
+   :activities #{s/Keyword} ;; probably wants to be a vector, not a set
    :incidence-set #{s/Keyword}
    (s/optional-key :constraints) #{s/Keyword}
    (s/optional-key :probability) s/Num
@@ -340,10 +400,12 @@
   {:tpn-type eq-p-begin?
    :uid s/Keyword
    :constraints #{s/Keyword}
-   :activities #{s/Keyword}
+   :activities #{s/Keyword} ;; probably wants to be a vector, not a set
    :incidence-set #{s/Keyword}
    :end-node s/Keyword
    (s/optional-key :label) s/Keyword ;; label for between
+   (s/optional-key :cost<=) s/Num
+   (s/optional-key :reward>=) s/Num
    (s/optional-key :sequence-label) s/Keyword ;; label for between
    (s/optional-key :sequence-end) s/Keyword ;; label for between
    (s/optional-key :htn-node) s/Keyword
@@ -370,7 +432,7 @@
   "An p-end"
   {:tpn-type eq-p-end?
    :uid s/Keyword
-   :activities #{s/Keyword}
+   :activities #{s/Keyword} ;; probably wants to be a vector, not a set
    :incidence-set #{s/Keyword}
    (s/optional-key :constraints) #{s/Keyword}
    (s/optional-key :begin) s/Keyword ;; new, points to p-begin
@@ -384,6 +446,8 @@
     network-id? network-id
     network? network
     temporal-constraint? temporal-constraint
+    cost<=-constraint? cost<=-constraint
+    reward>=-constraint? reward>=-constraint
     activity? activity
     null-activity? null-activity
     network-flow? network-flow
@@ -455,7 +519,7 @@
   {:type eq-htn-network?
    :uid s/Keyword
    :label s/Str
-   :rootnodes #{s/Keyword}
+   :rootnodes #{s/Keyword} ;; probably wants to be a vector, not a set
    (s/optional-key :parentid) s/Keyword})
 ;; NOTE the parentid points to the parent htn-expanded-method
 
@@ -782,10 +846,11 @@
 
 (declare add-hem-node)
 
-(defn add-hem-edge [plans plan-id network-plid-id edge-id from-plid-id order net]
+(defn add-hem-edge [plans plan-id network-plid-id edge-id from-plid-id
+                    default-order net]
   (let [plid-id (composite-key plan-id edge-id)
         hem-edge (get net edge-id)
-        {:keys [end-node edge-type label]} hem-edge
+        {:keys [end-node edge-type label order]} hem-edge
         type (if (= edge-type :choice) :choice-edge :parallel-edge)
         to-plid-id (composite-key plan-id end-node)
         edge (assoc-if {:plan/plid plan-id
@@ -793,7 +858,7 @@
                         :edge/type type
                         :edge/from from-plid-id
                         :edge/to to-plid-id
-                        :edge/order order}
+                        :edge/order (or order default-order)}
                :edge/label label)]
     (swap! plans update-in [:edge/edge-by-plid-id]
       assoc plid-id edge)
@@ -808,6 +873,9 @@
   (let [plid-id (composite-key plan-id node-id)
         hem-node (get net node-id)
         {:keys [type label network edges]} hem-node
+        ;; HERE we assume at some point in the future edges
+        ;; will become a vector (because order is important)
+        edges (vec edges)
         plid-network (if network (composite-key plan-id network))
         node (assoc-if {:plan/plid plan-id
                         :node/id node-id
@@ -882,20 +950,22 @@
       (swap! plans update-in
         [:network/network-by-plid-id hem-plid-id :network/nodes]
         conj begin-plid-id)
-      (loop [edges #{} root (first rootnodes) more (rest rootnodes)]
+      (loop [edges [] root (first rootnodes) more (rest rootnodes)]
         (if-not root
           ;; add hem edges from begin
           (when-not (empty? edges)
-            (let [edges (vec edges)]
-              (doall
-                (for [order (range (count edges))
-                      :let [edge (get edges order)]]
-                  (do
-                    (add-hem-edge plans plan-id hem-plid-id
-                      edge begin-plid-id order net))))))
+            (doall
+              (for [order (range (count edges))
+                    :let [edge (get edges order)]]
+                (do
+                  (add-hem-edge plans plan-id hem-plid-id
+                    edge begin-plid-id order net)))))
           ;; add this htn-node
           (let [htn-node (get net root)
-                edges (set/union edges (:edges htn-node))
+                ;; HERE we assume at some point in the future edges
+                ;; will become a vector (because order is important)
+                edges (vec (:edges htn-node))
+                ;; edges (set/union edges (:edges htn-node))
                 n-plid-id (composite-key plan-id root)
                 node (assoc-if {:plan/plid plan-id
                                 :node/id root
@@ -915,7 +985,8 @@
 (declare add-tpn-node)
 
 ;; nil on success
-(defn add-tpn-edge [plans plan-id network-plid-id edge-id from-plid-id to-id net]
+(defn add-tpn-edge [plans plan-id network-plid-id edge-id from-plid-id to-id
+                    net & [default-order]]
   (let [plid-id (composite-key plan-id edge-id)
         net-edge (get net edge-id)
         ;; :temporal-constraint :activity :null-activity
@@ -926,7 +997,7 @@
                 plant plantid command non-primitive ;; :activity
                 cost reward ;; :activity :null-activity
                 probability guard ;; :null-activity
-                network-flows htn-node]} net-edge
+                network-flows htn-node order]} net-edge
         to-id (or end-node to-id)
         to-plid-id (composite-key plan-id to-id)
         edge (assoc-if {:plan/plid plan-id
@@ -934,7 +1005,8 @@
                         :edge/type tpn-type
                         :edge/from from-plid-id
                         :edge/to to-plid-id}
-               :edge/bounds value
+               :edge/order (or order default-order)
+               :edge/value value ;; bounds for temporal constraint
                :edge/between between
                :edge/between-ends between-ends
                :edge/between-starts between-starts
@@ -976,6 +1048,9 @@
                     constraints end-node
                     label sequence-label sequence-end
                     probability htn-node]} net-node
+            ;; HERE we assume at some point in the future activities
+            ;; will become a vector (because order is important)
+            activities (vec activities)
             end-node (if end-node (composite-key plan-id end-node))
             node (assoc-if {:plan/plid plan-id
                             :node/id node-id
@@ -992,9 +1067,11 @@
           [:network/network-by-plid-id network-plid-id :network/nodes]
           conj plid-id)
         (when-not (empty? activities)
-          (doseq [activity activities]
-            (add-tpn-edge plans plan-id network-plid-id activity
-              plid-id end-node net)))
+          (doall
+            (for [order (range (count activities))
+                  :let [activity (get activities order)]]
+              (add-tpn-edge plans plan-id network-plid-id activity
+                plid-id end-node net order))))
         (when-not (empty? constraints)
           (doseq [constraint constraints]
             (add-tpn-edge plans plan-id network-plid-id constraint

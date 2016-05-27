@@ -217,6 +217,7 @@
    (s/optional-key :sequence-end) s/Keyword ;; label for between
    (s/optional-key :cost) s/Num
    (s/optional-key :reward) s/Num
+   (s/optional-key :controllable) s/Bool
    (s/optional-key :htn-node) s/Keyword
    ;; htn-node points to htn-primitive-task or htn-expanded-nonprimitive-task
    (s/optional-key :network-flows) #{s/Keyword}
@@ -995,16 +996,18 @@
                 between between-ends between-starts ;; :temporal-constraint
                 name label sequence-label sequence-end ;; :activity
                 plant plantid command non-primitive ;; :activity
-                cost reward ;; :activity :null-activity
+                cost reward controllable;; :activity :null-activity
                 probability guard ;; :null-activity
                 network-flows htn-node order]} net-edge
         to-id (or end-node to-id)
         to-plid-id (composite-key plan-id to-id)
-        edge (assoc-if {:plan/plid plan-id
-                        :edge/id edge-id
-                        :edge/type tpn-type
-                        :edge/from from-plid-id
-                        :edge/to to-plid-id}
+        edge (assoc-if
+               (if (nil? controllable) {} {:edge/controllable controllable})
+               :plan/plid plan-id
+               :edge/id edge-id
+               :edge/type tpn-type
+               :edge/from from-plid-id
+               :edge/to to-plid-id
                :edge/order (or order default-order)
                :edge/value value ;; bounds for temporal constraint
                :edge/between between

@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file. This change
 Added
 - *TBD*
 
+### [0.2.4] - 2016-05-25
+
+Added
+* Added controllable attribute for activities
+
 ### [0.2.3] - 2016-05-16
 
 Added
@@ -45,4 +50,5 @@ Added
 [0.2.1]: https://github.com/dollabs/plan-schema/compare/0.2.0...0.2.1
 [0.2.2]: https://github.com/dollabs/plan-schema/compare/0.2.1...0.2.2
 [0.2.3]: https://github.com/dollabs/plan-schema/compare/0.2.2...0.2.3
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.3...HEAD
+[0.2.4]: https://github.com/dollabs/plan-schema/compare/0.2.3...0.2.4
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.4...HEAD

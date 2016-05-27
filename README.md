@@ -21,7 +21,7 @@ more on boot see [Sean's blog](http://seancorfield.github.io/blog/2016/02/02/boo
 
 Install [boot](http://boot-clj.com/) if you haven't done so already.
 
-Copy [boot.properties](doc/config/boot.properties) to `~/.boot/boot.properties` (if you haven't customized it yet).
+Copy [boot.properties](doc/config/boot.properties) to `~/.boot/boot.properties` (if you haven't customized it yet). *NOTE*: **plan-schema** *requires* Clojure 1.8.0 or later (`BOOT_CLOJURE_VERSION=1.8.0`)
 
 Copy [profile.boot](doc/config/profile.boot) to `~/.boot/boot.properties` (if you haven't customized it yet).
 

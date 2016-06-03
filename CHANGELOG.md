@@ -7,6 +7,19 @@ All notable changes to this project will be documented in this file. This change
 Added
 - *TBD*
 
+### [0.2.5] - 2016-06-03
+
+Added
+* Added delay-actvity TPN-TYPE
+* Tolerate unknown TPN objects (for schema evolution)
+
+Changed
+* Liberalized flow-characteristics value types
+* Updated CLJS dependency
+* Command line invocation improvements
+  - verbose level 1 will print the expanded command line
+* File pathname improvements (cwd now forwarded in options)
+
 ### [0.2.4] - 2016-05-25
 
 Added
@@ -51,4 +64,5 @@ Added
 [0.2.2]: https://github.com/dollabs/plan-schema/compare/0.2.1...0.2.2
 [0.2.3]: https://github.com/dollabs/plan-schema/compare/0.2.2...0.2.3
 [0.2.4]: https://github.com/dollabs/plan-schema/compare/0.2.3...0.2.4
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.4...HEAD
+[0.2.5]: https://github.com/dollabs/plan-schema/compare/0.2.4...0.2.5
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.5...HEAD

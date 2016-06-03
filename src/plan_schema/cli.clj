@@ -119,10 +119,6 @@
         action (get actions cmd)
         {:keys [help version verbose file-format input output]} options
         cwd (or (:plan-schema-cwd env) (:user-dir env))
-        output (if-not (pschema/stdout-option? output)
-                 (if (.startsWith output "/")
-                   output ;; absolute
-                   (str cwd "/" output)))
         options (assoc options :output output :cwd cwd
                   :file-format (keyword file-format))
         verbose? (pos? (or verbose 0))
@@ -152,14 +148,15 @@
         (usage summary))
       (try
         (action options)
-        (catch Throwable e ;; note AssertionError not derived from Exception
-          ;; (catch PrivilegedActionException e
-          ;; NOTE: this alternate exception is to help generate a stack trace
-          ;; for debugging purposes
-          ;; FIXME: use proper logging
-          (binding [*out* *err*]
-            (println "ERROR caught exception:" (.getMessage e)))
-          (exit 1))))
+        ;; (catch Throwable e ;; note AssertionError not derived from Exception
+        ;;   ;; (catch PrivilegedActionException e
+        ;;   ;; NOTE: this alternate exception is to help generate a stack trace
+        ;;   ;; for debugging purposes
+        ;;   ;; FIXME: use proper logging
+        ;;   (binding [*out* *err*]
+        ;;     (println "ERROR caught exception:" (.getMessage e)))
+        ;;   (exit 1))
+        ))
     (exit 0)))
 
 (defn -main

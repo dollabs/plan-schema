@@ -230,9 +230,43 @@
 
 (def check-activity (s/checker activity))
 
+(defn delay-activity? [x]
+  (and (map? x)
+    (#{:delay-activity
+       "delay-activity"
+       "DELAY-ACTIVITY"} (get x :tpn-type))))
+
+(s/defschema eq-delay-activity?
+  "eq-delay-activity?"
+  (s/conditional
+    keyword? (s/eq :delay-activity)
+    #(and (string? %)
+       (= "delay-activity" (string/lower-case %))) s/Keyword
+    'eq-delay-activity?))
+
+(s/defschema delay-activity
+  "An delay-activity"
+  {:tpn-type eq-delay-activity?
+   :uid s/Keyword
+   :constraints #{s/Keyword}
+   :end-node s/Keyword
+   (s/optional-key :name) s/Str
+   (s/optional-key :label) s/Keyword ;; label for between
+   (s/optional-key :sequence-label) s/Keyword ;; label for between
+   (s/optional-key :sequence-end) s/Keyword ;; label for between
+   (s/optional-key :cost) s/Num
+   (s/optional-key :reward) s/Num
+   (s/optional-key :controllable) s/Bool
+   (s/optional-key :htn-node) s/Keyword
+   ;; htn-node points to htn-primitive-task or htn-expanded-nonprimitive-task
+   (s/optional-key :order) s/Num ;; order of delay-activity
+   })
+
+(def check-delay-activity (s/checker delay-activity))
+
 (s/defschema flow-characteristics
   "Flow Characteristics"
-  {s/Keyword s/Str})
+  {s/Keyword s/Any})
 
 (defn network-flow? [x]
   (and (map? x)
@@ -441,6 +475,21 @@
 
 (def check-p-end (s/checker p-end))
 
+;; unknown object is an escape hatch to facilitate future
+;; schema evolution
+
+(defn unknown-object? [x]
+  (map? x))
+
+(s/defschema unknown-object
+  "An unknown object"
+  {:tpn-type s/Keyword
+   :uid s/Keyword
+   s/Keyword s/Any
+   })
+
+(def check-unknown-object (s/checker unknown-object))
+
 (s/defschema tpn-object
   "One of the valid TPN object types"
   (s/conditional
@@ -451,12 +500,14 @@
     reward>=-constraint? reward>=-constraint
     activity? activity
     null-activity? null-activity
+    delay-activity? delay-activity
     network-flow? network-flow
     state? state
     c-begin? c-begin
     c-end? c-end
     p-begin? p-begin
     p-end? p-end
+    unknown-object? unknown-object
     'tpn-object?))
 
 (def check-tpn-object (s/checker tpn-object))
@@ -689,6 +740,13 @@
                 {:error (str "input does not exist: " input)})))
      :cljs {:error (str "CLJS input parsing not implemented: " input)}))
 
+(defn validate-output [output cwd]
+  (if (stdout-option? output)
+    output
+    (if (string/starts-with? output "/")
+      output
+      (str cwd "/" output))))
+
 ;; returns a network map -or- {:error "error message"}
 (defn parse-network
   "Parse TPN"
@@ -715,10 +773,7 @@
               (if (su/error? result)
                 {:error (with-out-str (println (:error result)))}
                 result))
-        output (if (and (not (stdout-option? output))
-                     (not (string/starts-with? output "/")))
-                 (str cwd "/" output)
-                 output)]
+        output (validate-output output cwd)]
     (if (stdout-option? output)
       ;; NOTE: this isn't really STDOUT, but simply returns the raw value
       (if (= file-format :json)
@@ -1415,7 +1470,7 @@
   "Parse TPN"
   {:added "0.1.6"}
   [options]
-  (let [{:keys [verbose file-format input output]} options
+  (let [{:keys [verbose file-format input output cwd]} options
         error (if (or (not (vector? input)) (not= 1 (count input)))
                 {:error "input must include exactly one TPN file"})
         error (if (and (not error) #?(:clj false :cljs true))
@@ -1427,7 +1482,8 @@
                       [error nil]
                       (if (empty? tpn-filename)
                         [{:error (str "TPN file not one of: " input)} nil]
-                        (let [rv (parse-tpn {:input tpn-filename :output "-"})]
+                        (let [rv (parse-tpn {:input tpn-filename :output "-"
+                                             :cwd cwd})]
                           (if (:error rv)
                             [rv nil]
                             [nil rv]))))
@@ -1437,7 +1493,8 @@
         _ (if-not error
             (add-plan tpn-plan :tpn-network (name->id tpn-name) tpn-name tpn))
         out #?(:clj (or error @tpn-plan)
-               :cljs {:error "not implemented yet"})]
+               :cljs {:error "not implemented yet"})
+        output (validate-output output cwd)]
     (if (stdout-option? output)
       ;; NOTE: this isn't really STDOUT, but simply returns the raw value
       (if (= file-format :json)
@@ -1453,7 +1510,7 @@
   "Parse HTN"
   {:added "0.1.6"}
   [options]
-  (let [{:keys [verbose file-format input output]} options
+  (let [{:keys [verbose file-format input output cwd]} options
         error (if (or (not (vector? input)) (not= 1 (count input)))
                 {:error "input must include exactly one HTN file"})
         error (if (and (not error) #?(:clj false :cljs true))
@@ -1465,7 +1522,8 @@
                       [error nil]
                       (if (empty? htn-filename)
                         [{:error (str "HTN file not one of:" input)} nil]
-                        (let [rv (parse-htn {:input htn-filename :output "-"})]
+                        (let [rv (parse-htn {:input htn-filename :output "-"
+                                             :cwd cwd})]
                           (if (:error rv)
                             [rv nil]
                             [nil rv]))))
@@ -1475,7 +1533,8 @@
         _ (if-not error
             (add-plan htn-plan :htn-network (name->id htn-name) htn-name htn))
         out #?(:clj (or error @htn-plan)
-               :cljs {:error "not implemented yet"})]
+               :cljs {:error "not implemented yet"})
+        output (validate-output output cwd)]
     (if (stdout-option? output)
       ;; NOTE: this isn't really STDOUT, but simply returns the raw value
       (if (= file-format :json)
@@ -1509,21 +1568,19 @@
         error (or error (:error htn-filename))
         tpn-filename (if-not error (validate-input tpn-filename cwd))
         error (or error (:error tpn-filename))
-        htn (if (not error) (parse-htn {:input htn-filename :output "-"}))
+        htn (if (not error) (parse-htn {:input htn-filename :output "-"
+                                        :cwd cwd}))
         error (or error (:error htn))
-        tpn (if (not error) (parse-tpn {:input tpn-filename :output "-"}))
+        tpn (if (not error) (parse-tpn {:input tpn-filename :output "-"
+                                        :cwd cwd}))
         error (or error (:error tpn))
-        output (if (and (not (stdout-option? output))
-                     (not (string/starts-with? output "/")))
-                 (str cwd "/" output)
-                 output)
-        out
-        #?(:clj (if error
-                  {:error error}
-                  (merge-htn-tpn
-                            htn (first (fs/split-ext htn-filename))
-                            tpn (first (fs/split-ext tpn-filename))))
-           :cljs {:error "not implemented yet"})]
+        out #?(:clj (if error
+                      {:error error}
+                      (merge-htn-tpn
+                        htn (first (fs/split-ext htn-filename))
+                        tpn (first (fs/split-ext tpn-filename))))
+               :cljs {:error "not implemented yet"})
+        output (validate-output output cwd)]
     (if (stdout-option? output)
       ;; NOTE: this isn't really STDOUT, but simply returns the raw value
       (if (= file-format :json)

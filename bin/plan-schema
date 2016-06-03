@@ -14,9 +14,6 @@ cd "$dir"
 cd ..
 top="."
 
-# ensure pamela does not use PAGER to guess we are in the repl
-unset PAGER
-
 verbose=0
 
 # functions ------------------------------------------
@@ -41,8 +38,18 @@ err() {
 }
 
 # main program -----------------------------------------------
+case "$1" in
+    (-v|-vv|-vvv|-vvvv|--verbose)
+        verbose=$(( $verbose + 1 ))
+        ;;
+esac
 
 # vlog "-- starting $program at $(date) --"
 
+# ensure plan-schema does not use PAGER to guess we are in the repl
+unset PAGER
+
+vlog "-- starting $program at $(date) --"
 args="$@"
+vlog boot run -a "\"$args\""
 boot run -a "$args"

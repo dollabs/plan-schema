@@ -17,7 +17,7 @@ Changed
 - Used the new element numbering to improve the performance
   of merging HTN and TPN plans.
 - Updated dependencies.
-
+- Updated commit message
 
 ### [0.2.5] - 2016-06-03
 

@@ -5,7 +5,7 @@
 ;; the file LICENSE at the root of this distribution.
 
 (def project 'dollabs/plan-schema)
-(def version "0.2.5")
+(def version "0.2.6")
 (def description "Temporal Planning Network schema utilities")
 (def project-url "https://github.com/dollabs/plan-schema")
 (def main 'plan-schema.cli)
@@ -13,10 +13,10 @@
 (set-env! :resource-paths #{"src"}
   :source-paths   #{"test"}
   :dependencies   '[[org.clojure/clojure "1.8.0" :scope "provided"]
-                    [org.clojure/clojurescript "1.9.14" :scope "provided"]
+                    [org.clojure/clojurescript "1.9.93" :scope "provided"]
                     [environ "1.0.3"]
                     [org.clojure/tools.cli "0.3.5"]
-                    [prismatic/schema "1.1.1"]
+                    [prismatic/schema "1.1.3"]
                     [org.clojure/data.json "0.2.6"]
                     [avenir "0.2.1"]
                     [me.raynes/fs "1.4.6"]
@@ -24,12 +24,12 @@
                     [com.cemerick/piggieback "0.2.1"     :scope "test"]
                     [weasel                 "0.7.0"      :scope "test"]
                     [org.clojure/tools.nrepl "0.2.12"    :scope "test"]
-                    [adzerk/boot-reload     "0.4.8"      :scope "test"]
+                    [adzerk/boot-reload     "0.4.12"      :scope "test"]
                     [pandeiro/boot-http "0.7.3" :scope "test"]
                     [adzerk/boot-cljs       "1.7.228-1"  :scope "test"]
-                    [adzerk/boot-cljs-repl  "0.3.0"      :scope "test"]
+                    [adzerk/boot-cljs-repl  "0.3.3"      :scope "test"]
                     ;; testing/development
-                    [adzerk/boot-test "1.1.1" :scope "test"]
+                    [adzerk/boot-test "1.1.2" :scope "test"]
                     [crisptrutski/boot-cljs-test "0.2.2-SNAPSHOT" :scope "test"]
                     [adzerk/bootlaces "0.1.13" :scope "test"]
                     ;; api docs

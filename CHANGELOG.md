@@ -7,6 +7,18 @@ All notable changes to this project will be documented in this file. This change
 Added
 - *TBD*
 
+### [0.2.6] - 2016-07-27
+
+Changed
+- Added a slot for nodes and edges called "number" which is a vector
+  of integers describing the position of each element in the graph.
+  Using this number it is much more performant to determine if one
+  element is within the scope of a given node.
+- Used the new element numbering to improve the performance
+  of merging HTN and TPN plans.
+- Updated dependencies.
+
+
 ### [0.2.5] - 2016-06-03
 
 Added

@@ -106,6 +106,18 @@
 
 (def check-bounds (s/checker bounds))
 
+(s/defschema args
+  "plant function args (positional)"
+  [s/Any])
+
+(def check-args (s/checker args))
+
+(s/defschema argsmap
+  "plant function args (by parameter name)"
+  {s/Keyword s/Any})
+
+(def check-argsmap (s/checker argsmap))
+
 (s/defschema between
   "between constraint [from to]"
   [(s/one s/Keyword "between-from-label")
@@ -135,7 +147,8 @@
    :end-node s/Keyword
    (s/optional-key :between) between
    (s/optional-key :between-ends) between
-   (s/optional-key :between-starts) between})
+   (s/optional-key :between-starts) between
+   })
 
 (def check-temporal-constraint (s/checker temporal-constraint))
 
@@ -191,6 +204,12 @@
 
 (def check-reward>=-constraint (s/checker reward>=-constraint))
 
+(s/defschema element-number
+  "Element number"
+  [s/Num])
+
+(def check-element-number (s/checker element-number))
+
 (defn activity? [x]
   (and (map? x)
     (#{:activity
@@ -224,8 +243,11 @@
    (s/optional-key :plant) s/Str
    (s/optional-key :plantid) s/Str
    (s/optional-key :command) s/Str
+   (s/optional-key :args) args
+   (s/optional-key :argsmap) argsmap
    (s/optional-key :non-primitive) non-primitive
    (s/optional-key :order) s/Num ;; order of activity
+   (s/optional-key :number) element-number ;; experimental node/edge number
    })
 
 (def check-activity (s/checker activity))
@@ -260,6 +282,7 @@
    (s/optional-key :htn-node) s/Keyword
    ;; htn-node points to htn-primitive-task or htn-expanded-nonprimitive-task
    (s/optional-key :order) s/Num ;; order of delay-activity
+   (s/optional-key :number) element-number ;; experimental node/edge number
    })
 
 (def check-delay-activity (s/checker delay-activity))
@@ -318,6 +341,7 @@
    (s/optional-key :reward) s/Num
    (s/optional-key :guard) s/Str
    (s/optional-key :order) s/Num ;; order of activity
+   (s/optional-key :number) element-number ;; experimental node/edge number
    })
 
 (def check-null-activity (s/checker null-activity))
@@ -350,6 +374,7 @@
    (s/optional-key :sequence-end) s/Keyword ;; label for between
    (s/optional-key :htn-node) s/Keyword ;; added by the merge operation
    ;; htn-node points to htn-primitive-task or htn-expanded-nonprimitive-task
+   (s/optional-key :number) element-number ;; experimental node/edge number
    })
 
 (def check-state (s/checker state))
@@ -384,6 +409,7 @@
    (s/optional-key :probability) s/Num
    (s/optional-key :htn-node) s/Keyword
    ;; htn-node points to htn-primitive-task or htn-expanded-nonprimitive-task
+   (s/optional-key :number) element-number ;; experimental node/edge number
    })
 
 
@@ -412,6 +438,7 @@
    (s/optional-key :constraints) #{s/Keyword}
    (s/optional-key :probability) s/Num
    (s/optional-key :begin) s/Keyword ;; new, points to c-begin
+   (s/optional-key :number) element-number ;; experimental node/edge number
    })
 
 (def check-c-end (s/checker c-end))
@@ -445,6 +472,7 @@
    (s/optional-key :sequence-end) s/Keyword ;; label for between
    (s/optional-key :htn-node) s/Keyword
    ;; htn-node points to htn-primitive-task or htn-expanded-nonprimitive-task
+   (s/optional-key :number) element-number ;; experimental node/edge number
    })
 
 (def check-p-begin (s/checker p-begin))
@@ -471,6 +499,7 @@
    :incidence-set #{s/Keyword}
    (s/optional-key :constraints) #{s/Keyword}
    (s/optional-key :begin) s/Keyword ;; new, points to p-begin
+   (s/optional-key :number) element-number ;; experimental node/edge number
    })
 
 (def check-p-end (s/checker p-end))
@@ -814,6 +843,14 @@
 
 (def edge-key-fn (composite-key-fn :plan/plid :edge/id))
 
+(def activity-types #{:activity :null-activity :delay-activity})
+
+(defn activity-type? [edge-or-type]
+  (activity-types (if (map? edge-or-type)
+                      (:edge/type edge-or-type)
+                      edge-or-type)))
+
+
 ;; HTN ---------------------
 
 (defn get-node [plan node-id]
@@ -1050,7 +1087,7 @@
                 value ;; value is bounds in :temporal-constraint
                 between between-ends between-starts ;; :temporal-constraint
                 name label sequence-label sequence-end ;; :activity
-                plant plantid command non-primitive ;; :activity
+                plant plantid command args argsmap non-primitive ;; :activity
                 cost reward controllable;; :activity :null-activity
                 probability guard ;; :null-activity
                 network-flows htn-node order]} net-edge
@@ -1075,6 +1112,8 @@
                :edge/plant plant
                :edge/plantid plantid
                :edge/command command
+               :edge/args args
+               :edge/argsmap argsmap
                :edge/cost cost
                :edge/reward reward
                :edge/probability probability
@@ -1138,15 +1177,80 @@
 
 (declare find-end)
 
+(defn inc-number-last [number]
+  (let [subgraph (vec (or (butlast number) []))
+        n (inc (or (last number) -1))]
+    (conj subgraph n)))
+
+;; returns context
+(defn set-number [plans plan-id prev-context numbers node? x]
+  (if node?
+    (let [{:keys [node/id node/type node/begin node/context node/number]} x
+          begin? (#{:p-begin :c-begin} type)
+          end? (#{:p-end :c-end} type)
+          no-context? (nil? context) ;; first pass
+          context (if no-context? prev-context context)
+          number (if no-context?
+                   (get (swap! numbers update-in [context] inc-number-last) context)
+                   number)
+          node-id (composite-key plan-id id)
+          edge-context (if begin?
+                         node-id
+                         (if end?
+                           (:node/context (get-node plans begin))
+                           context))]
+      (if (and begin? no-context?)
+        (swap! numbers assoc edge-context (conj number -1)))
+      (when no-context?
+        (update-node plans (assoc x :node/context context :node/number number)))
+      edge-context)
+    (let [number
+          (get (swap! numbers update-in [prev-context] inc-number-last)
+            prev-context)]
+      (update-edge plans (assoc x :edge/number number))
+      prev-context)))
+
+(declare visit-nodes)
+(declare map-outgoing)
+
+;; add experimental node/edge numbers
+;; nil on success
+(defn number-nodes-edges [plans plan-id begin-id end-id nodes]
+  (let [context ::top
+        numbers (atom {context [-1]})]
+    (visit-nodes plans begin-id #{end-id}
+      (fn [node]
+        (let [edge-context (set-number plans plan-id context numbers true node)]
+          (remove nil?
+            (map-outgoing plans node
+              (fn [edge]
+                (let [{:keys [edge/type edge/to]} edge
+                      follow? (activity-type? type)]
+                  (when follow?
+                    (set-number plans plan-id edge-context numbers false edge)
+                    (set-number plans plan-id edge-context numbers true
+                      (get-node plans to))
+                    to))))))))
+    ;; remove :node/context
+    (doseq [node nodes]
+      (let [node (get-node plans node)
+            plid-id (node-key-fn node)
+            ref [:node/node-by-plid-id plid-id]]
+        (swap! plans assoc-in ref (dissoc node :node/context))))
+    nil))
+
 ;; nil on success
 (defn add-tpn-network [plans plan-id network-id net]
   (let [net-network (get net network-id)
         {:keys [begin-node end-node]} net-network
         begin-id (composite-key plan-id begin-node)
         end-node (or end-node
-                   (:end-node (get net begin-node))
+                   ;; NOTE: the following will likely MISS the true end
+                   ;; if the plan is a top level sequence, beginning with
+                   ;; p-begin or c-begin
+                   ;; (:end-node (get net begin-node))
                    ::walk)
-        end-id (composite-key plan-id end-node)
+        end-id (if (= end-node ::walk) end-node (composite-key plan-id end-node))
         network-plid-id (composite-key plan-id network-id)
         network {:plan/plid plan-id
                  :network/id network-id
@@ -1160,10 +1264,24 @@
     (swap! plans update-in [:plan/by-plid plan-id :plan/networks]
       conj network-plid-id)
     (add-tpn-node plans plan-id network-plid-id begin-node net)
-    (when (= end-node ::walk) ;; must walk the graph to find the end node
-      (let [end-id (find-end plans plan-id begin-id)]
+    ;; create *-end pointer
+    (let [nodes (:network/nodes
+                 (get-in @plans [:network/network-by-plid-id network-plid-id]))
+          find-end? (= end-node ::walk)] ;; walk the graph to find the end node
+      (doseq [node nodes]
+        (let [node (get-node plans node)
+              {:keys [node/type node/id node/end]} node
+              node-id (composite-key plan-id id)]
+          (when (#{:p-begin :c-begin} type)
+            (update-node plans
+              (assoc (get-node plans end) :node/begin node-id)))))
+      (when find-end?
         (swap! plans assoc-in [:network/network-by-plid-id
-                               network-plid-id :network/end] end-id)))))
+                               network-plid-id :network/end]
+          (if find-end?
+            (find-end plans plan-id begin-id)
+            end-id)))
+      (number-nodes-edges plans plan-id begin-id end-id nodes))))
 
 ;; nil on success
 (defn add-plan [plans network-type plan-id plan-name net & [corresponding-id]]
@@ -1248,9 +1366,6 @@
             htn-node-id (if htn-node (composite-key htn-plan-id htn-node))
             hnode (if htn-node-id (get-node htn-plan htn-node-id))]
         (when (#{:p-begin :c-begin} type)
-          ;; create *-end pointer
-          (update-node tpn-plan
-            (assoc (get-node tpn-plan end) :node/begin node-id))
           (when (and htn-node-id (not hnode))
             (println "ERROR: node" node-id "specficies htn-node" htn-node "but"
               htn-node-id "is not found"))
@@ -1304,37 +1419,27 @@
             (map-outgoing plan node
               (fn [edge]
                 (let [{:keys [edge/type edge/to]} edge
-                      follow? (#{:activity :null-activity} type)]
+                      follow? (activity-type? type)]
                   (if to ;; that was not the end
                     (reset! the-end :end-not-found))
                   (if follow?
                     to))))))))
     @the-end))
 
-(defn is-within? [tpn-plan sel id]
-  (let [node (get-node tpn-plan id)
-        {:keys [node/end]} node
-        sel-id (second sel)
-        within (atom (= sel-id end))]
-    (if-not @within
-      (visit-nodes tpn-plan id #{end}
-        (fn [node]
-          (if (= sel-id (node-key-fn node))
-            (do
-              (reset! within true)
-              nil)
-            (remove nil?
-              (map-outgoing tpn-plan node
-                (fn [edge]
-                  (if (= sel-id (edge-key-fn edge))
-                    (do
-                      (reset! within true)
-                      nil)
-                    (let [{:keys [edge/type edge/to]} edge
-                          follow? (#{:activity :null-activity} type)]
-                      (if follow?
-                        to))))))))))
-    @within))
+;; new generation using :node/number and :edge/number
+;; is sel within node-id?
+(defn is-within-node? [tpn-plan sel node-id]
+  (let [node (get-node tpn-plan node-id)
+        {:keys [node/number]} node
+        [element id] sel
+        sel-number (if (= :node element)
+                     (:node/number (get-node tpn-plan id))
+                     (:edge/number (get-edge tpn-plan id)))
+        number-n (count number)
+        sel-number-n (count sel-number)]
+    (and (> sel-number-n number-n)
+      (= number
+        (vec (take number-n sel-number))))))
 
 ;; return the parts of sub in selection
 (defn selection-subset [tpn-plan sub selection]
@@ -1345,7 +1450,8 @@
                       (if-not b
                         false
                         (if (or (= a b) (and (= (first b) :node)
-                                          (is-within? tpn-plan a (second b))))
+                                          (is-within-node?
+                                            tpn-plan a (second b))))
                           true
                           (recur (first b-more) (rest b-more)))))
             a-subs (if within? (conj a-subs a) a-subs)]

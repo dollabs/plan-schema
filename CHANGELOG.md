@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file. This change
 Added
 - *TBD*
 
+### [0.2.7] - 2016-08-01
+
+Changed
+- Added support for args and argsmap in TPN's
+
+
 ### [0.2.6] - 2016-07-27
 
 Changed

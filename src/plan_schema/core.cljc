@@ -106,6 +106,18 @@
 
 (def check-bounds (s/checker bounds))
 
+(s/defschema args
+  "plant function args (positional)"
+  [s/Any])
+
+(def check-args (s/checker args))
+
+(s/defschema argsmap
+  "plant function args (by parameter name)"
+  {s/Keyword s/Any})
+
+(def check-argsmap (s/checker argsmap))
+
 (s/defschema between
   "between constraint [from to]"
   [(s/one s/Keyword "between-from-label")
@@ -231,6 +243,8 @@
    (s/optional-key :plant) s/Str
    (s/optional-key :plantid) s/Str
    (s/optional-key :command) s/Str
+   (s/optional-key :args) args
+   (s/optional-key :argsmap) argsmap
    (s/optional-key :non-primitive) non-primitive
    (s/optional-key :order) s/Num ;; order of activity
    (s/optional-key :number) element-number ;; experimental node/edge number
@@ -1073,7 +1087,7 @@
                 value ;; value is bounds in :temporal-constraint
                 between between-ends between-starts ;; :temporal-constraint
                 name label sequence-label sequence-end ;; :activity
-                plant plantid command non-primitive ;; :activity
+                plant plantid command args argsmap non-primitive ;; :activity
                 cost reward controllable;; :activity :null-activity
                 probability guard ;; :null-activity
                 network-flows htn-node order]} net-edge
@@ -1098,6 +1112,8 @@
                :edge/plant plant
                :edge/plantid plantid
                :edge/command command
+               :edge/args args
+               :edge/argsmap argsmap
                :edge/cost cost
                :edge/reward reward
                :edge/probability probability

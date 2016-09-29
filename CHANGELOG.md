@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file. This change
 Added
 - *TBD*
 
+### [0.2.9] - 2016-09-29
+
+Changes
+- Added support for lvar's in temporal-constraints
+- Allows state nodes to optionally specify :end-node
+- Updated dependencies
+
 ### [0.2.7] - 2016-08-01
 
 Changed

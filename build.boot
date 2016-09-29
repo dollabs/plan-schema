@@ -5,7 +5,7 @@
 ;; the file LICENSE at the root of this distribution.
 
 (def project 'dollabs/plan-schema)
-(def version "0.2.7")
+(def version "0.2.9")
 (def description "Temporal Planning Network schema utilities")
 (def project-url "https://github.com/dollabs/plan-schema")
 (def main 'plan-schema.cli)
@@ -13,8 +13,8 @@
 (set-env! :resource-paths #{"src"}
   :source-paths   #{"test"}
   :dependencies   '[[org.clojure/clojure "1.8.0" :scope "provided"]
-                    [org.clojure/clojurescript "1.9.93" :scope "provided"]
-                    [environ "1.0.3"]
+                    [org.clojure/clojurescript "1.9.229" :scope "provided"]
+                    [environ "1.1.0"]
                     [org.clojure/tools.cli "0.3.5"]
                     [prismatic/schema "1.1.3"]
                     [org.clojure/data.json "0.2.6"]
@@ -33,7 +33,7 @@
                     [crisptrutski/boot-cljs-test "0.2.2-SNAPSHOT" :scope "test"]
                     [adzerk/bootlaces "0.1.13" :scope "test"]
                     ;; api docs
-                    [boot-codox "0.9.5" :scope "test"]
+                    [boot-codox "0.10.0" :scope "test"]
                     ])
 
 (require

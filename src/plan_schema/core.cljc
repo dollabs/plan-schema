@@ -106,6 +106,38 @@
 
 (def check-bounds (s/checker bounds))
 
+(defn lvar? [x]
+  (and (map? x)
+    (#{:lvar
+       "lvar"
+       "LVAR"} (get x :type))))
+
+(s/defschema eq-lvar?
+  "eq-lvar?"
+  (s/conditional
+    keyword? (s/eq :lvar)
+    #(and (string? %)
+       (= "lvar" (string/lower-case %))) s/Keyword
+    'eq-lvar?))
+
+(s/defschema lvar
+  "A temporal constraint"
+  {:type eq-lvar?
+   :name s/Str
+   (s/optional-key :default) bounds
+   })
+
+(def check-lvar (s/checker lvar))
+
+(s/defschema bounds-or-lvar
+  "bounds-or-lvar"
+  (s/conditional
+    vector? bounds
+    map? lvar
+    'bounds-or-lvar?))
+
+(def check-bounds-or-lvar (s/checker bounds-or-lvar))
+
 (s/defschema args
   "plant function args (positional)"
   [s/Any])
@@ -143,7 +175,7 @@
   "A temporal constraint"
   {:tpn-type eq-temporal-constraint?
    :uid s/Keyword
-   :value bounds
+   :value bounds-or-lvar
    :end-node s/Keyword
    (s/optional-key :between) between
    (s/optional-key :between-ends) between
@@ -375,6 +407,7 @@
    (s/optional-key :htn-node) s/Keyword ;; added by the merge operation
    ;; htn-node points to htn-primitive-task or htn-expanded-nonprimitive-task
    (s/optional-key :number) element-number ;; experimental node/edge number
+   (s/optional-key :end-node) s/Keyword
    })
 
 (def check-state (s/checker state))
@@ -847,8 +880,8 @@
 
 (defn activity-type? [edge-or-type]
   (activity-types (if (map? edge-or-type)
-                      (:edge/type edge-or-type)
-                      edge-or-type)))
+                    (:edge/type edge-or-type)
+                    edge-or-type)))
 
 
 ;; HTN ---------------------
@@ -857,6 +890,7 @@
   (get-in @plan [:node/node-by-plid-id node-id]))
 
 (defn update-node [plan node]
+  ;; (println "UPDATE-NODE" node) ;; DEBUG
   (let [plid-id (node-key-fn node)
         ref [:node/node-by-plid-id plid-id]]
     (swap! plan update-in ref merge node)))
@@ -1268,10 +1302,14 @@
     (let [nodes (:network/nodes
                  (get-in @plans [:network/network-by-plid-id network-plid-id]))
           find-end? (= end-node ::walk)] ;; walk the graph to find the end node
+      ;; (println "DEBUG NODES =========")
+      ;; (pprint nodes)
       (doseq [node nodes]
+        ;; (println "NODE" (:uid node)) ;; DEBUG
         (let [node (get-node plans node)
               {:keys [node/type node/id node/end]} node
               node-id (composite-key plan-id id)]
+          ;; (println "NODE-ID" node-id "END" end "NODE" node)
           (when (#{:p-begin :c-begin} type)
             (update-node plans
               (assoc (get-node plans end) :node/begin node-id)))))
@@ -1491,7 +1529,7 @@
                        msel (cond
                               (not (empty? edge-subset))
                               msel ;; e is already in msel
-                                                            :else
+                              :else
                               (conj msel e))]
                    (recur msel (first more) (rest more)))))]
     msel))
@@ -1515,7 +1553,7 @@
                             sel (if tpn-edge [:edge tpn-edge]
                                     (if tpn-node [:node tpn-node]))]
                         (recur (if sel (conj selection sel) selection)
-                               (first more) (rest more)))))
+                          (first more) (rest more)))))
         selection (loop [selection selection e (first edges) more (rest edges)]
                     (if-not e
                       selection
@@ -1577,6 +1615,7 @@
   {:added "0.1.6"}
   [options]
   (let [{:keys [verbose file-format input output cwd]} options
+        ;; _ (println "TPN-PLAN input" input)
         error (if (or (not (vector? input)) (not= 1 (count input)))
                 {:error "input must include exactly one TPN file"})
         error (if (and (not error) #?(:clj false :cljs true))
@@ -1584,18 +1623,21 @@
         tpn-filename (if (and (not error)
                            (= 1 (count (filter tpn-filename? input))))
                        (first (filter tpn-filename? input)))
+        ;; _ (println "TPN-PLAN tpn-filename" tpn-filename)
         [error tpn] (if error
                       [error nil]
                       (if (empty? tpn-filename)
-                        [{:error (str "TPN file not one of: " input)} nil]
+                        [{:error (str "Expected a TPN file, but tpn is not in the filename: " input)} nil]
                         (let [rv (parse-tpn {:input tpn-filename :output "-"
                                              :cwd cwd})]
                           (if (:error rv)
                             [rv nil]
                             [nil rv]))))
+        ;; _ (println "ERROR" error)
         tpn-plan (atom {})
         tpn-name #?(:clj (if-not error (first (fs/split-ext tpn-filename)))
                     :cljs "cljs-not-supported")
+        ;; _ (println "TPN-PLAN tpn-name" tpn-name)
         _ (if-not error
             (add-plan tpn-plan :tpn-network (name->id tpn-name) tpn-name tpn))
         out #?(:clj (or error @tpn-plan)
@@ -1627,7 +1669,7 @@
         [error htn] (if error
                       [error nil]
                       (if (empty? htn-filename)
-                        [{:error (str "HTN file not one of:" input)} nil]
+                        [{:error (str "Expected a HTN file, but htn is not in the filename: " input)} nil]
                         (let [rv (parse-htn {:input htn-filename :output "-"
                                              :cwd cwd})]
                           (if (:error rv)

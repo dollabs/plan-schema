@@ -43,7 +43,7 @@ Changed
 - Updated dependencies.
 - Updated commit message
 
-### [0.2.5] - 2016-06-03
+### 0.2.5 - 2016-06-03
 
 Added
 * Added delay-actvity TPN-TYPE
@@ -100,6 +100,5 @@ Added
 [0.2.2]: https://github.com/dollabs/plan-schema/compare/0.2.1...0.2.2
 [0.2.3]: https://github.com/dollabs/plan-schema/compare/0.2.2...0.2.3
 [0.2.4]: https://github.com/dollabs/plan-schema/compare/0.2.3...0.2.4
-[0.2.5]: https://github.com/dollabs/plan-schema/compare/0.2.4...0.2.5
-[0.2.10]: https://github.com/dollabs/plan-schema/compare/0.2.5...0.2.10
+[0.2.10]: https://github.com/dollabs/plan-schema/compare/0.2.4...0.2.10
 [Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.10...HEAD

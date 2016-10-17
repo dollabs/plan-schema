@@ -5,7 +5,7 @@
 ;; the file LICENSE at the root of this distribution.
 
 (def project 'dollabs/plan-schema)
-(def version "0.2.9")
+(def version "0.2.10")
 (def description "Temporal Planning Network schema utilities")
 (def project-url "https://github.com/dollabs/plan-schema")
 (def main 'plan-schema.cli)
@@ -33,7 +33,7 @@
                     [crisptrutski/boot-cljs-test "0.2.2-SNAPSHOT" :scope "test"]
                     [adzerk/bootlaces "0.1.13" :scope "test"]
                     ;; api docs
-                    [boot-codox "0.10.0" :scope "test"]
+                    [boot-codox "0.10.1" :scope "test"]
                     ])
 
 (require

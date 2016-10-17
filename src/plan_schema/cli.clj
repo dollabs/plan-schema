@@ -8,11 +8,11 @@
   "Temporal Planning Network schema command line interface"
   (:require [clojure.string :as string]
             [clojure.java.io :refer :all] ;; for as-file
+            [clojure.pprint :refer [pprint]]
+            [me.raynes.fs :as fs]
             [clojure.tools.cli :refer [parse-opts]]
             [environ.core :refer [env]]
             [plan-schema.core :as pschema])
-  (:import [java.security
-            PrivilegedActionException]) ;; for debugging
   (:gen-class))
 
 (def #^{:added "0.1.0"}
@@ -47,12 +47,15 @@
     ;; NOTE: might have HTN=TPN
     ;; :validate [#(or (= "-" %) (.exists (as-file %)))
     ;;            "INPUT file does not exist"]
+    :parse-fn #(-> % fs/expand-home str)
     :assoc-fn (fn [m k v]
                 (let [oldv (get m k [])
                       oldv (if (= oldv ["-"]) [] oldv)]
                   (assoc m k (conj oldv v))))]
    ["-o" "--output OUTPUT" "Output file" ;;  (or - for STDOUT)"
-    :default "-"]
+    :default "-"
+    :parse-fn #(-> % fs/expand-home str)]
+   ["-s" "--strict" "Enforce strict plan schema checking"]
    ])
 
 (defn usage
@@ -101,7 +104,11 @@
   "Exit plan-schema with given status code (and optional messages)."
   {:added "0.1.0"}
   [status & msgs]
-  (if msgs (println (string/join \newline msgs)))
+  (when msgs
+    (if (zero? status)
+      (println (string/join \newline msgs))
+      (pschema/log-error \newline (string/join \newline msgs))))
+  (flush) ;; ensure all pending output has been flushed
   (when (repl?)
     (throw (Exception. (str "DEV MODE exit(" status ")"))))
   (shutdown-agents)
@@ -117,7 +124,7 @@
         (parse-opts args cli-options)
         cmd (first arguments)
         action (get actions cmd)
-        {:keys [help version verbose file-format input output]} options
+        {:keys [help version verbose file-format input output strict]} options
         cwd (or (:plan-schema-cwd env) (:user-dir env))
         options (assoc options :output output :cwd cwd
                   :file-format (keyword file-format))
@@ -132,6 +139,7 @@
           (exit 0 (:version (meta #'plan-schema)))
           (not= (count arguments) 1)
           (exit 1 "Specify exactly one action" (usage summary)))]
+    (pschema/set-strict! strict)
     (when (and verbose? (not exit?))
       (when (> verbose 1)
         (println "repl?:" (repl?))
@@ -141,22 +149,22 @@
       (println "file-format:" file-format)
       (println "input:" input)
       (println "output:" output)
+      (println "strict:" strict)
       (println "cmd:" cmd (if action "(valid)" "(invalid)")))
     (if-not action
       (if-not exit?
         (exit 1 (str "Unknown action: \"" cmd "\". Must be one of " (keys actions)))
         (usage summary))
-      (try
-        (action options)
-        ;; (catch Throwable e ;; note AssertionError not derived from Exception
-        ;;   ;; (catch PrivilegedActionException e
-        ;;   ;; NOTE: this alternate exception is to help generate a stack trace
-        ;;   ;; for debugging purposes
-        ;;   ;; FIXME: use proper logging
-        ;;   (binding [*out* *err*]
-        ;;     (println "ERROR caught exception:" (.getMessage e)))
-        ;;   (exit 1))
-        ))
+      (if (> verbose 1) ;; throw full exception with stack trace when -v -v
+        (let [out (action options)]
+          (when (pschema/stdout-option? output)
+            (pprint out)))
+        (try
+          (let [out (action options)]
+            (when (pschema/stdout-option? output)
+              (pprint out)))
+          (catch Throwable e ;; note AssertionError not derived from Exception
+            (exit 1 "caught exception: " (.getMessage e))))))
     (exit 0)))
 
 (defn -main

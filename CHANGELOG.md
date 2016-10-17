@@ -18,20 +18,20 @@ Changes
 - Expand home in pathnames properly
 - Updated dependencies
 
-### [0.2.9] - 2016-09-29
+### 0.2.9 - 2016-09-29
 
 Changes
 - Added support for lvar's in temporal-constraints
 - Allows state nodes to optionally specify :end-node
 - Updated dependencies
 
-### [0.2.7] - 2016-08-01
+### 0.2.7 - 2016-08-01
 
 Changed
 - Added support for args and argsmap in TPN's
 
 
-### [0.2.6] - 2016-07-27
+### 0.2.6 - 2016-07-27
 
 Changed
 - Added a slot for nodes and edges called "number" which is a vector
@@ -101,4 +101,5 @@ Added
 [0.2.3]: https://github.com/dollabs/plan-schema/compare/0.2.2...0.2.3
 [0.2.4]: https://github.com/dollabs/plan-schema/compare/0.2.3...0.2.4
 [0.2.5]: https://github.com/dollabs/plan-schema/compare/0.2.4...0.2.5
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.5...HEAD
+[0.2.10]: https://github.com/dollabs/plan-schema/compare/0.2.5...0.2.10
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.10...HEAD

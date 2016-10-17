@@ -7,6 +7,17 @@ All notable changes to this project will be documented in this file. This change
 Added
 - *TBD*
 
+### [0.2.10] - 2016-10-17
+
+Changes
+- Allow plan-schema to be more flexible
+  https://github.com/dollabs/planviz/issues/24
+- Fixed: Planviz disagrees with Pamela (plan-schema)
+  https://github.com/dollabs/pamela/issues/18
+- Added command line switch --strict to enforce schema checking
+- Expand home in pathnames properly
+- Updated dependencies
+
 ### [0.2.9] - 2016-09-29
 
 Changes

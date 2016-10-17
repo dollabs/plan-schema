@@ -24,6 +24,46 @@
 
 #?(:cljs (enable-console-print!))
 
+(defn synopsis [s]
+  (let [max-len 75
+        s (if (string? s) s (str s))]
+    (if (> (count s) max-len)
+      (str (subs s 0 max-len) " ...")
+      s)))
+
+(def configuration (atom {:strict false
+                          :loggers {}}))
+
+(defn strict? []
+  (:strict @configuration))
+
+(defn set-strict! [strict]
+  ;; (if (and (not (strict?)) strict)
+  (swap! configuration assoc :strict strict))
+
+;; log-fn should take variable arity
+(defn set-logger! [level log-fn]
+  (swap! configuration assoc-in [:loggers level] log-fn))
+
+(defn logger [level & msgs]
+  (let [log-fn (get-in @configuration [:loggers level])]
+    (if (fn? log-fn)
+      (apply log-fn msgs)
+      (println (string/upper-case (name level))
+        (string/join " " msgs)))))
+
+(defn log-debug [& msgs]
+  (apply logger :debug msgs))
+
+(defn log-info [& msgs]
+  (apply logger :info msgs))
+
+(defn log-warn [& msgs]
+  (apply logger :warn msgs))
+
+(defn log-error [& msgs]
+  (apply logger :error msgs))
+
 (defn stdout-option?
   "Returns true if the output file name is STDOUT"
   {:added "0.1.0"}
@@ -541,7 +581,13 @@
 ;; schema evolution
 
 (defn unknown-object? [x]
-  (map? x))
+  (if (strict?)
+    false ;; do NOT accept unknown objects
+    (if (map? x)
+      (do
+        (log-warn "ACCEPT" (synopsis x) "UNKNOWN object")
+        true)
+      false)))
 
 (s/defschema unknown-object
   "An unknown object"
@@ -748,32 +794,30 @@
 
 ;; -------------------------------------------------------------------
 
-(defn walker [schema]
-  (spec/run-checker
-    (fn [s params]
-      (let [walk (spec/checker (s/spec s) params)]
-        (fn [x]
-          (let [result (walk x)]
-            (println (format "%s | checking %s against %s\n"
-                       (if (su/error? result) "FAIL" "PASS")
-                       x (s/explain s)))
-            result))))
-    true
-    schema))
-
 (defn coercion [schema]
   (spec/run-checker
     (fn [s params]
       (let [walk (spec/checker (s/spec s) params)]
         (fn [x]
-          (cond
-            (and (string? x)
-              (or (= s s/Keyword) (= s upper-bound)))
-            (walk (keyword (string/lower-case x)))
-            (and (= s #{s/Keyword}) (vector? x))
-            (walk (set x))
-            :else
-            (walk x)))))
+          (let [result
+                (cond
+                  (and (string? x)
+                    (or (= s s/Keyword) (= s upper-bound)))
+                  (walk (keyword (string/lower-case x)))
+                  (and (= s #{s/Keyword}) (vector? x))
+                  (walk (set x))
+                  :else
+                  (walk x))]
+            (if (su/error? result)
+              (if (strict?)
+                result
+                (let [xstr (synopsis x)
+                      explanation (synopsis (s/explain s))
+                      errstr (synopsis
+                               (with-out-str (print (su/error-val result))))]
+                  (log-warn "ACCEPT" xstr "EXPECTED" explanation "ERROR" errstr)
+                  x)) ;; return it ANYWAY
+              result)))))
     true
     schema))
 
@@ -836,6 +880,11 @@
                 {:error (with-out-str (println (:error result)))}
                 result))
         output (validate-output output cwd)]
+    (when (:error out)
+      (log-error
+        (str "Invalid plan: " input ", see error "
+          (if (stdout-option? output) "below " "in ")
+          (if-not (stdout-option? output) output))))
     (if (stdout-option? output)
       ;; NOTE: this isn't really STDOUT, but simply returns the raw value
       (if (= file-format :json)
@@ -845,7 +894,7 @@
                 (if (= file-format :json)
                   (write-json-str out)
                   (with-out-str (pprint out))))
-         :cljs (println "not implemented yet")))))
+         :cljs (log-error "not implemented yet")))))
 
 ;; returns a map with :tpn on success or :error on failure
 (defn parse-tpn
@@ -890,7 +939,7 @@
   (get-in @plan [:node/node-by-plid-id node-id]))
 
 (defn update-node [plan node]
-  ;; (println "UPDATE-NODE" node) ;; DEBUG
+  ;; (log-debug "UPDATE-NODE" node) ;; DEBUG
   (let [plid-id (node-key-fn node)
         ref [:node/node-by-plid-id plid-id]]
     (swap! plan update-in ref merge node)))
@@ -1383,7 +1432,7 @@
             htn-node-id (if htn-node (composite-key htn-plan-id htn-node))
             hnode (if htn-node-id (get-node htn-plan htn-node-id))]
         (when (and (= type :activity) htn-node-id (not hnode))
-          (println "ERROR: edge" edge-id "specficies htn-node" htn-node "but"
+          (log-error "edge" edge-id "specifies htn-node" htn-node "but"
             htn-node-id "is not found"))
         (when (and (= type :activity) htn-node-id hnode)
           (update-edge tpn-plan ;; fully qualify the htn-node
@@ -1405,8 +1454,8 @@
             hnode (if htn-node-id (get-node htn-plan htn-node-id))]
         (when (#{:p-begin :c-begin} type)
           (when (and htn-node-id (not hnode))
-            (println "ERROR: node" node-id "specficies htn-node" htn-node "but"
-              htn-node-id "is not found"))
+            (log-error "node" node-id "specficies htn-node" htn-node
+              "but" htn-node-id "is not found"))
           (when hnode
             (update-node tpn-plan ;; fully qualify the htn-node
               (assoc node :node/htn-node htn-node-id))
@@ -1615,7 +1664,6 @@
   {:added "0.1.6"}
   [options]
   (let [{:keys [verbose file-format input output cwd]} options
-        ;; _ (println "TPN-PLAN input" input)
         error (if (or (not (vector? input)) (not= 1 (count input)))
                 {:error "input must include exactly one TPN file"})
         error (if (and (not error) #?(:clj false :cljs true))
@@ -1623,21 +1671,20 @@
         tpn-filename (if (and (not error)
                            (= 1 (count (filter tpn-filename? input))))
                        (first (filter tpn-filename? input)))
-        ;; _ (println "TPN-PLAN tpn-filename" tpn-filename)
         [error tpn] (if error
                       [error nil]
                       (if (empty? tpn-filename)
-                        [{:error (str "Expected a TPN file, but tpn is not in the filename: " input)} nil]
+                        [{:error
+                          (str "Expected a TPN file, but tpn is not in the filename: " input)}
+                         nil]
                         (let [rv (parse-tpn {:input tpn-filename :output "-"
                                              :cwd cwd})]
                           (if (:error rv)
                             [rv nil]
                             [nil rv]))))
-        ;; _ (println "ERROR" error)
         tpn-plan (atom {})
         tpn-name #?(:clj (if-not error (first (fs/split-ext tpn-filename)))
                     :cljs "cljs-not-supported")
-        ;; _ (println "TPN-PLAN tpn-name" tpn-name)
         _ (if-not error
             (add-plan tpn-plan :tpn-network (name->id tpn-name) tpn-name tpn))
         out #?(:clj (or error @tpn-plan)
@@ -1652,7 +1699,7 @@
                 (if (= file-format :json)
                   (write-json-str out)
                   (with-out-str (pprint out))))
-         :cljs (println "not implemented yet")))))
+         :cljs (log-error "not implemented yet")))))
 
 (defn htn-plan
   "Parse HTN"
@@ -1692,7 +1739,7 @@
                 (if (= file-format :json)
                   (write-json-str out)
                   (with-out-str (pprint out))))
-         :cljs (println "not implemented yet")))))
+         :cljs (log-error "not implemented yet")))))
 
 (defn merge-networks
   "Merge HTN+TPN inputs"
@@ -1729,6 +1776,11 @@
                         tpn (first (fs/split-ext tpn-filename))))
                :cljs {:error "not implemented yet"})
         output (validate-output output cwd)]
+    (when error
+      (log-error
+        (str "Invalid plan: " input ", see error "
+          (if (stdout-option? output) "below " "in ")
+          (if-not (stdout-option? output) output))))
     (if (stdout-option? output)
       ;; NOTE: this isn't really STDOUT, but simply returns the raw value
       (if (= file-format :json)
@@ -1738,4 +1790,4 @@
                 (if (= file-format :json)
                   (write-json-str out)
                   (with-out-str (pprint out))))
-         :cljs (println "not implemented yet")))))
+         :cljs (log-error "not implemented yet")))))

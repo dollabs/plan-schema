@@ -12,8 +12,13 @@ dir=$(dirname $0)
 export PLAN_SCHEMA_CWD="$(pwd -P)"
 cd "$dir"
 cd ..
-top="."
-
+top="$(pwd -P)"
+jar="$top/target/$(ls -1 target | grep 'jar$')"
+clojure_file="$top/target/clojure.cp"
+mainclj_file="$top/target/main.clj"
+LEIN_JVM_OPTS="${LEIN_JVM_OPTS:--server}"
+JVM_OPTS="${JVM_OPTS:-$LEIN_JVM_OPTS}"
+PLAN_SCHEMA_OPTS="${PLAN_SCHEMA_OPTS:-$JVM_OPTS}"
 verbose=0
 
 # functions ------------------------------------------
@@ -44,12 +49,31 @@ case "$1" in
         ;;
 esac
 
-# vlog "-- starting $program at $(date) --"
-
 # ensure plan-schema does not use PAGER to guess we are in the repl
 unset PAGER
 
-vlog "-- starting $program at $(date) --"
 args="$@"
-vlog boot run -a "\"$args\""
-boot run -a "$args"
+vlog "-- starting $program at $(date) --"
+if [ -e "$jar" ]; then
+    vlog "-- using jar: $jar --"
+    NULL_DEVICE=/dev/null
+    if [ -e "$clojure_file" ]; then
+        clojure="$(cat "$clojure_file")"
+    else
+        clojure="$(boot show --classpath | tr '[:]' '\n' | grep 'clojure-[0-9].*.*.jar')"
+        echo "$clojure" > "$clojure_file"
+    fi
+    if [ -e "$mainclj_file" ]; then
+        mainclj="$(cat "$mainclj_file")"
+    else
+        mainclj="(use $(awk '/^\(def main/ { print $3;}' < build.boot)(apply -main *command-line-args*)"
+        echo "$mainclj" > "$mainclj_file"
+    fi
+    vlog java $PLAN_SCHEMA_OPTS -cp "$clojure":"$jar" clojure.main -e "$mainclj" $NULL_DEVICE $args
+    exec java $PLAN_SCHEMA_OPTS -cp "$clojure":"$jar" clojure.main -e "$mainclj" $NULL_DEVICE $args
+else
+    vlog "-- using boot: not using jar --"
+    jar=""
+    vlog boot run -a "\"$args\""
+    boot run -a "$args"
+fi

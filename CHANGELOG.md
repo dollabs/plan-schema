@@ -7,6 +7,15 @@ All notable changes to this project will be documented in this file. This change
 Added
 - *TBD*
 
+### [0.2.11] - 2016-10-24
+
+Changes
+- Updated schema for recent PAMELA grammar changes
+  https://github.com/dollabs/planviz/issues/24
+- Removes non-PAMELA slots and attributes from the schema checks
+  (which, if found, will fail in --strict mode).
+- Improved the plan-schema launcher (will use jar if present)
+
 ### [0.2.10] - 2016-10-17
 
 Changes
@@ -101,4 +110,5 @@ Added
 [0.2.3]: https://github.com/dollabs/plan-schema/compare/0.2.2...0.2.3
 [0.2.4]: https://github.com/dollabs/plan-schema/compare/0.2.3...0.2.4
 [0.2.10]: https://github.com/dollabs/plan-schema/compare/0.2.4...0.2.10
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.10...HEAD
+[0.2.11]: https://github.com/dollabs/plan-schema/compare/0.2.10...0.2.11
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.11...HEAD

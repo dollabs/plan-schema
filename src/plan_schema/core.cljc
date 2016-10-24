@@ -38,7 +38,6 @@
   (:strict @configuration))
 
 (defn set-strict! [strict]
-  ;; (if (and (not (strict?)) strict)
   (swap! configuration assoc :strict strict))
 
 ;; log-fn should take variable arity
@@ -164,8 +163,7 @@
   "A temporal constraint"
   {:type eq-lvar?
    :name s/Str
-   (s/optional-key :default) bounds
-   })
+   (s/optional-key :default) bounds})
 
 (def check-lvar (s/checker lvar))
 
@@ -219,8 +217,7 @@
    :end-node s/Keyword
    (s/optional-key :between) between
    (s/optional-key :between-ends) between
-   (s/optional-key :between-starts) between
-   })
+   (s/optional-key :between-starts) between})
 
 (def check-temporal-constraint (s/checker temporal-constraint))
 
@@ -311,7 +308,6 @@
    (s/optional-key :controllable) s/Bool
    (s/optional-key :htn-node) s/Keyword
    ;; htn-node points to htn-primitive-task or htn-expanded-nonprimitive-task
-   (s/optional-key :network-flows) #{s/Keyword}
    (s/optional-key :plant) s/Str
    (s/optional-key :plantid) s/Str
    (s/optional-key :command) s/Str
@@ -358,35 +354,6 @@
    })
 
 (def check-delay-activity (s/checker delay-activity))
-
-(s/defschema flow-characteristics
-  "Flow Characteristics"
-  {s/Keyword s/Any})
-
-(defn network-flow? [x]
-  (and (map? x)
-    (#{:network-flow
-       "network-flow"
-       "NETWORK-FLOW"} (get x :tpn-type))))
-
-(s/defschema eq-network-flow?
-  "eq-network-flow?"
-  (s/conditional
-    keyword? (s/eq :network-flow)
-    #(and (string? %)
-       (= "network-flow" (string/lower-case %))) s/Keyword
-    'eq-network-flow?))
-
-(s/defschema network-flow
-  "An network-flow"
-  {:tpn-type eq-network-flow?
-   :uid s/Keyword
-   :start-enclave s/Keyword
-   :end-enclaves #{s/Keyword}
-   :qos-attributes s/Any ;; FIXME
-   :flow-characteristics flow-characteristics})
-
-(def check-network-flow (s/checker network-flow))
 
 (defn null-activity? [x]
   (and (map? x)
@@ -609,7 +576,6 @@
     activity? activity
     null-activity? null-activity
     delay-activity? delay-activity
-    network-flow? network-flow
     state? state
     c-begin? c-begin
     c-end? c-end

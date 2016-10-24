@@ -1,0 +1,133 @@
+#!/bin/sh
+# test-plan-schema
+#
+# Copyright © 2016 Dynamic Object Language Labs Inc.
+#
+# This software is licensed under the terms of the
+# Apache License, Version 2.0 which can be found in
+# the file LICENSE at the root of this distribution.
+
+set -e
+
+program=$(basename $0)
+dir=$(dirname $0)
+cd "$dir"
+cd ..
+top="$(pwd -P)"
+verbose=0
+
+# functions ------------------------------------------
+log() {
+  # do NOT log now
+  # echo $* >> "$logfile"
+  echo $*
+}
+
+vlog() {
+    [ $verbose -eq 0 ] || log "$@"
+}
+
+vvlog() {
+    [ $verbose -lt 2 ] || log "$@"
+}
+
+err() {
+  # as log only echos we do not need to repeat this here
+  # log "${program}: $*"
+  echo >&2 "${program}: $*"
+}
+
+# main program -----------------------------------------------
+case "$1" in
+    (-v|-vv|-vvv|-vvvv|--verbose)
+        verbose=$(( $verbose + 1 ))
+        ;;
+esac
+
+# vlog "-- starting $program at $(date) --"
+
+# ensure plan-schema does not use PAGER to guess we are in the repl
+unset PAGER
+
+jar="$top/target/$(ls -1 target | grep  'jar$' | head -1)"
+jar="${jar%.jar}.jar"
+plan_schema="$top/bin/plan-schema"
+results="$top/target/$program"
+pamela_top="$top/../pamela"
+vlog "-- starting $program at $(date) --"
+if [ $verbose -eq 0 ]; then
+    v=""
+    log_level=""
+else
+    v="-v -v"
+    log_level="-l trace"
+fi
+if [ -d "$pamela_top" ]; then
+    cd "$pamela_top"
+    pamela_top="$(pwd -P)"
+    pamela_src="$pamela_top/src/test/pamela"
+    pamela="$pamela_top/bin/pamela"
+    cd "$top"
+else
+    err "cannot find PAMELA in a sibling directory"
+    exit 1
+fi
+
+pamela_jar="$pamela_top/target/uberjar/pamela.jar"
+export PAMELA_MODE=prod # use the jar
+if [ ! -e "$pamela_jar" ]; then
+    vlog "-- building pamela jar --"
+    cd "$pamela_top"
+    lein prod
+    cd "$top"
+fi
+if [ ! -e "$jar" ]; then
+    vlog "-- building plan-schema jar --"
+    boot build
+fi
+mkdir -p "$results"
+# vlog "-- smoke-test 1 --"
+# time $plan_schema $v $log_level -h
+# vlog "-- smoke-test 2 --"
+# time $plan_schema $v -h
+vlog "-- using PAMELA examples from $pamela_top --"
+
+example="tpn-mixed"
+input="$pamela_src/$example.pamela"
+tpn="$results/$example.tpn.edn"
+output="$results/$example.edn"
+vlog "-- $example --"
+vlog $pamela $v $log_level -i "$input" -o "$tpn" tpn
+$pamela $v $log_level -i "$input" -o "$tpn" tpn
+vlog $plan_schema $v --strict -i "$tpn" -o "$output" tpn
+$plan_schema $v --strict -i "$tpn" -o "$output" tpn
+
+example="biased-coin"
+input="$pamela_src/$example.pamela"
+tpn="$results/$example.tpn.edn"
+output="$results/$example.edn"
+vlog "-- $example --"
+vlog $pamela $v $log_level -i "$input" -o "$tpn" "-c" "main:coin:flip-sequence" tpn
+$pamela $v $log_level -i "$input" -o "$tpn" "-c" "main:coin:flip-sequence" tpn
+vlog $plan_schema $v --strict -i "$tpn" -o "$output" tpn
+$plan_schema $v --strict -i "$tpn" -o "$output" tpn
+
+example="lvar-examples"
+input="$pamela_src/$example.pamela"
+tpn="$results/$example.tpn.edn"
+output="$results/$example.edn"
+vlog "-- $example --"
+vlog $pamela $v $log_level -i "$input" -o "$tpn" "-c" "example:imager:main" tpn
+$pamela $v $log_level -i "$input" -o "$tpn" "-c" "example:imager:main" tpn
+vlog $plan_schema $v --strict -i "$tpn" -o "$output" tpn
+$plan_schema $v --strict -i "$tpn" -o "$output" tpn
+
+# example="edgect"
+# tpn="~/src/lispmachine/pamela/planviz-models/edgect.tpn.json"
+# output="$results/$example.edn"
+# vlog "-- $example --"
+# # NOTE fails with --strict
+# # vlog $plan_schema $v --strict -i "$tpn" -o "$output" tpn
+# # $plan_schema $v --strict -i "$tpn" -o "$output" tpn
+# vlog $plan_schema $v -i "$tpn" -o "$output" tpn
+# $plan_schema $v -i "$tpn" -o "$output" tpn

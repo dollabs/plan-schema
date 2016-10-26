@@ -556,10 +556,32 @@
         true)
       false)))
 
+(def known-keywords #{:tpn-type :uid :begin-node :end-node :activities
+                      :constraints :incidence-set :label :sequence-label
+                      :sequence-end :htn-node})
+
+;; NOTE: this does not work as desired
+;; (s/defschema unknown-keyword?
+;;   "An unknown keyword"
+;;   (s/conditional
+;;     #(not (known-keywords (keyword %))) s/Keyword
+;;     'unknown-keyword?))
+
+;; NOTE: coerce the possible keys we care about to keywords
 (s/defschema unknown-object
   "An unknown object"
   {:tpn-type s/Keyword
    :uid s/Keyword
+   ;; (s/optional-key :begin-node) s/Keyword
+   ;; (s/optional-key :end-node) s/Keyword
+   ;; (s/optional-key :activities) #{s/Keyword}
+   ;; (s/optional-key :constraints) #{s/Keyword}
+   ;; (s/optional-key :incidence-set) #{s/Keyword}
+   ;; (s/optional-key :label) s/Keyword ;; label for between
+   ;; (s/optional-key :sequence-label) s/Keyword ;; label for between
+   ;; (s/optional-key :sequence-end) s/Keyword ;; label for between
+   ;; (s/optional-key :htn-node) s/Keyword
+   ;; unknown-keyword? s/Any
    s/Keyword s/Any
    })
 
@@ -819,6 +841,30 @@
       output
       (str cwd "/" output))))
 
+(defn cleanup-relaxed-tpn
+  "coerces values of known-keywords to keywords"
+  {:added "0.2.0"}
+  ([tpn]
+   (println "DEBUG cleanup-relaxed-tpn")
+   (reduce-kv cleanup-relaxed-tpn {} tpn))
+  ([m k v]
+   (assoc m k
+     (if (map? v)
+       (let [kw-as (seq v)]
+         (loop [new-v {} kw-a (first kw-as) more (rest kw-as)]
+           (if-not kw-a
+             new-v
+             (let [[kw a] kw-a
+                   a (if (#{:activities :constraints :incidence-set} kw)
+                       (set (map keyword a))
+                       (if (known-keywords kw)
+                         (keyword a)
+                         a))
+                   new-v (assoc new-v kw a)]
+               (recur new-v (first more) (rest more))))))
+       v))))
+
+
 ;; returns a network map -or- {:error "error message"}
 (defn parse-network
   "Parse TPN"
@@ -840,6 +886,12 @@
                  (if (= network-type :htn)
                    (coerce-htn data)
                    (coerce-tpn data)))
+        cleanup? (and (not (:error result))
+                   (= network-type :tpn)
+                   (not (strict?)))
+        result (if cleanup?
+                 (cleanup-relaxed-tpn result)
+                 result)
         out (if (:error result)
               result
               (if (su/error? result)
@@ -878,7 +930,9 @@
 ;; -------------------------------------------------------------
 
 (defn name->id [name]
-  (keyword (string/replace (string/lower-case name) #"\s+" "_")))
+  (if (keyword? name)
+    name
+    (keyword (string/replace (string/lower-case name) #"\s+" "_"))))
 
 (defn composite-key [k1 k2]
   (keyword (subs (str k1 k2) 1)))
@@ -905,7 +959,7 @@
   (get-in @plan [:node/node-by-plid-id node-id]))
 
 (defn update-node [plan node]
-  ;; (log-debug "UPDATE-NODE" node) ;; DEBUG
+  ;; (log-debug "UPDATE-NODE" node)
   (let [plid-id (node-key-fn node)
         ref [:node/node-by-plid-id plid-id]]
     (swap! plan update-in ref merge node)))
@@ -932,8 +986,7 @@
                         :edge/from from-plid-id
                         :edge/to to-plid-id}
                :edge/label label)]
-    (swap! plans update-in [:edge/edge-by-plid-id]
-      assoc plid-id edge)
+    (update-edge plans edge)
     (swap! plans update-in
       [:network/network-by-plid-id network-plid-id :network/edges]
       conj plid-id)
@@ -950,8 +1003,7 @@
                         :node/type type
                         :node/parent network-plid-id}
                :node/label label)]
-    (swap! plans update-in [:node/node-by-plid-id]
-      assoc plid-id node)
+    (update-node plans node)
     (swap! plans update-in
       [:network/network-by-plid-id network-plid-id :network/nodes]
       conj plid-id)
@@ -1002,8 +1054,7 @@
                         :edge/to to-plid-id
                         :edge/order (or order default-order)}
                :edge/label label)]
-    (swap! plans update-in [:edge/edge-by-plid-id]
-      assoc plid-id edge)
+    (update-edge plans edge)
     (swap! plans update-in
       [:network/network-by-plid-id network-plid-id :network/edges]
       conj plid-id)
@@ -1024,8 +1075,7 @@
                         :node/type type
                         :node/label label}
                :node/htn-network plid-network)]
-    (swap! plans update-in [:node/node-by-plid-id]
-      assoc plid-id node)
+    (update-node plans node)
     (swap! plans update-in
       [:network/network-by-plid-id network-plid-id :network/nodes]
       conj plid-id)
@@ -1087,8 +1137,7 @@
             :plan/networks (conj (:plan/networks p) hem-plid-id htn-plid-id)
             :plan/begin hem-plid-id)))
       ;; add begin hem node
-      (swap! plans update-in [:node/node-by-plid-id]
-        assoc begin-plid-id begin)
+      (update-node plans begin)
       (swap! plans update-in
         [:network/network-by-plid-id hem-plid-id :network/nodes]
         conj begin-plid-id)
@@ -1114,8 +1163,7 @@
                                 :node/type (:type htn-node)
                                 :node/parent htn-plid-id}
                        :node/label (:label htn-node))]
-            (swap! plans update-in [:node/node-by-plid-id]
-              assoc n-plid-id node)
+            (update-node plans node)
             (swap! plans update-in
               [:network/network-by-plid-id htn-plid-id :network/nodes]
               conj n-plid-id)
@@ -1170,8 +1218,8 @@
                :edge/network-flows network-flows
                :edge/non-primitive non-primitive
                :edge/htn-node htn-node)]
-    (swap! plans update-in [:edge/edge-by-plid-id]
-      assoc plid-id edge)
+    (log-debug "ADDING EDGE" plid-id "TO-ID" to-id "END-NODE" end-node)
+    (update-edge plans edge)
     (swap! plans update-in
       [:network/network-by-plid-id network-plid-id :network/edges]
       conj plid-id)
@@ -1179,6 +1227,8 @@
       (doseq [constraint constraints]
         (add-tpn-edge plans plan-id network-plid-id constraint
           from-plid-id to-id net)))
+    (if (not (keyword? to-id))
+      (log-debug "NOT KEYWORD TO-ID" to-id))
     (add-tpn-node plans plan-id network-plid-id to-id net)
     ;; FIXME handle network-flows non-primitive
     nil))
@@ -1187,6 +1237,7 @@
 (defn add-tpn-node [plans plan-id network-plid-id node-id net]
   (let [plid-id (composite-key plan-id node-id)
         node (get-in @plans [:node/node-by-plid-id plid-id])]
+    (log-debug "ADDING NODE?" node-id "NODE" node)
     (when-not node
       ;; :state :c-begin :p-begin :c-end :p-end
       (let [net-node (get net node-id)
@@ -1207,8 +1258,9 @@
                    :node/sequence-end sequence-end
                    :node/probability probability
                    :node/htn-node htn-node)]
-        (swap! plans update-in [:node/node-by-plid-id]
-          assoc plid-id node)
+        (log-debug "ADDING NODE" plid-id "ACTIVITIES" activities
+          "END-NODE" end-node)
+        (update-node plans node)
         (swap! plans update-in
           [:network/network-by-plid-id network-plid-id :network/nodes]
           conj plid-id)
@@ -1312,22 +1364,26 @@
       assoc network-plid-id network)
     (swap! plans update-in [:plan/by-plid plan-id :plan/networks]
       conj network-plid-id)
+    (if (not (keyword? begin-node))
+      (log-debug "NOT KEYWORD BEGIN-NODE" begin-node))
     (add-tpn-node plans plan-id network-plid-id begin-node net)
     ;; create *-end pointer
     (let [nodes (:network/nodes
                  (get-in @plans [:network/network-by-plid-id network-plid-id]))
           find-end? (= end-node ::walk)] ;; walk the graph to find the end node
-      ;; (println "DEBUG NODES =========")
-      ;; (pprint nodes)
+      ;; (log-debug "DEBUG NODES =========")
+      ;; (log-debug "\n" (with-out-str (pprint nodes)))
       (doseq [node nodes]
-        ;; (println "NODE" (:uid node)) ;; DEBUG
         (let [node (get-node plans node)
               {:keys [node/type node/id node/end]} node
-              node-id (composite-key plan-id id)]
-          ;; (println "NODE-ID" node-id "END" end "NODE" node)
-          (when (#{:p-begin :c-begin} type)
-            (update-node plans
-              (assoc (get-node plans end) :node/begin node-id)))))
+              node-id (composite-key plan-id id)
+              end-node (if (and (#{:p-begin :c-begin} type) end)
+                         (get-node plans end))]
+          (log-debug "NODE-ID" node-id "END" end "NODE" node)
+          (if-not (empty? end-node)
+            (update-node plans (assoc end-node :node/begin node-id))
+            (if end
+              (log-debug "END NODE" end "NOT FOUND?")))))
       (when find-end?
         (swap! plans assoc-in [:network/network-by-plid-id
                                network-plid-id :network/end]
@@ -1734,6 +1790,9 @@
         error (or error (:error htn))
         tpn (if (not error) (parse-tpn {:input tpn-filename :output "-"
                                         :cwd cwd}))
+        ;; _ (log-debug "== TPN begin ==")
+        ;; _ (log-debug "\n" (with-out-str (pprint tpn)))
+        ;; _ (log-debug "==  TPN end ==")
         error (or error (:error tpn))
         out #?(:clj (if error
                       {:error error}

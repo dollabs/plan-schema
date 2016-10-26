@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file. This change
 Added
 - *TBD*
 
+### [0.2.12] - 2016-10-26
+
+Changes
+- Resolve PLANVIZ issue 30 (cleanup relaxed tpn values)
+
 ### [0.2.11] - 2016-10-24
 
 Changes
@@ -111,4 +116,5 @@ Added
 [0.2.4]: https://github.com/dollabs/plan-schema/compare/0.2.3...0.2.4
 [0.2.10]: https://github.com/dollabs/plan-schema/compare/0.2.4...0.2.10
 [0.2.11]: https://github.com/dollabs/plan-schema/compare/0.2.10...0.2.11
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.11...HEAD
+[0.2.12]: https://github.com/dollabs/plan-schema/compare/0.2.11...0.2.12
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.12...HEAD

@@ -4,8 +4,14 @@ All notable changes to this project will be documented in this file. This change
 
 ### [Unreleased]
 
-Added
-- *TBD*
+Changes
+* _TBD_
+
+### [0.2.13] - 2016-11-20
+
+Changes
+- Fixed HTN TPN merging error in TPN selection sets
+- Removed extra debugging statements
 
 ### [0.2.12] - 2016-10-26
 
@@ -117,4 +123,5 @@ Added
 [0.2.10]: https://github.com/dollabs/plan-schema/compare/0.2.4...0.2.10
 [0.2.11]: https://github.com/dollabs/plan-schema/compare/0.2.10...0.2.11
 [0.2.12]: https://github.com/dollabs/plan-schema/compare/0.2.11...0.2.12
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.12...HEAD
+[0.2.13]: https://github.com/dollabs/plan-schema/compare/0.2.12...0.2.13
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.13...HEAD

@@ -845,7 +845,6 @@
   "coerces values of known-keywords to keywords"
   {:added "0.2.0"}
   ([tpn]
-   (println "DEBUG cleanup-relaxed-tpn")
    (reduce-kv cleanup-relaxed-tpn {} tpn))
   ([m k v]
    (assoc m k
@@ -936,6 +935,9 @@
 
 (defn composite-key [k1 k2]
   (keyword (subs (str k1 k2) 1)))
+
+(defn composite-key? [k]
+  (= 2 (count (string/split (name k)  #":"))))
 
 (defn composite-key-fn [k1 k2]
   (fn [props]
@@ -1218,7 +1220,7 @@
                :edge/network-flows network-flows
                :edge/non-primitive non-primitive
                :edge/htn-node htn-node)]
-    (log-debug "ADDING EDGE" plid-id "TO-ID" to-id "END-NODE" end-node)
+    ;; (log-debug "ADDING EDGE" plid-id "TO-ID" to-id "END-NODE" end-node)
     (update-edge plans edge)
     (swap! plans update-in
       [:network/network-by-plid-id network-plid-id :network/edges]
@@ -1237,7 +1239,7 @@
 (defn add-tpn-node [plans plan-id network-plid-id node-id net]
   (let [plid-id (composite-key plan-id node-id)
         node (get-in @plans [:node/node-by-plid-id plid-id])]
-    (log-debug "ADDING NODE?" node-id "NODE" node)
+    ;; (log-debug "ADDING NODE?" node-id "NODE" node)
     (when-not node
       ;; :state :c-begin :p-begin :c-end :p-end
       (let [net-node (get net node-id)
@@ -1258,8 +1260,8 @@
                    :node/sequence-end sequence-end
                    :node/probability probability
                    :node/htn-node htn-node)]
-        (log-debug "ADDING NODE" plid-id "ACTIVITIES" activities
-          "END-NODE" end-node)
+        ;; (log-debug "ADDING NODE" plid-id "ACTIVITIES" activities
+        ;;   "END-NODE" end-node)
         (update-node plans node)
         (swap! plans update-in
           [:network/network-by-plid-id network-plid-id :network/nodes]
@@ -1379,7 +1381,7 @@
               node-id (composite-key plan-id id)
               end-node (if (and (#{:p-begin :c-begin} type) end)
                          (get-node plans end))]
-          (log-debug "NODE-ID" node-id "END" end "NODE" node)
+          ;; (log-debug "NODE-ID" node-id "END" end "NODE" node)
           (if-not (empty? end-node)
             (update-node plans (assoc end-node :node/begin node-id))
             (if end
@@ -1430,6 +1432,7 @@
 ;; look in the TPN
 ;; pick the begin network
 ;; look at the edges that are activities AND p-begin c-begin nodes
+;;   (NOTE: include state nodes if superfluous NA's have not been removed)
 ;;   if one has htn-node then the from is the tpn-node
 ;;   link that htn-node to that tpn activity or tpn node
 (defn link-htn-nodes-to-tpn-nodes [htn-plan tpn-plan]
@@ -1450,43 +1453,72 @@
     (doseq [edge edges]
       (let [edge (get-edge tpn-plan edge)
             {:keys [edge/type edge/id edge/from edge/htn-node]} edge
+            from-node (get-node tpn-plan from)
+            from-htn-node-id (if-let [h (:node/htn-node from-node)]
+                               (composite-key htn-plan-id h))
+            ;; from-htn-node-id (composite-key tpn-plan from)
+            from-htn-node (if from-htn-node-id
+                            (get-node htn-plan from-htn-node-id))
+            from-htn-node-tpn-selection (or (:node/tpn-selection from-htn-node) [])
             edge-id (composite-key tpn-plan-id id)
             htn-node-id (if htn-node (composite-key htn-plan-id htn-node))
-            hnode (if htn-node-id (get-node htn-plan htn-node-id))]
-        (when (and (= type :activity) htn-node-id (not hnode))
-          (log-error "edge" edge-id "specifies htn-node" htn-node "but"
-            htn-node-id "is not found"))
-        (when (and (= type :activity) htn-node-id hnode)
-          (update-edge tpn-plan ;; fully qualify the htn-node
-            (assoc edge :edge/htn-node htn-node-id))
-          (update-node tpn-plan ;; give the from the htn-node also!
-            (assoc (get-node tpn-plan from)
-              :node/htn-node htn-node-id))
-          (update-node htn-plan ;; backpointer link the htn-node --> edge
-            (if (= (:node/type hnode) :htn-expanded-method)
-              (assoc hnode
-                :node/tpn-selection [[:edge edge-id]])
-              (assoc hnode
-                :node/tpn-edge edge-id))))))
-    (doseq [node nodes]
-      (let [node (get-node tpn-plan node)
-            {:keys [node/type node/id node/htn-node node/end]} node
-            node-id (composite-key tpn-plan-id id)
-            htn-node-id (if htn-node (composite-key htn-plan-id htn-node))
-            hnode (if htn-node-id (get-node htn-plan htn-node-id))]
-        (when (#{:p-begin :c-begin} type)
-          (when (and htn-node-id (not hnode))
-            (log-error "node" node-id "specficies htn-node" htn-node
-              "but" htn-node-id "is not found"))
-          (when hnode
-            (update-node tpn-plan ;; fully qualify the htn-node
-              (assoc node :node/htn-node htn-node-id))
-            (update-node htn-plan
-              (if (= (:node/type hnode) :htn-expanded-method)
-                (assoc hnode
-                  :node/tpn-selection [[:node node-id]])
-                (assoc hnode
-                  :node/tpn-node node-id)))))))))
+            hnode (if htn-node-id (get-node htn-plan htn-node-id))
+            tpn-selection (or (:node/tpn-selection hnode) [])]
+        (when (and (= type :activity) htn-node-id)
+          (if (not hnode)
+            (log-error "edge" edge-id "specifies htn-node" htn-node "but"
+              htn-node-id "is not found")
+            (do
+              (update-edge tpn-plan ;; fully qualify the htn-node
+                (assoc edge :edge/htn-node htn-node-id))
+              (when (and from-htn-node-id
+                      (or (not= from-htn-node-id htn-node-id)
+                        (not (some #(= (second %) edge-id)
+                          from-htn-node-tpn-selection))))
+                ;; (log-warn "FROM-NODE" from
+                ;;   "htn-node will change from" from-htn-node-id
+                ;;   "to" htn-node-id) ;; DEBUG
+                ;; add this to the htn-node selection before it's lost
+                (update-node htn-plan
+                  (assoc from-htn-node
+                    :node/tpn-selection (conj from-htn-node-tpn-selection
+                                          [:edge edge-id]))))
+              (update-node tpn-plan ;; give the from the htn-node also!
+                (assoc from-node
+                  :node/htn-node htn-node-id))
+              (update-node htn-plan ;; backpointer link the htn-node --> edge
+                (if (= (:node/type hnode) :htn-expanded-method)
+                  (assoc hnode
+                    :node/tpn-selection (conj tpn-selection [:edge edge-id]))
+                  (assoc hnode
+                    :node/tpn-edge edge-id))))))))
+      (doseq [node nodes]
+        (let [node (get-node tpn-plan node)
+              {:keys [node/type node/id node/htn-node node/end]} node
+              node-id (composite-key tpn-plan-id id)
+              from-node? (and htn-node (composite-key? htn-node))
+              htn-node-id (if htn-node
+                            (if from-node?
+                              htn-node
+                              (composite-key htn-plan-id htn-node)))
+              hnode (if htn-node-id (get-node htn-plan htn-node-id))
+              tpn-selection (or (:node/tpn-selection hnode) [])]
+          ;; :state for extra nodes when superfluous not removed
+          (when (and (not from-node?) ;; b/c activity will have the link
+                  (#{:p-begin :c-begin :state} type)
+                  htn-node-id)
+            (if (not hnode)
+              (log-error "node" node-id "specficies htn-node" htn-node
+                "but" htn-node-id "is not found")
+              (do
+                (update-node tpn-plan ;; fully qualify the htn-node
+                  (assoc node :node/htn-node htn-node-id))
+                (update-node htn-plan
+                  (if (= (:node/type hnode) :htn-expanded-method)
+                    (assoc hnode
+                      :node/tpn-selection (conj tpn-selection [:node node-id]))
+                    (assoc hnode
+                      :node/tpn-node node-id))))))))))
 
 (defn visit-nodes [tpn-plan node-id prev-visited node-fn]
   (if (prev-visited node-id)
@@ -1610,13 +1642,15 @@
 ;; -- for all child hem's
 ;;    if they have a tpn-selection, use it
 ;;    else recurse
-(defn update-tpn-selection [htn-plan tpn-plan network-by-plid-id hem-network hem]
+(defn update-tpn-selection [htn-plan tpn-plan network-by-plid-id hem-network
+                            hem tpn-selection]
   (let [hem-id (node-key-fn hem)
         {:keys [node/htn-network]} hem
         htn-net (get network-by-plid-id htn-network)
         {:keys [network/nodes]} htn-net
         {:keys [network/edges]} hem-network
-        selection (loop [selection #{} n (first nodes) more (rest nodes)]
+        selection (if tpn-selection (set tpn-selection) #{})
+        selection (loop [selection selection n (first nodes) more (rest nodes)]
                     (if-not n
                       selection
                       (let [{:keys [node/tpn-edge node/tpn-node]}
@@ -1630,21 +1664,27 @@
                       selection
                       (let [{:keys [edge/from edge/to]} (get-edge htn-plan e)
                             hnode (get-node htn-plan to)
-                            {:keys [node/tpn-selection]} hnode
+                            {:keys [node/tpn-selection
+                                    node/tpn-selection-complete?]} hnode
                             tpn-selection (if (= from hem-id)
-                                            (if tpn-selection
+                                            (if tpn-selection-complete?
                                               tpn-selection
                                               (update-tpn-selection
                                                 htn-plan tpn-plan
                                                 network-by-plid-id
-                                                hem-network hnode)))]
+                                                hem-network hnode
+                                                tpn-selection)))]
                         (recur (if tpn-selection
                                  (set/union selection (set tpn-selection))
                                  selection)
                           (first more) (rest more)))))
+        ;; _ (log-warn "BEFORE MINIMAL" selection) ;; DEBUG
         selection (minimal-selection tpn-plan (vec selection))]
-    (update-node htn-plan (assoc hem :node/tpn-selection selection))
-    ;; (println "DEBUG update-tpn-selection" hem-id "=" selection)
+    (update-node htn-plan
+      (assoc hem
+        :node/tpn-selection selection
+        :node/tpn-selection-complete? true))
+    ;; (log-warn "DEBUG update-tpn-selection" hem-id "=" selection) ;; DEBUG
     selection))
 
 (defn complete-tpn-selections [htn-plan tpn-plan]
@@ -1657,11 +1697,12 @@
         {:keys [network/nodes]} hem-network]
     (doseq [node nodes]
       (let [node (get-node htn-plan node)
-            {:keys [node/tpn-selection]} node]
-        (when-not tpn-selection
+            {:keys [node/tpn-selection node/tpn-selection-complete?]} node]
+        (when-not tpn-selection-complete?
           ;; collect all from htn-network and edges from this hem
           (update-tpn-selection
-            htn-plan tpn-plan network-by-plid-id hem-network node))))))
+            htn-plan tpn-plan network-by-plid-id hem-network
+            node tpn-selection))))))
 
 ;; returns {:error} map or plans
 (defn merge-htn-tpn

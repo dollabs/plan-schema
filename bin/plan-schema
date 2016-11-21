@@ -13,7 +13,13 @@ export PLAN_SCHEMA_CWD="$(pwd -P)"
 cd "$dir"
 cd ..
 top="$(pwd -P)"
-jar="$top/target/$(ls -1 target | grep 'jar$')"
+
+if [ ! -d "$top/target" ]; then
+    mkdir "$top/target"
+fi
+
+jar="$top/target/$(ls -1t $top/target | grep 'jar$' | head -1)"
+jar="${jar%.jar}.jar"
 clojure_file="$top/target/clojure.cp"
 mainclj_file="$top/target/main.clj"
 LEIN_JVM_OPTS="${LEIN_JVM_OPTS:--server}"

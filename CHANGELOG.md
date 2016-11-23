@@ -8,7 +8,7 @@ Changes
 * Various minor fixes
   - Updated doc/boot.properties and doc/profile.boot
   - Fixed launcher script error when the target/ directory does not exist
-* _TBD_
+  - Removed CIDER references from build.boot
 
 ### [0.2.13] - 2016-11-20
 

@@ -67,44 +67,6 @@
          :output-path  "doc/api"
          :source-uri (str project-url "/blob/master/{filepath}#L{line}")})
 
-(deftask clj-dev
-  "Clojure REPL for CIDER"
-  []
-  (comp
-    (cider)
-    (repl :server true)
-    (wait)))
-
-(deftask cljs-dev
-  "ClojureScript Browser REPL for CIDER"
-  []
-  (comp
-    (sift :add-resource #{"html"})
-    (cider)
-    (serve :dir "target")
-    (watch)
-    (reload)
-    (cljs-repl) ;; before cljs
-    (cljs)
-    (target :dir #{"target"})))
-
-;; * Because of the differences in the server (backend) REPL and the
-;;   browser (frontend) REPL implementation details a new boot task
-;;   called **cider-boot** has been added
-;;   to [build.boot](build.boot). This allows customizing how CIDER
-;;   starts up without changing any additional Emacs configuration (after
-;;   the one time setup listed below)
-;;   * `M-x customize` to bring up the customization tool
-;;   * Enter `cider` in the search
-;;   * Set the Cider Boot Parameters to `cider-boot` and save for future sessions
-;;
-(deftask cider-boot
-  "Cider boot params task"
-  []
-  (if true ;; FIXME pass this in as an argument
-    (cljs-dev)
-    (clj-dev)))
-
 (deftask testing
   "merge source paths in for testing"
   []

@@ -813,17 +813,25 @@
 
 (def coerce-htn (coercion htn))
 
-(defn kind-filename? [kind filename]
-  (not (nil? (string/index-of (string/lower-case filename) kind))))
+;; takes filename as a string
+;;       plantypes as a set of valid plantypes (strings)
+;;       formats as a set of valid formats (strings)
+;; returns true if filename matches
+(defn kind-filename? [filename plantypes formats]
+  (let [[format plantype] (reverse (string/split filename #"\."))]
+    (boolean (and (plantypes plantype) (formats format)))))
 
 (defn tpn-filename? [filename]
-  (kind-filename? "tpn" filename))
+  (kind-filename? filename #{"tpn"} #{"json" "edn"}))
 
 (defn htn-filename? [filename]
-  (kind-filename? "htn" filename))
+  (kind-filename? filename #{"htn"} #{"json" "edn"}))
 
 (defn json-filename? [filename]
-  (kind-filename? "json" filename))
+  (kind-filename? filename #{"tpn" "htn"} #{"json"}))
+
+(defn edn-filename? [filename]
+  (kind-filename? filename #{"tpn" "htn"} #{"edn"}))
 
 (defn validate-input [input cwd]
   #?(:clj (if (fs/exists? input)

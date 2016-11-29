@@ -9,6 +9,7 @@ Changes
   - Updated doc/boot.properties and doc/profile.boot
   - Fixed launcher script error when the target/ directory does not exist
   - Removed CIDER references from build.boot
+  - Updated dependencies and doc/config/profile.boot example
 
 ### [0.2.13] - 2016-11-20
 

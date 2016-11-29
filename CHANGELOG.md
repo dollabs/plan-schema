@@ -134,4 +134,5 @@ Added
 [0.2.11]: https://github.com/dollabs/plan-schema/compare/0.2.10...0.2.11
 [0.2.12]: https://github.com/dollabs/plan-schema/compare/0.2.11...0.2.12
 [0.2.13]: https://github.com/dollabs/plan-schema/compare/0.2.12...0.2.13
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.13...HEAD
+[0.2.14]: https://github.com/dollabs/plan-schema/compare/0.2.13...0.2.14
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.14...HEAD

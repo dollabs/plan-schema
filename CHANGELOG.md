@@ -5,11 +5,17 @@ All notable changes to this project will be documented in this file. This change
 ### [Unreleased]
 
 Changes
+* _TBD_
+
+### [0.2.14] - 2016-11-29
+
+Changes
 * Various minor fixes
   - Updated doc/boot.properties and doc/profile.boot
   - Fixed launcher script error when the target/ directory does not exist
   - Removed CIDER references from build.boot
   - Updated dependencies and doc/config/profile.boot example
+* Improved TPN and HTN filename detection (Closes PLANVIZ issue 42)
 
 ### [0.2.13] - 2016-11-20
 

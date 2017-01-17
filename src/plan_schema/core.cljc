@@ -1472,7 +1472,7 @@
             htn-node-id (if htn-node (composite-key htn-plan-id htn-node))
             hnode (if htn-node-id (get-node htn-plan htn-node-id))
             tpn-selection (or (:node/tpn-selection hnode) [])]
-        (when (and (= type :activity) htn-node-id)
+        (when (and (or (= type :activity) (= type :delay-activity)) htn-node-id)
           (if (not hnode)
             (log-error "edge" edge-id "specifies htn-node" htn-node "but"
               htn-node-id "is not found")

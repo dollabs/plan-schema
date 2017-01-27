@@ -1,0 +1,46 @@
+;;; Bulb and Light Example
+
+(defpclass psw []
+  ;; Normal control by pushing the button
+  :methods [(defpmethod turn-on                               ; TODO rename to turn_on when support added to pamela
+                [])
+            (defpmethod turn-off                              ; TODO rename to turn_off when support added to pamela
+              [])])
+
+
+;;; Define the circuit
+
+(defpclass main []
+  :meta { :doc "An example circuit: power switch and light bulb" }
+  :fields {
+           :switchedpower (psw :id "switchedcircuit" :plant-part "psw1")        ;
+           :main (main :id "switchedcircuit")}
+  :methods [
+            (defpmethod turn-on-switch []
+                        (switchedpower.turn-on))
+
+            (defpmethod turn-off-switch []
+                        (switchedpower.turn-off))
+
+            (defpmethod main []
+                        (dotimes 3
+                          (toggle-switch)))
+
+            (defpmethod toggle-switch []
+                        (sequence
+                          (turn-on-switch)
+                          (delay :bounds [10 10])
+                          (turn-off-switch)
+                          (delay :bounds [10 10])))
+
+            ;(defpmethod main-fixme []
+            ;            (dotimes 3
+            ;              (sequence
+            ;                (switchedpower.turn-on)
+            ;                (delay :bounds [3 3]))))
+            ;
+            ;(defpmethod toggle-switch-empty [])
+
+
+
+            ])

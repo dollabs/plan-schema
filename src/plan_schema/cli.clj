@@ -94,6 +94,10 @@
              "Actions:"])
     (string/join \newline)))
 
+(def test-mode false)
+(defn set-test-mode [value]
+  (def test-mode value))
+
 (defn repl?
   "Helper function returns true if on the REPL (for development)"
   {:added "0.2.0"}
@@ -109,8 +113,8 @@
       (println (string/join \newline msgs))
       (pschema/log-error \newline (string/join \newline msgs))))
   (flush) ;; ensure all pending output has been flushed
-  (if (repl?)
-    (pschema/log-warn "exit" status "In DEV MODE. Not exiting")
+  (if (or (repl?) test-mode)
+    (pschema/log-warn "exit" status "plan-schema in DEV MODE. Not exiting ->" "repl?" (repl?) "test-mode" test-mode)
     (do (shutdown-agents)
         (System/exit status)))
   true)
@@ -143,6 +147,7 @@
     (when (and verbose? (not exit?))
       (when (> verbose 1)
         (println "repl?:" (repl?))
+        (println "test-mode:" test-mode)
         (println "cwd:" cwd)
         (println "version:" (:plan-schema-version env)))
       (println "verbosity level:" verbose)

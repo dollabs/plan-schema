@@ -95,7 +95,7 @@
     (string/join \newline)))
 
 (def test-mode false)
-(defn set-test-mode [value]
+(defn set-test-mode! [value]
   (def test-mode value))
 
 (defn repl?

@@ -25,7 +25,7 @@
 #?(:cljs (enable-console-print!))
 
 (defn synopsis [s]
-  (let [max-len 75
+  (let [max-len 256
         s (if (string? s) s (str s))]
     (if (> (count s) max-len)
       (str (subs s 0 max-len) " ...")
@@ -316,6 +316,7 @@
    (s/optional-key :non-primitive) non-primitive
    (s/optional-key :order) s/Num ;; order of activity
    (s/optional-key :number) element-number ;; experimental node/edge number
+   s/Keyword s/Any
    })
 
 (def check-activity (s/checker activity))
@@ -694,11 +695,12 @@
    :label s/Str
    :incidence-set #{s/Keyword}
    (s/optional-key :edges) #{s/Keyword}
-   (s/optional-key :parent) s/Keyword ;; new
+   ;(s/optional-key :parent) s/Keyword ;; new; 1/27/2017 -- PM -- Not found in data and hence removed from checks.
    ;; NOTE the parent points to the parent htn-network
-   (s/optional-key :tpn-node) s/Keyword ;; new
-   (s/optional-key :tpn-edge) s/Keyword ;; new
+   ;(s/optional-key :tpn-node) s/Keyword ;; new; 1/27/2017 -- PM -- Not found in data and hence removed from checks.
+   ;(s/optional-key :tpn-edge) s/Keyword ;; new; 1/27/2017 -- PM -- Not found in data and hence removed from checks.
    ;; tpn-node points to state, c-begin, or p-begin
+   s/Keyword s/Any
    })
 
 (def check-htn-primitive-task (s/checker htn-primitive-task))
@@ -752,11 +754,12 @@
    :label s/Str
    :incidence-set #{s/Keyword}
    (s/optional-key :edges) #{s/Keyword}
-   (s/optional-key :parent) s/Keyword ;; new
+   ;(s/optional-key :parent) s/Keyword ;; new; 1/27/2017 -- PM -- Not found in data and hence removed from checks.
    ;; NOTE the parent points to the parent htn-network
-   (s/optional-key :tpn-node) s/Keyword ;; new
-   (s/optional-key :tpn-edge) s/Keyword ;; new
+   ;(s/optional-key :tpn-node) s/Keyword ;; new; 1/27/2017 -- PM -- Not found in data and hence removed from checks.
+   ;(s/optional-key :tpn-edge) s/Keyword ;; new; 1/27/2017 -- PM -- Not found in data and hence removed from checks.
    ;; tpn-node points to state, c-begin, or p-begin
+   s/Keyword s/Any
    })
 
 (def check-htn-expanded-nonprimitive-task (s/checker htn-expanded-nonprimitive-task))
@@ -803,7 +806,7 @@
                       explanation (synopsis (s/explain s))
                       errstr (synopsis
                                (with-out-str (print (su/error-val result))))]
-                  (log-warn "ACCEPT" xstr "EXPECTED" explanation "ERROR" errstr)
+                  (log-warn "ACCEPT\n" xstr "\nEXPECTED\n" explanation "ERROR" errstr)
                   x)) ;; return it ANYWAY
               result)))))
     true
@@ -893,12 +896,6 @@
                  (if (= network-type :htn)
                    (coerce-htn data)
                    (coerce-tpn data)))
-        cleanup? (and (not (:error result))
-                   (= network-type :tpn)
-                   (not (strict?)))
-        result (if cleanup?
-                 (cleanup-relaxed-tpn result)
-                 result)
         out (if (:error result)
               result
               (if (su/error? result)

@@ -109,10 +109,10 @@
       (println (string/join \newline msgs))
       (pschema/log-error \newline (string/join \newline msgs))))
   (flush) ;; ensure all pending output has been flushed
-  (when (repl?)
-    (throw (Exception. (str "DEV MODE exit(" status ")"))))
-  (shutdown-agents)
-  (System/exit status)
+  (if (repl?)
+    (pschema/log-warn "exit" status "In DEV MODE. Not exiting")
+    (do (shutdown-agents)
+        (System/exit status)))
   true)
 
 (defn plan-schema

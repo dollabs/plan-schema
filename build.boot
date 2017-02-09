@@ -5,7 +5,7 @@
 ;; the file LICENSE at the root of this distribution.
 
 (def project 'dollabs/plan-schema)
-(def version "0.2.14")
+(def version "0.2.15")
 (def description "Temporal Planning Network schema utilities")
 (def project-url "https://github.com/dollabs/plan-schema")
 (def main 'plan-schema.cli)
@@ -14,7 +14,7 @@
   :resource-paths #{"src"}
   :source-paths   #{"test"}
   :dependencies   '[[org.clojure/clojure         "1.8.0"   :scope "provided"]
-                    [org.clojure/clojurescript   "1.9.293" :scope "provided"]
+                    [org.clojure/clojurescript   "1.9.456" :scope "provided"]
                     [environ                     "1.1.0"]
                     [org.clojure/tools.cli       "0.3.5"]
                     [prismatic/schema            "1.1.3"]
@@ -25,16 +25,16 @@
                     [com.cemerick/piggieback     "0.2.1"          :scope "test"]
                     [weasel                      "0.7.0"          :scope "test"]
                     [org.clojure/tools.nrepl     "0.2.12"         :scope "test"]
-                    [adzerk/boot-reload          "0.4.13"         :scope "test"]
+                    [adzerk/boot-reload          "0.5.1"          :scope "test"]
                     [pandeiro/boot-http          "0.7.6"          :scope "test"]
                     [adzerk/boot-cljs            "1.7.228-2"      :scope "test"]
                     [adzerk/boot-cljs-repl       "0.3.3"          :scope "test"]
                     ;; testing/development
-                    [adzerk/boot-test            "1.1.2"          :scope "test"]
+                    [adzerk/boot-test            "1.2.0"          :scope "test"]
                     [crisptrutski/boot-cljs-test "0.3.0-SNAPSHOT" :scope "test"]
                     [adzerk/bootlaces            "0.1.13"         :scope "test"]
                     ;; api docs
-                    [boot-codox                  "0.10.2"         :scope "test"]
+                    [boot-codox                  "0.10.3"         :scope "test"]
                     ])
 
 (require

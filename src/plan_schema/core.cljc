@@ -375,6 +375,7 @@
   {:tpn-type eq-null-activity?
    :uid s/Keyword
    :end-node s/Keyword
+   (s/optional-key :constraints) #{s/Keyword}
    (s/optional-key :label) s/Keyword  ;; label for between
    (s/optional-key :probability) s/Num
    (s/optional-key :cost) s/Num
@@ -891,11 +892,13 @@
                  (read-json-str data)
                  #?(:clj (read-string data)
                     :cljs "not implemented yet")))
+        ;; _ (println "DEBUG DATA\n" (with-out-str (pprint data)))
         result (if (:error data)
                  data
                  (if (= network-type :htn)
                    (coerce-htn data)
                    (coerce-tpn data)))
+        ;; _ (println "DEBUG RESULT\n" (with-out-str (pprint result)))
         out (if (:error result)
               result
               (if (su/error? result)
@@ -1016,7 +1019,9 @@
       conj plid-id)
     (when-not (empty? edges)
       (doseq [edge edges]
-        (add-htn-edge plans plan-id network-plid-id edge plid-id net)))
+        ;; workaround schema coercion problem
+        (let [edge-id (if (keyword? edge) edge (keyword edge))]
+          (add-htn-edge plans plan-id network-plid-id edge-id plid-id net))))
     nil))
 
 ;; nil on success

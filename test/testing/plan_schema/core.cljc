@@ -7,6 +7,7 @@
 (ns testing.plan-schema.core
   (:require [clojure.string :as string]
             [clojure.data :as data]
+            #?(:clj [clojure.java.io :as io])
             #?(:clj
                [clojure.test :refer [deftest testing is]]
                :cljs
@@ -42,8 +43,8 @@
      (testing "JSON Coercion test")
      (doseq [files test-files]
        (let [[edn json file-format] files
-             parsed-edn (str edn ".clj")
-             parsed-json (str json ".clj")
+             parsed-edn (str "target/" edn ".clj")
+             parsed-json (str "target/" json ".clj")
              cwd (System/getProperty "user.dir")
              out-edn (execute-action cwd edn "-" file-format)
              out-json (execute-action cwd json "-" file-format)
@@ -54,6 +55,7 @@
 
          (when-not (= out-edn out-json)
            (println "Files differ" parsed-edn parsed-json)
+           (io/make-parents parsed-edn)
            (spit parsed-edn (with-out-str (pprint out-edn)))
            (spit parsed-json (with-out-str (pprint out-json)))
            (is false (prn-str "Files differ" parsed-edn parsed-json))))))

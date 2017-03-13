@@ -81,7 +81,7 @@
 
 (defn write-json-str [m]
   #?(:clj
-     (with-out-str (json/pprint m))
+     (with-out-str (json/pprint (into (sorted-map) m)))
      :cljs
      (.stringify js/JSON (clj->js m))))
 
@@ -695,7 +695,7 @@
    :uid s/Keyword
    :label s/Str
    :incidence-set #{s/Keyword}
-   (s/optional-key :edges) #{s/Keyword}
+   (s/optional-key :edges) [s/Keyword] ;; NOTE: must consistently be a vector
    ;(s/optional-key :parent) s/Keyword ;; new; 1/27/2017 -- PM -- Not found in data and hence removed from checks.
    ;; NOTE the parent points to the parent htn-network
    ;(s/optional-key :tpn-node) s/Keyword ;; new; 1/27/2017 -- PM -- Not found in data and hence removed from checks.
@@ -754,7 +754,7 @@
    :uid s/Keyword
    :label s/Str
    :incidence-set #{s/Keyword}
-   (s/optional-key :edges) #{s/Keyword}
+   (s/optional-key :edges) [s/Keyword] ;; NOTE: must consistently be a vector
    ;(s/optional-key :parent) s/Keyword ;; new; 1/27/2017 -- PM -- Not found in data and hence removed from checks.
    ;; NOTE the parent points to the parent htn-network
    ;(s/optional-key :tpn-node) s/Keyword ;; new; 1/27/2017 -- PM -- Not found in data and hence removed from checks.
@@ -918,7 +918,7 @@
       #?(:clj (spit output
                 (if (= file-format :json)
                   (write-json-str out)
-                  (with-out-str (pprint out))))
+                  (with-out-str (pprint (into (sorted-map) out)))))
          :cljs (log-error "not implemented yet")))))
 
 ;; returns a map with :tpn on success or :error on failure
@@ -1771,7 +1771,7 @@
       #?(:clj (spit output
                 (if (= file-format :json)
                   (write-json-str out)
-                  (with-out-str (pprint out))))
+                  (with-out-str (pprint (into (sorted-map) out)))))
          :cljs (log-error "not implemented yet")))))
 
 (defn htn-plan
@@ -1811,7 +1811,7 @@
       #?(:clj (spit output
                 (if (= file-format :json)
                   (write-json-str out)
-                  (with-out-str (pprint out))))
+                  (with-out-str (pprint (into (sorted-map) out)))))
          :cljs (log-error "not implemented yet")))))
 
 (defn merge-networks
@@ -1865,5 +1865,5 @@
       #?(:clj (spit output
                 (if (= file-format :json)
                   (write-json-str out)
-                  (with-out-str (pprint out))))
+                  (with-out-str (pprint (into (sorted-map) out)))))
          :cljs (log-error "not implemented yet")))))

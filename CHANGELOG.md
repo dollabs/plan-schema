@@ -7,6 +7,18 @@ All notable changes to this project will be documented in this file. This change
 Changes
 * _TBD_
 
+### [0.2.16] - 2017-03-13
+
+Changes
+* Type coercion for :edges must be consistently vectors (not sets)
+* Ensure that plans are sorted on output
+* Fixed test to put temporary/generated files under target/
+
+### [0.2.15] - 2017-02-09
+
+Changes
+* Various minor fixes
+
 ### [0.2.14] - 2016-11-29
 
 Changes
@@ -135,4 +147,6 @@ Added
 [0.2.12]: https://github.com/dollabs/plan-schema/compare/0.2.11...0.2.12
 [0.2.13]: https://github.com/dollabs/plan-schema/compare/0.2.12...0.2.13
 [0.2.14]: https://github.com/dollabs/plan-schema/compare/0.2.13...0.2.14
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.14...HEAD
+[0.2.15]: https://github.com/dollabs/plan-schema/compare/0.2.14...0.2.15
+[0.2.16]: https://github.com/dollabs/plan-schema/compare/0.2.15...0.2.16
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.16...HEAD

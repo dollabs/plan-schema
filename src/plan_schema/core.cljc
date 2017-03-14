@@ -8,6 +8,7 @@
   "Temporal Planning Network schema utilities"
   (:require [clojure.string :as string]
             [clojure.set :as set]
+            [plan-schema.coerce :as records]
             #?(:clj [clojure.data.json :as json])
             #?(:clj [clojure.pprint :refer [pprint]]
                :cljs [cljs.pprint :refer [pprint float?]])
@@ -882,6 +883,7 @@
   {:added "0.1.0"}
   [network-type options]
   (let [{:keys [verbose file-format input output cwd]} options
+        _ (println "Reading input from:" input)
         verbose? (and (not (nil? verbose)) (pos? verbose))
         input (validate-input (if (vector? input) (first input) input) cwd)
         data #?(:clj (if (:error input) input (slurp input))
@@ -892,13 +894,16 @@
                  (read-json-str data)
                  #?(:clj (read-string data)
                     :cljs "not implemented yet")))
-        ;; _ (println "DEBUG DATA\n" (with-out-str (pprint data)))
+        _ (println "DEBUG DATA\n" (with-out-str (pprint data)))
         result (if (:error data)
                  data
                  (if (= network-type :htn)
-                   (coerce-htn data)
-                   (coerce-tpn data)))
-        ;; _ (println "DEBUG RESULT\n" (with-out-str (pprint result)))
+                   #_(coerce-htn data)
+                   (records/coerce data)
+                   #_(coerce-tpn data)
+                   (records/coerce data))
+                 )
+        _ (println "DEBUG RESULT\n" (with-out-str (pprint result)))
         out (if (:error result)
               result
               (if (su/error? result)

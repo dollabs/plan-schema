@@ -5,8 +5,10 @@
 ;; the file LICENSE at the root of this distribution.
 
 (ns plan-schema.coerce
-  (:require [clojure.pprint :refer :all]
-            [clojure.set :as set]))
+  (:require [clojure.set :as set]
+    #?(:clj
+            [clojure.pprint :refer [pprint]]
+       :cljs [cljs.pprint :refer [pprint]])))
 
 ; TODO network and network-id serve the same purpose.
 ; Consider network-id deprecated and removed in future.

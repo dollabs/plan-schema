@@ -894,7 +894,7 @@
                  (read-json-str data)
                  #?(:clj (read-string data)
                     :cljs "not implemented yet")))
-        _ (println "DEBUG DATA\n" (with-out-str (pprint data)))
+        ;_ (println "DEBUG DATA\n" (with-out-str (pprint data)))
         result (if (:error data)
                  data
                  (if (= network-type :htn)
@@ -903,7 +903,7 @@
                    #_(coerce-tpn data)
                    (records/coerce data))
                  )
-        _ (println "DEBUG RESULT\n" (with-out-str (pprint result)))
+        ;_ (println "DEBUG RESULT\n" (with-out-str (pprint result)))
         out (if (:error result)
               result
               (if (su/error? result)

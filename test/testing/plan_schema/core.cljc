@@ -58,9 +58,12 @@
            (io/make-parents parsed-edn)
            (spit parsed-edn (with-out-str (pprint out-edn)))
            (spit parsed-json (with-out-str (pprint out-json)))
-           (is false (prn-str "Files differ" parsed-edn parsed-json))))))
+           (is false (prn-str "Files differ" parsed-edn parsed-json)))))))
 
-   )
+(defn do-coerce [infile file-format]
+  ; file-format is keyword, :htn or :tpn
+  (execute-action (System/getProperty "user.dir") infile "-" file-format)
+  nil)
 
 (deftest test-json
   (testing "test json"

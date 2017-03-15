@@ -70,15 +70,19 @@
   [output]
   (or (empty? output) (= output "-")))
 
-(defn read-json-str
-  ([s]
-   (read-json-str s true))
-  ([s keywordize?]
-   ((if keywordize? keywordize identity)
-    #?(:clj
-       (json/read-str s)
-       :cljs
-       (js->clj (.parse js/JSON s))))))
+(defn as-keywords [m]
+  (reduce (fn [res [k v]]
+            (conj res {(keyword k) v}))
+          {} m))
+
+(defn read-json-str [s]
+  (reduce (fn [res [k v]]
+            (if (map? v)
+              (conj res {(keyword k) (as-keywords v)})
+              (conj res {(keyword k) v})))
+          {}
+          #?(:clj  (json/read-str s)
+             :cljs (js->clj (.parse js/JSON s)))))
 
 (defn write-json-str [m]
   #?(:clj

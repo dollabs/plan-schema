@@ -72,4 +72,7 @@
              (-> json-str
                  (pschema/read-json-str)
                  (pschema/write-json-str)
-                 (string/trim-newline)))))))
+                 (string/trim-newline)))))
+    (= {} (pschema/read-json-str "{}"))
+    (= {:a 123 :m {"string" "value"}} (pschema/read-json-str "{\"a\": 123, \"m\": {\"string\": \"value\"}}"))
+    ))

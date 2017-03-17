@@ -101,7 +101,7 @@
   (to-set-of-keywords key value))
 
 (defmethod convert-property :value [key value]
-  (to-set-of-keywords key value))
+  {key value})
 
 (defmethod convert-property :args [key value]
   {key value})

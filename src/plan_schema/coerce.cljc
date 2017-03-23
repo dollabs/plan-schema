@@ -29,8 +29,10 @@
 (defn to-vector-of-keywords [key value]
   {key (into [] (map keyword value))})
 
+;; NOTE: in Clojure 1.9 we can use boolean?
+;; https://clojuredocs.org/clojure.core/boolean_q
 (defn to-boolean [key value]
-  (if-not (instance? Boolean value)
+  (if-not (or (true? value) (false? value))
     (println "Warning: to-boolean. value is not boolean."))
   {key value})
 

@@ -7,6 +7,17 @@ All notable changes to this project will be documented in this file. This change
 Changes
 * _TBD_
 
+### [0.2.17] - 2017-03-22
+
+Changes
+* automated formatting changes.
+* Trivial coercion and object checking.
+* Helpful function for testing coercion from repl
+* Disable verbose output
+* impl json reader that converts top level keys to keywords and keys of top level objects only. Closes (21)
+* Fixed nil value bug for bounds.
+* Fixed Java-ism (Closes #23)
+
 ### [0.2.16] - 2017-03-13
 
 Changes
@@ -149,4 +160,5 @@ Added
 [0.2.14]: https://github.com/dollabs/plan-schema/compare/0.2.13...0.2.14
 [0.2.15]: https://github.com/dollabs/plan-schema/compare/0.2.14...0.2.15
 [0.2.16]: https://github.com/dollabs/plan-schema/compare/0.2.15...0.2.16
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.16...HEAD
+[0.2.17]: https://github.com/dollabs/plan-schema/compare/0.2.16...0.2.17
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.17...HEAD

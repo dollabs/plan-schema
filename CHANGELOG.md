@@ -7,6 +7,14 @@ All notable changes to this project will be documented in this file. This change
 Changes
 * _TBD_
 
+### [0.2.18] - 2017-04-03
+
+Changes
+* Reverted boot-cljs back to "1.7.228-2" to avoid JDK 8 dependency.
+  * Closes #26
+* Removed superfluous debugging messages
+  * Closes PLANVIZ # 80 state end-node
+
 ### [0.2.17] - 2017-03-22
 
 Changes
@@ -161,4 +169,5 @@ Added
 [0.2.15]: https://github.com/dollabs/plan-schema/compare/0.2.14...0.2.15
 [0.2.16]: https://github.com/dollabs/plan-schema/compare/0.2.15...0.2.16
 [0.2.17]: https://github.com/dollabs/plan-schema/compare/0.2.16...0.2.17
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.17...HEAD
+[0.2.18]: https://github.com/dollabs/plan-schema/compare/0.2.17...0.2.18
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.2.18...HEAD

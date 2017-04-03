@@ -5,7 +5,7 @@
 ;; the file LICENSE at the root of this distribution.
 
 (def project 'dollabs/plan-schema)
-(def version "0.2.17")
+(def version "0.2.18")
 (def description "Temporal Planning Network schema utilities")
 (def project-url "https://github.com/dollabs/plan-schema")
 (def main 'plan-schema.cli)
@@ -27,7 +27,7 @@
                     [org.clojure/tools.nrepl     "0.2.12"         :scope "test"]
                     [adzerk/boot-reload          "0.5.1"          :scope "test"]
                     [pandeiro/boot-http          "0.7.6"          :scope "test"]
-                    [adzerk/boot-cljs            "2.0.0"          :scope "test"]
+                    [adzerk/boot-cljs            "1.7.228-2"      :scope "test"]
                     [adzerk/boot-cljs-repl       "0.3.3"          :scope "test"]
                     ;; testing/development
                     [adzerk/boot-test            "1.2.0"          :scope "test"]

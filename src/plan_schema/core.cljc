@@ -887,7 +887,7 @@
   {:added "0.1.0"}
   [network-type options]
   (let [{:keys [verbose file-format input output cwd]} options
-        _ (println "Reading input from:" input)
+        ;; _ (println "Reading input from:" input)
         verbose? (and (not (nil? verbose)) (pos? verbose))
         input (validate-input (if (vector? input) (first input) input) cwd)
         data #?(:clj (if (:error input) input (slurp input))
@@ -898,7 +898,7 @@
                  (read-json-str data)
                  #?(:clj (read-string data)
                     :cljs "not implemented yet")))
-        ;_ (println "DEBUG DATA\n" (with-out-str (pprint data)))
+        ;;_ (println "DEBUG DATA\n" (with-out-str (pprint data)))
         result (if (:error data)
                  data
                  (if (= network-type :htn)
@@ -907,7 +907,7 @@
                    #_(coerce-tpn data)
                    (records/coerce data))
                  )
-        ;_ (println "DEBUG RESULT\n" (with-out-str (pprint result)))
+        ;;_ (println "DEBUG RESULT\n" (with-out-str (pprint result)))
         out (if (:error result)
               result
               (if (su/error? result)
@@ -1248,8 +1248,8 @@
       (doseq [constraint constraints]
         (add-tpn-edge plans plan-id network-plid-id constraint
           from-plid-id to-id net)))
-    (if (not (keyword? to-id))
-      (log-debug "NOT KEYWORD TO-ID" to-id))
+    ;; (if (not (keyword? to-id))
+    ;;   (log-debug "NOT KEYWORD TO-ID" to-id))
     (add-tpn-node plans plan-id network-plid-id to-id net)
     ;; FIXME handle network-flows non-primitive
     nil))
@@ -1385,8 +1385,8 @@
       assoc network-plid-id network)
     (swap! plans update-in [:plan/by-plid plan-id :plan/networks]
       conj network-plid-id)
-    (if (not (keyword? begin-node))
-      (log-debug "NOT KEYWORD BEGIN-NODE" begin-node))
+    ;; (if (not (keyword? begin-node))
+    ;;   (log-debug "NOT KEYWORD BEGIN-NODE" begin-node))
     (add-tpn-node plans plan-id network-plid-id begin-node net)
     ;; create *-end pointer
     (let [nodes (:network/nodes
@@ -1403,8 +1403,9 @@
           ;; (log-debug "NODE-ID" node-id "END" end "NODE" node)
           (if-not (empty? end-node)
             (update-node plans (assoc end-node :node/begin node-id))
-            (if end
-              (log-debug "END NODE" end "NOT FOUND?")))))
+            ;; (if end
+            ;;   (log-debug "END NODE" end "NOT FOUND?"))
+            )))
       (when find-end?
         (swap! plans assoc-in [:network/network-by-plid-id
                                network-plid-id :network/end]

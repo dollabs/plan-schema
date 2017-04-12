@@ -9,21 +9,15 @@
   (:require [clojure.string :as string]
             [clojure.set :as set]
             [plan-schema.coerce :as records]
-            #?(:clj [clojure.data.json :as json])
-            #?(:clj [clojure.pprint :refer [pprint]]
-               :cljs [cljs.pprint :refer [pprint float?]])
-            #?(:clj [avenir.utils :as au
-                     :refer [keywordize assoc-if concatv]]
-               :cljs [avenir.utils :as au
-                      :refer [keywordize assoc-if concatv format remove-fn]])
-            [schema.core :as s #?@(:cljs [:include-macros true])]
+            [clojure.data.json :as json]
+            [clojure.pprint :refer [pprint]]
+            [avenir.utils :as au
+             :refer [keywordize assoc-if concatv]]
+            [schema.core :as s]
             [schema.coerce :as coerce]
             [schema.utils :as su]
             [schema.spec.core :as spec]
-            #?(:clj [me.raynes.fs :as fs])
-            ))
-
-#?(:cljs (enable-console-print!))
+            [me.raynes.fs :as fs]))
 
 (defn synopsis [s]
   (let [max-len 256
@@ -81,14 +75,10 @@
               (conj res {(keyword k) (as-keywords v)})
               (conj res {(keyword k) v})))
           {}
-          #?(:clj  (json/read-str s)
-             :cljs (js->clj (.parse js/JSON s)))))
+          (json/read-str s)))
 
 (defn write-json-str [m]
-  #?(:clj
-     (with-out-str (json/pprint (into (sorted-map) m)))
-     :cljs
-     (.stringify js/JSON (clj->js m))))
+  (with-out-str (json/pprint (into (sorted-map) m))))
 
 ;; TPN-------------------------------------------------------------------
 
@@ -843,13 +833,12 @@
   (kind-filename? filename #{"tpn" "htn"} #{"edn"}))
 
 (defn validate-input [input cwd]
-  #?(:clj (if (fs/exists? input)
-            input
-            (let [cwd-input (str cwd "/" input)]
-              (if (fs/exists? cwd-input)
-                cwd-input
-                {:error (str "input does not exist: " input)})))
-     :cljs {:error (str "CLJS input parsing not implemented: " input)}))
+  (if (fs/exists? input)
+    input
+    (let [cwd-input (str cwd "/" input)]
+      (if (fs/exists? cwd-input)
+        cwd-input
+        {:error (str "input does not exist: " input)}))))
 
 (defn validate-output [output cwd]
   (if (stdout-option? output)
@@ -890,14 +879,12 @@
         ;; _ (println "Reading input from:" input)
         verbose? (and (not (nil? verbose)) (pos? verbose))
         input (validate-input (if (vector? input) (first input) input) cwd)
-        data #?(:clj (if (:error input) input (slurp input))
-                :cljs {:error "not implemented yet"})
+        data (if (:error input) input (slurp input))
         data (if (:error data)
                data
                (if (json-filename? input)
                  (read-json-str data)
-                 #?(:clj (read-string data)
-                    :cljs "not implemented yet")))
+                 (read-string data)))
         ;;_ (println "DEBUG DATA\n" (with-out-str (pprint data)))
         result (if (:error data)
                  data
@@ -924,13 +911,12 @@
       (if (= file-format :json)
         (write-json-str out)
         out)
-      #?(:clj (spit output
-                (if (= file-format :json)
-                  (write-json-str out)
-                  (with-out-str (pprint (into (sorted-map) out)))))
-         :cljs (log-error "not implemented yet")))))
+      (spit output
+        (if (= file-format :json)
+          (write-json-str out)
+          (with-out-str (pprint (into (sorted-map) out))))))))
 
-;; returns a map with :tpn on success or :error on failure
+      ;; returns a map with :tpn on success or :error on failure
 (defn parse-tpn
   "Parse TPN"
   {:added "0.1.0"}
@@ -1749,8 +1735,6 @@
   (let [{:keys [verbose file-format input output cwd]} options
         error (if (or (not (vector? input)) (not= 1 (count input)))
                 {:error "input must include exactly one TPN file"})
-        error (if (and (not error) #?(:clj false :cljs true))
-                {:error "CLJS currently not supported"})
         tpn-filename (if (and (not error)
                            (= 1 (count (filter tpn-filename? input))))
                        (first (filter tpn-filename? input)))
@@ -1766,23 +1750,20 @@
                             [rv nil]
                             [nil rv]))))
         tpn-plan (atom {})
-        tpn-name #?(:clj (if-not error (first (fs/split-ext tpn-filename)))
-                    :cljs "cljs-not-supported")
+        tpn-name (if-not error (first (fs/split-ext tpn-filename)))
         _ (if-not error
             (add-plan tpn-plan :tpn-network (name->id tpn-name) tpn-name tpn))
-        out #?(:clj (or error @tpn-plan)
-               :cljs {:error "not implemented yet"})
+        out (or error @tpn-plan)
         output (validate-output output cwd)]
     (if (stdout-option? output)
       ;; NOTE: this isn't really STDOUT, but simply returns the raw value
       (if (= file-format :json)
         (write-json-str out)
         out)
-      #?(:clj (spit output
-                (if (= file-format :json)
-                  (write-json-str out)
-                  (with-out-str (pprint (into (sorted-map) out)))))
-         :cljs (log-error "not implemented yet")))))
+      (spit output
+        (if (= file-format :json)
+          (write-json-str out)
+          (with-out-str (pprint (into (sorted-map) out))))))))
 
 (defn htn-plan
   "Parse HTN"
@@ -1791,8 +1772,6 @@
   (let [{:keys [verbose file-format input output cwd]} options
         error (if (or (not (vector? input)) (not= 1 (count input)))
                 {:error "input must include exactly one HTN file"})
-        error (if (and (not error) #?(:clj false :cljs true))
-                {:error "CLJS currently not supported"})
         htn-filename (if (and (not error)
                            (= 1 (count (filter htn-filename? input))))
                        (first (filter htn-filename? input)))
@@ -1806,23 +1785,20 @@
                             [rv nil]
                             [nil rv]))))
         htn-plan (atom {})
-        htn-name #?(:clj (if-not error (first (fs/split-ext htn-filename)))
-                    :cljs "cljs-not-supported")
+        htn-name (if-not error (first (fs/split-ext htn-filename)))
         _ (if-not error
             (add-plan htn-plan :htn-network (name->id htn-name) htn-name htn))
-        out #?(:clj (or error @htn-plan)
-               :cljs {:error "not implemented yet"})
+        out (or error @htn-plan)
         output (validate-output output cwd)]
     (if (stdout-option? output)
       ;; NOTE: this isn't really STDOUT, but simply returns the raw value
       (if (= file-format :json)
         (write-json-str out)
         out)
-      #?(:clj (spit output
-                (if (= file-format :json)
-                  (write-json-str out)
-                  (with-out-str (pprint (into (sorted-map) out)))))
-         :cljs (log-error "not implemented yet")))))
+      (spit output
+        (if (= file-format :json)
+          (write-json-str out)
+          (with-out-str (pprint (into (sorted-map) out))))))))
 
 (defn merge-networks
   "Merge HTN+TPN inputs"
@@ -1855,12 +1831,11 @@
         ;; _ (log-debug "\n" (with-out-str (pprint tpn)))
         ;; _ (log-debug "==  TPN end ==")
         error (or error (:error tpn))
-        out #?(:clj (if error
-                      {:error error}
-                      (merge-htn-tpn
-                        htn (first (fs/split-ext htn-filename))
-                        tpn (first (fs/split-ext tpn-filename))))
-               :cljs {:error "not implemented yet"})
+        out (if error
+              {:error error}
+              (merge-htn-tpn
+                htn (first (fs/split-ext htn-filename))
+                tpn (first (fs/split-ext tpn-filename))))
         output (validate-output output cwd)]
     (when error
       (log-error
@@ -1872,8 +1847,7 @@
       (if (= file-format :json)
         (write-json-str out)
         out)
-      #?(:clj (spit output
-                (if (= file-format :json)
-                  (write-json-str out)
-                  (with-out-str (pprint (into (sorted-map) out)))))
-         :cljs (log-error "not implemented yet")))))
+      (spit output
+        (if (= file-format :json)
+          (write-json-str out)
+          (with-out-str (pprint (into (sorted-map) out))))))))

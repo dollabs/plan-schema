@@ -6,9 +6,7 @@
 
 (ns plan-schema.coerce
   (:require [clojure.set :as set]
-    #?(:clj
-            [clojure.pprint :refer [pprint]]
-       :cljs [cljs.pprint :refer [pprint]])))
+            [clojure.pprint :refer [pprint]]))
 
 ; TODO network and network-id serve the same purpose.
 ; Consider network-id deprecated and removed in future.

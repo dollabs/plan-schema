@@ -899,24 +899,21 @@
               result
               (if (su/error? result)
                 {:error (with-out-str (println (:error result)))}
-                result))
+                (into (sorted-map) result)))
+        out-json-str (if (= file-format :json)
+                       (write-json-str out))
         output (validate-output output cwd)]
     (when (:error out)
       (log-error
         (str "Invalid plan: " input ", see error "
           (if (stdout-option? output) "below " "in ")
           (if-not (stdout-option? output) output))))
-    (if (stdout-option? output)
-      ;; NOTE: this isn't really STDOUT, but simply returns the raw value
-      (if (= file-format :json)
-        (write-json-str out)
-        out)
-      (spit output
-        (if (= file-format :json)
-          (write-json-str out)
-          (with-out-str (pprint (into (sorted-map) out))))))))
+    (when-not (stdout-option? output)
+      (spit output (or out-json-str ;; JSON here
+                     (with-out-str (pprint out))))) ;; EDN here
+    (or out-json-str out))) ;; JSON or EDN
 
-      ;; returns a map with :tpn on success or :error on failure
+;; returns a map with :tpn on success or :error on failure
 (defn parse-tpn
   "Parse TPN"
   {:added "0.1.0"}
@@ -1753,17 +1750,16 @@
         tpn-name (if-not error (first (fs/split-ext tpn-filename)))
         _ (if-not error
             (add-plan tpn-plan :tpn-network (name->id tpn-name) tpn-name tpn))
-        out (or error @tpn-plan)
+        out (or error
+              (into (sorted-map) @tpn-plan))
+        out-json-str (if (= file-format :json)
+                       (write-json-str out))
         output (validate-output output cwd)]
-    (if (stdout-option? output)
-      ;; NOTE: this isn't really STDOUT, but simply returns the raw value
-      (if (= file-format :json)
-        (write-json-str out)
-        out)
-      (spit output
-        (if (= file-format :json)
-          (write-json-str out)
-          (with-out-str (pprint (into (sorted-map) out))))))))
+    (when-not (stdout-option? output)
+      (spit output (or out-json-str ;; JSON here
+                     (with-out-str (pprint out))))) ;; EDN here
+    (or out-json-str out))) ;; JSON or EDN
+
 
 (defn htn-plan
   "Parse HTN"
@@ -1788,17 +1784,15 @@
         htn-name (if-not error (first (fs/split-ext htn-filename)))
         _ (if-not error
             (add-plan htn-plan :htn-network (name->id htn-name) htn-name htn))
-        out (or error @htn-plan)
+        out (or error
+              (into (sorted-map) @htn-plan))
+        out-json-str (if (= file-format :json)
+                       (write-json-str out))
         output (validate-output output cwd)]
-    (if (stdout-option? output)
-      ;; NOTE: this isn't really STDOUT, but simply returns the raw value
-      (if (= file-format :json)
-        (write-json-str out)
-        out)
-      (spit output
-        (if (= file-format :json)
-          (write-json-str out)
-          (with-out-str (pprint (into (sorted-map) out))))))))
+    (when-not (stdout-option? output)
+      (spit output (or out-json-str ;; JSON here
+                     (with-out-str (pprint out))))) ;; EDN here
+    (or out-json-str out))) ;; JSON or EDN
 
 (defn merge-networks
   "Merge HTN+TPN inputs"
@@ -1833,21 +1827,33 @@
         error (or error (:error tpn))
         out (if error
               {:error error}
-              (merge-htn-tpn
-                htn (first (fs/split-ext htn-filename))
-                tpn (first (fs/split-ext tpn-filename))))
+              (into (sorted-map)
+                (merge-htn-tpn
+                  htn (first (fs/split-ext htn-filename))
+                  tpn (first (fs/split-ext tpn-filename)))))
+        out-json-str (if (= file-format :json)
+                       (write-json-str out))
         output (validate-output output cwd)]
     (when error
       (log-error
         (str "Invalid plan: " input ", see error "
           (if (stdout-option? output) "below " "in ")
           (if-not (stdout-option? output) output))))
-    (if (stdout-option? output)
-      ;; NOTE: this isn't really STDOUT, but simply returns the raw value
-      (if (= file-format :json)
-        (write-json-str out)
-        out)
-      (spit output
-        (if (= file-format :json)
-          (write-json-str out)
-          (with-out-str (pprint (into (sorted-map) out))))))))
+    (when-not (stdout-option? output)
+      (spit output (or out-json-str ;; JSON here
+                     (with-out-str (pprint out))))) ;; EDN here
+    (or out-json-str out))) ;; JSON or EDN
+
+(defn error?
+  "Returns error string from operation (or nil on success)"
+  {:added "0.3.1"}
+  [output]
+  (cond
+    (map? output)
+    (:error output)
+    (string? output) ;; assume it's JSON as a string
+    (:error (read-json-str output))
+    (nil? output)
+    "Output is nil."
+    :else
+    (str "Unknown output format type: " (type output))))

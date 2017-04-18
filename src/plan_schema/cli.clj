@@ -117,7 +117,7 @@
     (pschema/log-warn "exit" status "plan-schema in DEV MODE. Not exiting ->" "repl?" (repl?) "test-mode" test-mode)
     (do (shutdown-agents)
         (System/exit status)))
-  true)
+  status)
 
 (defn plan-schema
   "plan-schema command line processor. (see usage for help)."
@@ -161,16 +161,19 @@
         (exit 1 (str "Unknown action: \"" cmd "\". Must be one of " (keys actions)))
         (usage summary))
       (if (> verbose 1) ;; throw full exception with stack trace when -v -v
-        (let [out (action options)]
+        (let [out (action options)
+              error (pschema/error? out)]
           (when (pschema/stdout-option? output)
-            (pprint out)))
+            (pprint out))
+          (exit (if error 1 0)))
         (try
-          (let [out (action options)]
+          (let [out (action options)
+                error (pschema/error? out)]
             (when (pschema/stdout-option? output)
-              (pprint out)))
+              (pprint out))
+            (exit (if error 1 0)))
           (catch Throwable e ;; note AssertionError not derived from Exception
-            (exit 1 "caught exception: " (.getMessage e))))))
-    (exit 0)))
+            (exit 1 "caught exception: " (.getMessage e))))))))
 
 (defn -main
   "plan-schema main"

@@ -10,7 +10,8 @@ Changes
 ### [0.3.2] - 2017-05-05
 
 Changes
-* Merge changes since 0.3.1
+* Fix bug in merge-htn-tpn (Closes #31)
+* Updated dependencies
 
 ### [0.3.1] - 2017-04-17
 

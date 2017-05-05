@@ -1722,7 +1722,8 @@
       ;; cross link here
       (link-htn-nodes-to-tpn-nodes htn-plan tpn-plan)
       (complete-tpn-selections htn-plan tpn-plan)
-      [@htn-plan @tpn-plan])))
+      [(into (sorted-map) @htn-plan)
+       (into (sorted-map) @tpn-plan)])))
 
 ;; returns a plan map on success or :error on failure
 (defn tpn-plan
@@ -1827,10 +1828,9 @@
         error (or error (:error tpn))
         out (if error
               {:error error}
-              (into (sorted-map)
-                (merge-htn-tpn
-                  htn (first (fs/split-ext htn-filename))
-                  tpn (first (fs/split-ext tpn-filename)))))
+              (merge-htn-tpn
+                htn (first (fs/split-ext htn-filename))
+                tpn (first (fs/split-ext tpn-filename))))
         out-json-str (if (= file-format :json)
                        (write-json-str out))
         output (validate-output output cwd)]

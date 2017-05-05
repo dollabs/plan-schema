@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file. This change
 Changes
 * _TBD_
 
+### [0.3.2] - 2017-05-05
+
+Changes
+* Merge changes since 0.3.1
+
 ### [0.3.1] - 2017-04-17
 
 Changes
@@ -185,4 +190,5 @@ Added
 [0.2.18]: https://github.com/dollabs/plan-schema/compare/0.2.17...0.2.18
 [0.3.0]: https://github.com/dollabs/plan-schema/compare/0.2.18...0.3.0
 [0.3.1]: https://github.com/dollabs/plan-schema/compare/0.3.0...0.3.1
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.1...HEAD
+[0.3.2]: https://github.com/dollabs/plan-schema/compare/0.3.1...0.3.2
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.2...HEAD

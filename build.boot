@@ -5,7 +5,7 @@
 ;; the file LICENSE at the root of this distribution.
 
 (def project 'dollabs/plan-schema)
-(def version "0.3.1")
+(def version "0.3.2")
 (def description "Temporal Planning Network schema utilities")
 (def project-url "https://github.com/dollabs/plan-schema")
 (def main 'plan-schema.cli)
@@ -16,7 +16,7 @@
   :dependencies   '[[org.clojure/clojure         "1.8.0"   :scope "provided"]
                     [environ                     "1.1.0"]
                     [org.clojure/tools.cli       "0.3.5"]
-                    [prismatic/schema            "1.1.4"]
+                    [prismatic/schema            "1.1.5"]
                     [org.clojure/data.json       "0.2.6"]
                     [avenir                      "0.2.2"]
                     [me.raynes/fs                "1.4.6"]

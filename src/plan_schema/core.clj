@@ -8,7 +8,7 @@
   "Temporal Planning Network schema utilities"
   (:require [clojure.string :as string]
             [clojure.set :as set]
-            [plan-schema.coerce :as records]
+            [plan-schema.coerce :as records :refer [sort-map]]
             [clojure.data.json :as json]
             [clojure.pprint :refer [pprint]]
             [avenir.utils :as au
@@ -78,7 +78,7 @@
           (json/read-str s)))
 
 (defn write-json-str [m]
-  (with-out-str (json/pprint (into (sorted-map) m))))
+  (with-out-str (json/pprint (sort-map m))))
 
 ;; TPN-------------------------------------------------------------------
 
@@ -899,7 +899,7 @@
               result
               (if (su/error? result)
                 {:error (with-out-str (println (:error result)))}
-                (into (sorted-map) result)))
+                (sort-map result)))
         out-json-str (if (= file-format :json)
                        (write-json-str out))
         output (validate-output output cwd)]
@@ -1722,8 +1722,8 @@
       ;; cross link here
       (link-htn-nodes-to-tpn-nodes htn-plan tpn-plan)
       (complete-tpn-selections htn-plan tpn-plan)
-      [(into (sorted-map) @htn-plan)
-       (into (sorted-map) @tpn-plan)])))
+      [(sort-map @htn-plan)
+       (sort-map @tpn-plan)])))
 
 ;; returns a plan map on success or :error on failure
 (defn tpn-plan
@@ -1752,7 +1752,7 @@
         _ (if-not error
             (add-plan tpn-plan :tpn-network (name->id tpn-name) tpn-name tpn))
         out (or error
-              (into (sorted-map) @tpn-plan))
+              (sort-map @tpn-plan))
         out-json-str (if (= file-format :json)
                        (write-json-str out))
         output (validate-output output cwd)]
@@ -1786,7 +1786,7 @@
         _ (if-not error
             (add-plan htn-plan :htn-network (name->id htn-name) htn-name htn))
         out (or error
-              (into (sorted-map) @htn-plan))
+              (sort-map @htn-plan))
         out-json-str (if (= file-format :json)
                        (write-json-str out))
         output (validate-output output cwd)]

@@ -8,6 +8,22 @@
   (:require [clojure.set :as set]
             [clojure.pprint :refer [pprint]]))
 
+
+(defn sort-map
+  "Ensures that it an all values which are maps are in sorted order"
+  {:added "0.3.3"}
+  ([v]
+   (cond
+     (map? v)
+     (into (sorted-map) (reduce-kv sort-map {} v))
+     :else v))
+  ([m k v]
+   (assoc m k
+     (cond
+       (map? v)
+       (into (sorted-map) (reduce-kv sort-map {} v))
+       :else v))))
+
 ; TODO network and network-id serve the same purpose.
 ; Consider network-id deprecated and removed in future.
 ; TODO :type and :tpn-type serve the same purpose.
@@ -61,6 +77,21 @@
 (defmethod convert-property :end-node [key value]
   (to-keyword key value))
 
+(defmethod convert-property :sequence-end [key value]
+  (to-keyword key value))
+
+(defmethod convert-property :sequence-label [key value]
+  (to-keyword key value))
+
+(defmethod convert-property :between [key value]
+  (to-vector-of-keywords key value))
+
+(defmethod convert-property :between-starts [key value]
+  (to-vector-of-keywords key value))
+
+(defmethod convert-property :between-ends [key value]
+  (to-vector-of-keywords key value))
+
 (defmethod convert-property :controllable [key value]
   (to-boolean key value))
 
@@ -68,8 +99,11 @@
   (to-set-of-keywords key value))
 
 (defmethod convert-property :label [key value]
-  ;(println "Warning: Verify me" key "->" value);TODO
-  {key value})
+  ;; NOW using :label as a PAMELA label per Name Harmonization
+  ;; WAS
+  ;;(println "Warning: Verify me" key "->" value);TODO
+  ;; {key value})
+  (to-keyword key value))
 
 (defmethod convert-property :name [key value]
   {key value})
@@ -127,34 +161,34 @@
 (defmethod convert-property :plant-part [key value]
   (to-keyword key value))
 
-;;;
-; TODO label is reserved for pamela label semantics. Here label should be display-name?
-(def delay-activity-slots #{:uid :tpn-type :name :htn-node :constraints :label :controllable :end-node})
-(def activity-slots #{:uid :tpn-type :name :htn-node :constraints :label :controllable :end-node :args :argsmap :command :display-name}) ;FIXME :args-mapping
-(def activity-slots-optional #{:interface :plantid :plant-part}) ;FIXME :args-mapping
+(def delay-activity-slots #{:uid :tpn-type :name :htn-node :constraints :label :display-name :controllable :end-node})
+(def activity-slots #{:uid :tpn-type :name :htn-node :constraints :controllable :end-node :args :argsmap :command}) ;FIXME :args-mapping
+(def activity-slots-optional #{:interface :plantid :plant-part :label :display-name}) ;FIXME :args-mapping
 (def null-activity-slots #{:constraints :uid :tpn-type :end-node})
 (def state-slots #{:uid :tpn-type :constraints :activities :incidence-set})
-(def state-slots-optional #{:end-node :htn-node})
+(def state-slots-optional #{:end-node :htn-node :sequence-label :sequence-end})
 (def temporal-constraint-slots #{:uid :tpn-type :value :end-node})
 (def network-slots #{:uid :tpn-type :begin-node :end-node})
+;; NOTE a begin nodes *may* also begin a sequence and, if so, the :sequence-end key
+;; will be present
 (def begin-slots #{:constraints :uid :tpn-type :htn-node :end-node :activities :incidence-set})
 (def end-slots #{:constraints :uid :tpn-type :activities :incidence-set})
 
 
 ; HTN slots
-(def htn-network-slots #{:uid :type :label :rootnodes})
+(def htn-network-slots #{:uid :type :rootnodes})
 (def htn-network-slots-optional #{:display-name})
 
-(def htn-expanded-nonprimitive-task-slots #{:uid :type :label :incidence-set :edges})
+(def htn-expanded-nonprimitive-task-slots #{:uid :type :incidence-set :edges})
 (def htn-expanded-nonprimitive-task-slots-optional #{:name :display-name})
 
-(def htn-expanded-method-slots #{:uid :type :label :network :incidence-set :edges})
+(def htn-expanded-method-slots #{:uid :type :network :incidence-set :edges})
 (def htn-expanded-method-slots-optional #{:display-name})
 
 (def edge-slots #{:uid :type :end-node})
-(def edge-slots-optional #{:label :edge-type})
+(def edge-slots-optional #{:display-name :edge-type})
 
-(def htn-primitive-task-slots #{:uid :name :type :label :display-name :incidence-set :edges})
+(def htn-primitive-task-slots #{:uid :name :type :display-name :incidence-set :edges})
 (def htn-primitive-task-slots-optional #{:args :argsmap :interface :plantid :plant-part})
 
 ; Check for nil values
@@ -262,8 +296,14 @@
 
 ;;; Top level dispatch ;;;
 (defmulti convert "Function to dispatch coercion of top level scalars or maps of HTN and TPN"
-          (fn [key value]
-            (if (map? value) :map :scalar)))
+  (fn [key value]
+    (cond
+      (map? value)
+      :map
+      ;; (vector? value)
+      ;; :vector
+      :else
+      :scalar)))
 
 (defmethod convert :default [key value]
   (println "Warning: plan-schema convert" key " -> " value)
@@ -277,13 +317,19 @@
 (defmethod convert :map [outer-key m]
   ;(println "Converting map")
   (check-object m)
-  {outer-key (reduce (fn [result [key value]]
-                       (check-value-nil? key value)
-                       (conj result (convert-property key value))) {} m)})
+  {outer-key
+   (reduce (fn [result [key value]]
+             (check-value-nil? key value)
+             (conj result (convert-property key value))) {} m)})
+
+;; (defmethod convert :vector [key value]
+;;   ;(println "Converting vector" key value)
+;;   (check-value-nil? key value)
+;;   (mapv #(convert-property key %)) value)
 
 (defn coerce [data]
-  (reduce (fn [result [key value]]
-            ;(pprint result)
-            ;(println key " -> " value "-- done")
-
-            (conj result (convert key value))) {} data))
+  (sort-map
+    (reduce (fn [result [key value]]
+              ;; (pprint result)
+              ;; (println key " -> " value "-- done")
+              (conj result (convert key value))) {} data)))

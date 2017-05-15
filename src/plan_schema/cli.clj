@@ -122,7 +122,7 @@
 (defn plan-schema
   "plan-schema command line processor. (see usage for help)."
   {:added "0.1.0"
-   :version "0.1.0"}
+   :version "0.3.3"}
   [& args]
   (let [{:keys [options arguments errors summary]}
         (parse-opts args cli-options)

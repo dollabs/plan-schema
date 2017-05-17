@@ -7,6 +7,17 @@ All notable changes to this project will be documented in this file. This change
 Changes
 * _TBD_
 
+### [0.3.3] - 2017-05-11
+
+Changes
+* Added coercion support for additional keys: :sequence-end :sequence-label
+  :label :between :between-starts :between-ends :display-name :args
+* Ensure coerced submaps are also in sorted order
+* Split out common functions to a new utils namespace (esp. logging)
+* Now the coerce namespace has converted println statements to logging
+  (note: the wrapping application should make a calls to initialize
+  logging as is done in #'planviz.server/log-initialize)
+
 ### [0.3.2] - 2017-05-05
 
 Changes
@@ -192,4 +203,5 @@ Added
 [0.3.0]: https://github.com/dollabs/plan-schema/compare/0.2.18...0.3.0
 [0.3.1]: https://github.com/dollabs/plan-schema/compare/0.3.0...0.3.1
 [0.3.2]: https://github.com/dollabs/plan-schema/compare/0.3.1...0.3.2
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.2...HEAD
+[0.3.3]: https://github.com/dollabs/plan-schema/compare/0.3.2...0.3.3
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.3...HEAD

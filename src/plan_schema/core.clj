@@ -8,8 +8,12 @@
   "Temporal Planning Network schema utilities"
   (:require [clojure.string :as string]
             [clojure.set :as set]
-            [plan-schema.coerce :as records :refer [sort-map]]
-            [clojure.data.json :as json]
+            [plan-schema.coerce :as records]
+            [plan-schema.utils :refer [synopsis sort-map strict?
+                                       error? stdout-option?
+                                       read-json-str write-json-str
+                                       log-trace log-debug log-info
+                                       log-warn log-error]]
             [clojure.pprint :refer [pprint]]
             [avenir.utils :as au
              :refer [keywordize assoc-if concatv]]
@@ -18,67 +22,6 @@
             [schema.utils :as su]
             [schema.spec.core :as spec]
             [me.raynes.fs :as fs]))
-
-(defn synopsis [s]
-  (let [max-len 256
-        s (if (string? s) s (str s))]
-    (if (> (count s) max-len)
-      (str (subs s 0 max-len) " ...")
-      s)))
-
-(def configuration (atom {:strict false
-                          :loggers {}}))
-
-(defn strict? []
-  (:strict @configuration))
-
-(defn set-strict! [strict]
-  (swap! configuration assoc :strict strict))
-
-;; log-fn should take variable arity
-(defn set-logger! [level log-fn]
-  (swap! configuration assoc-in [:loggers level] log-fn))
-
-(defn logger [level & msgs]
-  (let [log-fn (get-in @configuration [:loggers level])]
-    (if (fn? log-fn)
-      (apply log-fn msgs)
-      (println (string/upper-case (name level))
-        (string/join " " msgs)))))
-
-(defn log-debug [& msgs]
-  (apply logger :debug msgs))
-
-(defn log-info [& msgs]
-  (apply logger :info msgs))
-
-(defn log-warn [& msgs]
-  (apply logger :warn msgs))
-
-(defn log-error [& msgs]
-  (apply logger :error msgs))
-
-(defn stdout-option?
-  "Returns true if the output file name is STDOUT"
-  {:added "0.1.0"}
-  [output]
-  (or (empty? output) (= output "-")))
-
-(defn as-keywords [m]
-  (reduce (fn [res [k v]]
-            (conj res {(keyword k) v}))
-          {} m))
-
-(defn read-json-str [s]
-  (reduce (fn [res [k v]]
-            (if (map? v)
-              (conj res {(keyword k) (as-keywords v)})
-              (conj res {(keyword k) v})))
-          {}
-          (json/read-str s)))
-
-(defn write-json-str [m]
-  (with-out-str (json/pprint (sort-map m))))
 
 ;; TPN-------------------------------------------------------------------
 
@@ -296,6 +239,7 @@
    :end-node s/Keyword
    (s/optional-key :name) s/Str
    (s/optional-key :label) s/Keyword ;; label for between
+   (s/optional-key :display-name) s/Str
    (s/optional-key :sequence-label) s/Keyword ;; label for between
    (s/optional-key :sequence-end) s/Keyword ;; label for between
    (s/optional-key :cost) s/Num
@@ -338,6 +282,7 @@
    :end-node s/Keyword
    (s/optional-key :name) s/Str
    (s/optional-key :label) s/Keyword ;; label for between
+   (s/optional-key :display-name) s/Str
    (s/optional-key :sequence-label) s/Keyword ;; label for between
    (s/optional-key :sequence-end) s/Keyword ;; label for between
    (s/optional-key :cost) s/Num
@@ -372,6 +317,7 @@
    :end-node s/Keyword
    (s/optional-key :constraints) #{s/Keyword}
    (s/optional-key :label) s/Keyword  ;; label for between
+   (s/optional-key :display-name) s/Str
    (s/optional-key :probability) s/Num
    (s/optional-key :cost) s/Num
    (s/optional-key :reward) s/Num
@@ -404,6 +350,8 @@
    :activities #{s/Keyword} ;; probably wants to be a vector, not a set
    :incidence-set #{s/Keyword}
    (s/optional-key :label) s/Keyword ;; label for between
+   (s/optional-key :display-name) s/Str
+   (s/optional-key :args) args
    (s/optional-key :cost<=) s/Num
    (s/optional-key :reward>=) s/Num
    (s/optional-key :sequence-label) s/Keyword ;; label for between
@@ -439,6 +387,8 @@
    :incidence-set #{s/Keyword}
    :end-node s/Keyword
    (s/optional-key :label) s/Keyword ;; label for between
+   (s/optional-key :display-name) s/Str
+   (s/optional-key :args) args
    (s/optional-key :cost<=) s/Num
    (s/optional-key :reward>=) s/Num
    (s/optional-key :sequence-label) s/Keyword ;; label for between
@@ -503,6 +453,8 @@
    :incidence-set #{s/Keyword}
    :end-node s/Keyword
    (s/optional-key :label) s/Keyword ;; label for between
+   (s/optional-key :display-name) s/Str
+   (s/optional-key :args) args
    (s/optional-key :cost<=) s/Num
    (s/optional-key :reward>=) s/Num
    (s/optional-key :sequence-label) s/Keyword ;; label for between
@@ -554,8 +506,8 @@
       false)))
 
 (def known-keywords #{:tpn-type :uid :begin-node :end-node :activities
-                      :constraints :incidence-set :label :sequence-label
-                      :sequence-end :htn-node})
+                      :constraints :incidence-set :label :display-name :args
+                      :sequence-label :sequence-end :htn-node})
 
 ;; NOTE: this does not work as desired
 ;; (s/defschema unknown-keyword?
@@ -641,6 +593,8 @@
    :end-node s/Keyword
    (s/optional-key :edge-type) s/Keyword
    (s/optional-key :label) s/Str
+   (s/optional-key :display-name) s/Str
+   (s/optional-key :args) args
    (s/optional-key :order) s/Num}) ;; order of hedge
 
 (def check-edge (s/checker edge))
@@ -664,6 +618,7 @@
   {:type eq-htn-network?
    :uid s/Keyword
    :label s/Str
+   :display-name s/Str
    :rootnodes #{s/Keyword} ;; probably wants to be a vector, not a set
    (s/optional-key :parentid) s/Keyword})
 ;; NOTE the parentid points to the parent htn-expanded-method
@@ -979,7 +934,7 @@
 (defn add-htn-edge [plans plan-id network-plid-id edge-id from-plid-id net]
   (let [plid-id (composite-key plan-id edge-id)
         htn-edge (get net edge-id)
-        {:keys [end-node label]} htn-edge
+        {:keys [end-node label display-name args]} htn-edge
         type :sequence-edge
         to-plid-id (composite-key plan-id end-node)
         edge (assoc-if {:plan/plid plan-id
@@ -987,7 +942,9 @@
                         :edge/type type
                         :edge/from from-plid-id
                         :edge/to to-plid-id}
-               :edge/label label)]
+               :edge/label label
+               :edge/display-name display-name
+               :edge/args args)]
     (update-edge plans edge)
     (swap! plans update-in
       [:network/network-by-plid-id network-plid-id :network/edges]
@@ -999,12 +956,14 @@
 (defn add-htn-node [plans plan-id network-plid-id node-id net]
   (let [plid-id (composite-key plan-id node-id)
         htn-node (get net node-id)
-        {:keys [type label edges]} htn-node
+        {:keys [type label display-name args edges]} htn-node
         node (assoc-if {:plan/plid plan-id
                         :node/id node-id
                         :node/type type
                         :node/parent network-plid-id}
-               :node/label label)]
+               :node/label label
+               :node/display-name display-name
+               :node/args args)]
     (update-node plans node)
     (swap! plans update-in
       [:network/network-by-plid-id network-plid-id :network/nodes]
@@ -1019,7 +978,7 @@
 ;; nil on success
 (defn add-htn-network [plans plan-id network-id net]
   (let [htn-network (get net network-id)
-        {:keys [type label rootnodes parentid]} htn-network
+        {:keys [type label display-name rootnodes parentid]} htn-network
         plid-id (composite-key plan-id network-id)
         plid-rootnodes (if rootnodes
                          (set (doall
@@ -1031,6 +990,7 @@
                            :network/nodes []
                            :network/edges []}
                   :network/label label
+                  :network/display-name display-name
                   :network/rootnodes plid-rootnodes
                   :network/parent (composite-key plan-id parentid))]
     (swap! plans update-in [:network/network-by-plid-id]
@@ -1048,7 +1008,7 @@
                     default-order net]
   (let [plid-id (composite-key plan-id edge-id)
         hem-edge (get net edge-id)
-        {:keys [end-node edge-type label order]} hem-edge
+        {:keys [end-node edge-type label display-name args order]} hem-edge
         type (if (= edge-type :choice) :choice-edge :parallel-edge)
         to-plid-id (composite-key plan-id end-node)
         edge (assoc-if {:plan/plid plan-id
@@ -1057,7 +1017,9 @@
                         :edge/from from-plid-id
                         :edge/to to-plid-id
                         :edge/order (or order default-order)}
-               :edge/label label)]
+               :edge/label label
+               :edge/display-name display-name
+               :edge/args args)]
     (update-edge plans edge)
     (swap! plans update-in
       [:network/network-by-plid-id network-plid-id :network/edges]
@@ -1069,15 +1031,17 @@
 (defn add-hem-node [plans plan-id network-plid-id node-id net]
   (let [plid-id (composite-key plan-id node-id)
         hem-node (get net node-id)
-        {:keys [type label network edges]} hem-node
+        {:keys [type label display-name args network edges]} hem-node
         ;; HERE we assume at some point in the future edges
         ;; will become a vector (because order is important)
         edges (vec edges)
         plid-network (if network (composite-key plan-id network))
         node (assoc-if {:plan/plid plan-id
                         :node/id node-id
-                        :node/type type
-                        :node/label label}
+                        :node/type type}
+               :node/label label
+               :node/display-name display-name
+               :node/args args
                :node/htn-network plid-network)]
     (update-node plans node)
     (swap! plans update-in
@@ -1108,7 +1072,7 @@
           begin-plid-id (composite-key plan-id begin-id)
           htn-network-id (:network net)
           htn-network (get net htn-network-id)
-          {:keys [label rootnodes]} htn-network
+          {:keys [label display-name rootnodes]} htn-network
           htn-plid-id (composite-key plan-id htn-network-id)
           plid-rootnodes (if rootnodes
                            (set (doall
@@ -1121,12 +1085,19 @@
                                  :network/nodes []
                                  :network/edges []}
                         :network/label label
+                        :network/display-name display-name
                         :network/rootnodes plid-rootnodes)
-          begin {:plan/plid plan-id
-                 :node/id begin-id
-                 :node/type :htn-expanded-method
-                 :node/label (or label "HTN")
-                 :node/htn-network htn-network-id}
+          begin (assoc-if {:plan/plid plan-id
+                           :node/id begin-id
+                           :node/type :htn-expanded-method
+                           :node/htn-network htn-network-id}
+                  :node/label label
+                  :node/display-name (or display-name "HTN")
+                  ;; NOTE: for this "synthetic" top level HEM we don't
+                  ;; have any args for the root-task --> they will be
+                  ;; in the child HEM of this one.
+                  ;; :node/args args
+                  )
           hem-network {:plan/plid plan-id
                        :network/id hem-network-id
                        :network/type :hem-network
@@ -1166,7 +1137,9 @@
                                 :node/id root
                                 :node/type (:type htn-node)
                                 :node/parent htn-plid-id}
-                       :node/label (:label htn-node))]
+                       :node/label (:label htn-node)
+                       :node/display-name (:display-name htn-node)
+                       :node/args (:args htn-node))]
             (update-node plans node)
             (swap! plans update-in
               [:network/network-by-plid-id htn-plid-id :network/nodes]
@@ -1187,7 +1160,8 @@
         {:keys [tpn-type end-node constraints
                 value ;; value is bounds in :temporal-constraint
                 between between-ends between-starts ;; :temporal-constraint
-                name label sequence-label sequence-end ;; :activity
+                name label display-name args
+                sequence-label sequence-end ;; :activity
                 plant plantid command args argsmap non-primitive ;; :activity
                 cost reward controllable;; :activity :null-activity
                 probability guard ;; :null-activity
@@ -1208,6 +1182,8 @@
                :edge/between-starts between-starts
                :edge/name name
                :edge/label label
+               :edge/display-name display-name
+               :edge/args args
                :edge/sequence-label sequence-label
                :edge/sequence-end sequence-end
                :edge/plant plant
@@ -1247,7 +1223,7 @@
       (let [net-node (get net node-id)
             {:keys [tpn-type activities ;; mandatory
                     constraints end-node
-                    label sequence-label sequence-end
+                    label display-name args sequence-label sequence-end
                     probability htn-node]} net-node
             ;; HERE we assume at some point in the future activities
             ;; will become a vector (because order is important)
@@ -1258,6 +1234,8 @@
                             :node/type tpn-type}
                    :node/end end-node
                    :node/label label
+                   :node/display-name display-name
+                   :node/args args
                    :node/sequence-label sequence-label
                    :node/sequence-end sequence-end
                    :node/probability probability
@@ -1843,17 +1821,3 @@
       (spit output (or out-json-str ;; JSON here
                      (with-out-str (pprint out))))) ;; EDN here
     (or out-json-str out))) ;; JSON or EDN
-
-(defn error?
-  "Returns error string from operation (or nil on success)"
-  {:added "0.3.1"}
-  [output]
-  (cond
-    (map? output)
-    (:error output)
-    (string? output) ;; assume it's JSON as a string
-    (:error (read-json-str output))
-    (nil? output)
-    "Output is nil."
-    :else
-    (str "Unknown output format type: " (type output))))

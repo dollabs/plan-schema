@@ -10,9 +10,13 @@ Changes
 ### [0.3.3] - 2017-05-11
 
 Changes
-* Added coercion support for additional keys: :sequence-end :sequence-label :label
-  :between :between-starts :between-ends
+* Added coercion support for additional keys: :sequence-end :sequence-label
+  :label :between :between-starts :between-ends :display-name :args
 * Ensure coerced submaps are also in sorted order
+* Split out common functions to a new utils namespace (esp. logging)
+* Now the coerce namespace has converted println statements to logging
+  (note: the wrapping application should make a calls to initialize
+  logging as is done in #'planviz.server/log-initialize)
 
 ### [0.3.2] - 2017-05-05
 

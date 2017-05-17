@@ -12,7 +12,10 @@
             [me.raynes.fs :as fs]
             [clojure.tools.cli :refer [parse-opts]]
             [environ.core :refer [env]]
-            [plan-schema.core :as pschema])
+            [plan-schema.core :as pschema]
+            [plan-schema.utils :as putils :refer [error? stdout-option?
+                                                  log-trace log-debug log-info
+                                                  log-warn log-error]])
   (:gen-class))
 
 (def #^{:added "0.1.0"}
@@ -111,10 +114,10 @@
   (when msgs
     (if (zero? status)
       (println (string/join \newline msgs))
-      (pschema/log-error \newline (string/join \newline msgs))))
+      (log-error \newline (string/join \newline msgs))))
   (flush) ;; ensure all pending output has been flushed
   (if (or (repl?) test-mode)
-    (pschema/log-warn "exit" status "plan-schema in DEV MODE. Not exiting ->" "repl?" (repl?) "test-mode" test-mode)
+    (log-warn "exit" status "plan-schema in DEV MODE. Not exiting ->" "repl?" (repl?) "test-mode" test-mode)
     (do (shutdown-agents)
         (System/exit status)))
   status)
@@ -143,7 +146,7 @@
           (exit 0 (:version (meta #'plan-schema)))
           (not= (count arguments) 1)
           (exit 1 "Specify exactly one action" (usage summary)))]
-    (pschema/set-strict! strict)
+    (putils/set-strict! strict)
     (when (and verbose? (not exit?))
       (when (> verbose 1)
         (println "repl?:" (repl?))
@@ -162,14 +165,14 @@
         (usage summary))
       (if (> verbose 1) ;; throw full exception with stack trace when -v -v
         (let [out (action options)
-              error (pschema/error? out)]
-          (when (pschema/stdout-option? output)
+              error (error? out)]
+          (when (stdout-option? output)
             (pprint out))
           (exit (if error 1 0)))
         (try
           (let [out (action options)
-                error (pschema/error? out)]
-            (when (pschema/stdout-option? output)
+                error (error? out)]
+            (when (stdout-option? output)
               (pprint out))
             (exit (if error 1 0)))
           (catch Throwable e ;; note AssertionError not derived from Exception

@@ -6,23 +6,10 @@
 
 (ns plan-schema.coerce
   (:require [clojure.set :as set]
-            [clojure.pprint :refer [pprint]]))
-
-
-(defn sort-map
-  "Ensures that it an all values which are maps are in sorted order"
-  {:added "0.3.3"}
-  ([v]
-   (cond
-     (map? v)
-     (into (sorted-map) (reduce-kv sort-map {} v))
-     :else v))
-  ([m k v]
-   (assoc m k
-     (cond
-       (map? v)
-       (into (sorted-map) (reduce-kv sort-map {} v))
-       :else v))))
+            [clojure.pprint :refer [pprint]]
+            [plan-schema.utils :as putils :refer [sort-map
+                                                  log-trace log-debug log-info
+                                                  log-warn log-error]]))
 
 ; TODO network and network-id serve the same purpose.
 ; Consider network-id deprecated and removed in future.
@@ -31,7 +18,7 @@
 
 (defn check-value-nil? [key value]
   (if (nil? value)
-    (println "Warning: nil value: " key "->" value)))
+    (log-warn "Warning: nil value: " key "->" value)))
 
 (defn to-keyword [key value]
   (check-value-nil? key value)
@@ -47,7 +34,7 @@
 ;; https://clojuredocs.org/clojure.core/boolean_q
 (defn to-boolean [key value]
   (if-not (or (true? value) (false? value))
-    (println "Warning: to-boolean. value is not boolean."))
+    (log-warn "Warning: to-boolean. value is not boolean."))
   {key value})
 
 ;;; Functions for each HTN and/or TPN key ;;;
@@ -55,11 +42,11 @@
                                                                key))
 
 (defmethod convert-property :default [key value]
-  (println "Warning: convert-property: No conversion for" key "->" value)
+  (log-warn "Warning: convert-property: No conversion for" key "->" value)
   {key value})
 
 (defmethod convert-property nil [key value]
-  (println "Error: Bad key nil:" key "->" value)
+  (log-error "Error: Bad key nil:" key "->" value)
   {key value})
 
 (defmethod convert-property :network-id [key value]
@@ -101,7 +88,7 @@
 (defmethod convert-property :label [key value]
   ;; NOW using :label as a PAMELA label per Name Harmonization
   ;; WAS
-  ;;(println "Warning: Verify me" key "->" value);TODO
+  ;;(log-warn "Warning: Verify me" key "->" value);TODO
   ;; {key value})
   (to-keyword key value))
 
@@ -112,7 +99,7 @@
   (to-keyword key value))
 
 (defmethod convert-property :tpn-type [key value]
-  ;(println "Warning: deprecated key" key (to-keyword key value));TODO
+  ;(log-warn "Warning: deprecated key" key (to-keyword key value));TODO
   (to-keyword key value))
 
 (defmethod convert-property :type [key value]
@@ -122,7 +109,7 @@
   {key value})
 
 (defmethod convert-property :command [key value]
-  ;(println "Warning: deprecated key" key)                   ;TODO
+  ;(log-warn "Warning: deprecated key" key)                   ;TODO
   {key value})
 
 (defmethod convert-property :display-name [key value]
@@ -180,13 +167,13 @@
 (def htn-network-slots-optional #{:display-name})
 
 (def htn-expanded-nonprimitive-task-slots #{:uid :type :incidence-set :edges})
-(def htn-expanded-nonprimitive-task-slots-optional #{:name :display-name})
+(def htn-expanded-nonprimitive-task-slots-optional #{:name :display-name :args})
 
 (def htn-expanded-method-slots #{:uid :type :network :incidence-set :edges})
-(def htn-expanded-method-slots-optional #{:display-name})
+(def htn-expanded-method-slots-optional #{:display-name :args})
 
 (def edge-slots #{:uid :type :end-node})
-(def edge-slots-optional #{:display-name :edge-type})
+(def edge-slots-optional #{:display-name :args :edge-type})
 
 (def htn-primitive-task-slots #{:uid :name :type :display-name :incidence-set :edges})
 (def htn-primitive-task-slots-optional #{:args :argsmap :interface :plantid :plant-part})
@@ -222,8 +209,8 @@
   (select-keys m (set/difference (into #{} (keys m)) expected-keys)))
 
 (defn check-and-print-object-issues [m expected-keys & [optional-keys]]
-  ;(println "optional keys" optional-keys)
-  ;(println "optional keys" expected-keys)
+  ;(log-warn "optional keys" optional-keys)
+  ;(log-warn "optional keys" expected-keys)
   (let [issues {:extra-keys   (find-extra-keys m (set/union expected-keys optional-keys))
                 :missing-keys (find-missing-keys m expected-keys)
                 :nil-key      (find-nil-key m)
@@ -232,10 +219,10 @@
                                   (empty? v)) issues))
         ]
     (when (pos? (count issues))
-      (println "Found issues in map -----")
-      (pprint m)
-      (println "expected-keys:" expected-keys)
-      (pprint issues)
+      (log-debug "Found issues in map -----")
+      (log-debug (with-out-str (pprint m)))
+      (log-debug "expected-keys:" expected-keys)
+      (log-debug (with-out-str (pprint issues)))
       )))
 
 (defmulti check-object (fn [m]
@@ -243,9 +230,9 @@
 
 (defmethod check-object :default [m]
   ;(pprint m)
-  (println "Warning: check-object need impl for: " (or (:tpn-type m) (:type m)))
-  (println "Keys:" (or (:tpn-type m) (:type m)) "-slots" (into #{} (keys m)))
-  (pprint m))
+  (log-debug "Warning: check-object need impl for: " (or (:tpn-type m) (:type m)))
+  (log-debug "Keys:" (or (:tpn-type m) (:type m)) "-slots" (into #{} (keys m)))
+  (log-debug (with-out-str (pprint m))))
 
 (defmethod check-object :delay-activity [m]
   (check-and-print-object-issues m delay-activity-slots))
@@ -306,16 +293,16 @@
       :scalar)))
 
 (defmethod convert :default [key value]
-  (println "Warning: plan-schema convert" key " -> " value)
+  (log-warn "Warning: plan-schema convert" key " -> " value)
   {key value})
 
 (defmethod convert :scalar [key value]
-  ;(println "Converting scalar" key value)
+  ;(log-warn "Converting scalar" key value)
   (check-value-nil? key value)
   (convert-property key value))
 
 (defmethod convert :map [outer-key m]
-  ;(println "Converting map")
+  ;(log-warn "Converting map")
   (check-object m)
   {outer-key
    (reduce (fn [result [key value]]
@@ -323,7 +310,7 @@
              (conj result (convert-property key value))) {} m)})
 
 ;; (defmethod convert :vector [key value]
-;;   ;(println "Converting vector" key value)
+;;   ;(log-warn "Converting vector" key value)
 ;;   (check-value-nil? key value)
 ;;   (mapv #(convert-property key %)) value)
 
@@ -331,5 +318,5 @@
   (sort-map
     (reduce (fn [result [key value]]
               ;; (pprint result)
-              ;; (println key " -> " value "-- done")
+              ;; (log-warn key " -> " value "-- done")
               (conj result (convert key value))) {} data)))

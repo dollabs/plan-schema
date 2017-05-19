@@ -11,7 +11,8 @@
             [clojure.test :refer [deftest testing is]]
             [clojure.pprint :refer [pprint]]
             [plan-schema.core :as pschema]
-            [plan-schema.cli :as cli]))
+            [plan-schema.cli :as cli]
+            [plan-schema.utils :as utils]))
 
 (deftest working-directory
   (testing "Current Working Directory"
@@ -61,9 +62,9 @@
     (let [json-str "{\"a\":123}"]
       (is (= json-str
              (-> json-str
-                 (pschema/read-json-str)
-                 (pschema/write-json-str)
+                 (utils/read-json-str)
+                 (utils/write-json-str)
                  (string/trim-newline)))))
-    (= {} (pschema/read-json-str "{}"))
-    (= {:a 123 :m {"string" "value"}} (pschema/read-json-str "{\"a\": 123, \"m\": {\"string\": \"value\"}}"))
+    (= {} (utils/read-json-str "{}"))
+    (= {:a 123 :m {"string" "value"}} (utils/read-json-str "{\"a\": 123, \"m\": {\"string\": \"value\"}}"))
     ))

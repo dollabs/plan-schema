@@ -54,8 +54,9 @@
   (let [log-fn (get-in @configuration [:loggers level])]
     (if (fn? log-fn)
       (apply log-fn msgs)
-      (println (string/upper-case (name level))
-        (string/join " " msgs)))))
+      (binding [*out* *err*]
+        (println (string/upper-case (name level))
+          (string/join " " msgs))))))
 
 (defn log-trace [& msgs]
   (apply logger :trace msgs))
@@ -75,18 +76,57 @@
 (defn as-keywords [m]
   (reduce (fn [res [k v]]
             (conj res {(keyword k) v}))
-          {} m))
+    {} m))
 
-(defn read-json-str [s]
-  (reduce (fn [res [k v]]
-            (if (map? v)
-              (conj res {(keyword k) (as-keywords v)})
-              (conj res {(keyword k) v})))
-          {}
-          (json/read-str s)))
+;; see the docs
+;; http://clojure.github.io/data.json/#clojure.data.json/read-str
+;; and the code
+;; https://github.com/clojure/data.json/blob/master/src/main/clojure/clojure/data/json.clj#L246
+(defn read-json-str
+  ;; ([v]
+  ;;  (read-json-str (json/read-str v :key-fn keyword))))
+  ([v]
+   (cond
+     (map? v)
+     (reduce-kv read-json-str {} v)
+     (vector? v)
+     (mapv read-json-str v)
+     (string? v)
+     (try ;; could be a JSON string?
+       (read-json-str (json/read-str v :key-fn keyword))
+       (catch Throwable e ;; nope, not a JSON string
+         v))
+     :else
+     v))
+  ([m k v]
+   (assoc m k ;; this was already done with :key-fn (keyword k)
+     (cond
+       (map? v)
+       (reduce-kv read-json-str {} v)
+       (vector? v)
+       (mapv read-json-str v)
+       :else
+       v))))
+
+;; see
+;; http://clojure.github.io/data.json/#clojure.data.json/write
+;; https://clojuredocs.org/clojure.core/name
+(defn write-json-key-fn [k]
+  (cond
+    (keyword? k)
+    (string/replace k #"^:" "") ;; coerce to string, preserve namespace
+    (symbol? k)
+    (name k)
+    (string? k)
+    k
+    :else
+    (str k)))
 
 (defn write-json-str [m]
-  (with-out-str (json/pprint (sort-map m))))
+  (with-out-str
+    (json/pprint (sort-map m)
+      :key-fn write-json-key-fn
+      :escape-slash false)))
 
 (defn error?
   "Returns error string from operation (or nil on success)"
@@ -95,6 +135,10 @@
   (cond
     (map? output)
     (:error output)
+    (vector? output) ;; it's a merge with two plans.. this is fine
+    false
+    (and (string? output) (empty? output))
+    false
     (string? output) ;; assume it's JSON as a string
     (:error (read-json-str output))
     (nil? output)

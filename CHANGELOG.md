@@ -7,6 +7,21 @@ All notable changes to this project will be documented in this file. This change
 Changes
 * _TBD_
 
+### [0.3.4] - 2017-06-02
+
+Changes
+* Updated test rubrics
+* Import fixes to utils/ read-json-str and write-json-str include
+ - proper keywordization (including preserving namespaces),
+ - handling merged maps and not escaping slash.
+* Significant improvements to testing macro match-eval-out-err
+  - Support Java pattern matching options (e.g. :case-insensitive)
+  - Add invert matching option (returns oppositite of match result)
+  - Prints first form to EVAL on stdout (to better track down
+    which part of the test passes or fails)
+* Extended coercion by adding delay-activity-slots-optional
+* Default logging messages now sent to STDERR (instead of STDOUT)
+
 ### [0.3.3] - 2017-05-11
 
 Changes
@@ -204,4 +219,5 @@ Added
 [0.3.1]: https://github.com/dollabs/plan-schema/compare/0.3.0...0.3.1
 [0.3.2]: https://github.com/dollabs/plan-schema/compare/0.3.1...0.3.2
 [0.3.3]: https://github.com/dollabs/plan-schema/compare/0.3.2...0.3.3
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.3...HEAD
+[0.3.4]: https://github.com/dollabs/plan-schema/compare/0.3.3...0.3.4
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.4...HEAD

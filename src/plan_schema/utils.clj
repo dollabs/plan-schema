@@ -83,8 +83,6 @@
 ;; and the code
 ;; https://github.com/clojure/data.json/blob/master/src/main/clojure/clojure/data/json.clj#L246
 (defn read-json-str
-  ;; ([v]
-  ;;  (read-json-str (json/read-str v :key-fn keyword))))
   ([v]
    (cond
      (map? v)

@@ -16,8 +16,8 @@ Changes
  - handling merged maps and not escaping slash.
 * Significant improvements to testing macro match-eval-out-err
   - Support Java pattern matching options (e.g. :case-insensitive)
-  - Add invert matching option (returns oppositite of match result)
-  - Prints first form to EVAL on stdout (to better track down
+  - Add invert matching option (returns opposite of match result)
+  - Prints first form to EVAL on STDOUT (to better track down
     which part of the test passes or fails)
 * Extended coercion by adding delay-activity-slots-optional
 * Default logging messages now sent to STDERR (instead of STDOUT)

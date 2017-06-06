@@ -148,7 +148,8 @@
 (defmethod convert-property :plant-part [key value]
   (to-keyword key value))
 
-(def delay-activity-slots #{:uid :tpn-type :name :htn-node :constraints :label :display-name :controllable :end-node})
+(def delay-activity-slots #{:uid :tpn-type :name :htn-node :constraints :controllable :end-node})
+(def delay-activity-slots-optional #{:label :display-name})
 (def activity-slots #{:uid :tpn-type :name :htn-node :constraints :controllable :end-node :args :argsmap :command}) ;FIXME :args-mapping
 (def activity-slots-optional #{:interface :plantid :plant-part :label :display-name}) ;FIXME :args-mapping
 (def null-activity-slots #{:constraints :uid :tpn-type :end-node})
@@ -235,7 +236,8 @@
   (log-debug (with-out-str (pprint m))))
 
 (defmethod check-object :delay-activity [m]
-  (check-and-print-object-issues m delay-activity-slots))
+  (check-and-print-object-issues m delay-activity-slots
+    delay-activity-slots-optional))
 
 (defmethod check-object :null-activity [m]
   (check-and-print-object-issues m null-activity-slots))

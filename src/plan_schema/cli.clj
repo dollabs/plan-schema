@@ -122,6 +122,21 @@
         (System/exit status)))
   status)
 
+(defn do-action [action options]
+  (let [out (action options)
+        error (error? out)]
+    ;; if we've found an error then it's likely it's already been
+    ;; reported... output the first line just in case we have
+    ;; a new error from error? itself.
+    (if error
+      (do
+        (log-error (first (re-find #"^.*(\n)?" error)))
+        (exit 1))
+      (do
+        (when (stdout-option? (:output options))
+          (pprint out))
+        (exit 0)))))
+
 (defn plan-schema
   "plan-schema command line processor. (see usage for help)."
   {:added "0.1.0"
@@ -164,17 +179,9 @@
         (exit 1 (str "Unknown action: \"" cmd "\". Must be one of " (keys actions)))
         (usage summary))
       (if (> verbose 1) ;; throw full exception with stack trace when -v -v
-        (let [out (action options)
-              error (error? out)]
-          (when (stdout-option? output)
-            (pprint out))
-          (exit (if error 1 0)))
+        (do-action action options)
         (try
-          (let [out (action options)
-                error (error? out)]
-            (when (stdout-option? output)
-              (pprint out))
-            (exit (if error 1 0)))
+          (do-action action options)
           (catch Throwable e ;; note AssertionError not derived from Exception
             (exit 1 "caught exception: " (.getMessage e))))))))
 

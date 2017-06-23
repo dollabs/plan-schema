@@ -40,7 +40,7 @@
             ;                (delay :bounds [3 3]))))
             ;
             ;(defpmethod toggle-switch-empty [])
-
-
-
             ])
+
+; pamela -i austin-demo-htn.pamela -t "(main.main)" -o main -f json htn
+; pamela -i austin-demo-htn.pamela -t "(main.main)" -o main -f edn htn

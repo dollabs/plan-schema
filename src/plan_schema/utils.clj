@@ -54,8 +54,9 @@
   (let [log-fn (get-in @configuration [:loggers level])]
     (if (fn? log-fn)
       (apply log-fn msgs)
-      (println (string/upper-case (name level))
-        (string/join " " msgs)))))
+      (binding [*out* *err*]
+        (println (string/upper-case (name level))
+          (string/join " " msgs))))))
 
 (defn log-trace [& msgs]
   (apply logger :trace msgs))
@@ -75,7 +76,7 @@
 (defn as-keywords [m]
   (reduce (fn [res [k v]]
             (conj res {(keyword k) v}))
-          {} m))
+    {} m))
 
 (defn read-json-str [s]
   (reduce (fn [res [k v]]
@@ -95,6 +96,10 @@
   (cond
     (map? output)
     (:error output)
+    (vector? output) ;; it's a merge with two plans.. this is fine
+    false
+    ;(and (string? output) (empty? output))
+    ;false
     (string? output) ;; assume it's JSON as a string
     (:error (read-json-str output))
     (nil? output)

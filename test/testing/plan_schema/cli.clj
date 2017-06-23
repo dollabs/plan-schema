@@ -155,13 +155,17 @@
                "-o" (fs-get-path (fs/file target-cli "main2.htn.json") top-path)
                "htn-plan")))
 
-    (is (= 0 (binding [*out* (new java.io.StringWriter)] ;; discard *out*
-               (cli/plan-schema "-i" htn "-i" tpn "-f" "json"
-                 "-o" "-"
-                 "merge"))))
-    (is (= 0 (cli/plan-schema "-i" htn "-i" tpn "-f" "json"
-               "-o" (fs-get-path (fs/file target-cli "main.merge.json") top-path)
-               "merge")))
+    ;; These tests are not applicable because
+    ;; -- The merged output is derived from htn and tpn
+    ;; --  the output of merge is used by planviz/om-next and
+    ;; we have no need to go between json <--> edn for merged content.
+    ;(is (= 0 (binding [*out* (new java.io.StringWriter)] ;; discard *out*
+    ;           (cli/plan-schema "-i" htn "-i" tpn "-f" "json"
+    ;             "-o" "-"
+    ;             "merge"))))
+    ;(is (= 0 (cli/plan-schema "-i" htn "-i" tpn "-f" "json"
+    ;           "-o" (fs-get-path (fs/file target-cli "main.merge.json") top-path)
+    ;           "merge")))
 
     ;; fail JSON  --------------------------------------------------------
 

@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file. This change
 Changes
 * _TBD_
 
+### [0.3.4] - 2017-06-23
+
+Changes
+* Updated test rubrics
+* Extended coercion by adding delay-activity-slots-optional
+* Default logging messages now sent to STDERR (instead of STDOUT)
+
 ### [0.3.3] - 2017-05-11
 
 Changes

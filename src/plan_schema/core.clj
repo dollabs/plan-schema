@@ -9,7 +9,7 @@
   (:require [clojure.string :as string]
             [clojure.set :as set]
             [plan-schema.coerce :as records]
-            [plan-schema.utils :refer [synopsis sort-map strict?
+            [plan-schema.utils :refer [synopsis sort-map strict? fs-basename
                                        error? stdout-option?
                                        read-json-str write-json-str
                                        log-trace log-debug log-info
@@ -767,13 +767,14 @@
 
 (def coerce-htn (coercion htn))
 
-;; takes filename as a string
+;; takes pathname as a string
 ;;       plantypes as a set of valid plantypes (strings)
 ;;       formats as a set of valid formats (strings)
 ;; returns true if filename matches
-(defn kind-filename? [filename plantypes formats]
-  (let [[format plantype] (reverse (string/split filename #"\."))]
-    (boolean (and (plantypes plantype) (formats format)))))
+(defn kind-filename? [pathname plantypes formats]
+  (let [basename (fs-basename pathname)
+        [format plantype] (reverse (string/split basename #"\."))]
+       (boolean (and (plantypes plantype) (formats format)))))
 
 (defn tpn-filename? [filename]
   (kind-filename? filename #{"tpn"} #{"json" "edn"}))

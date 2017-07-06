@@ -5,7 +5,7 @@
 ;; the file LICENSE at the root of this distribution.
 
 (def project 'dollabs/plan-schema)
-(def version "0.3.4")
+(def version "0.3.5")
 (def description "Temporal Planning Network schema utilities")
 (def project-url "https://github.com/dollabs/plan-schema")
 (def main 'plan-schema.cli)
@@ -87,3 +87,12 @@
                '())]
     (apply (resolve 'app/-main) argv)
     identity))
+
+;; (deftask cider-boot
+;;   "Cider boot params task"
+;;   []
+;;   ;; (cider))
+;;   (comp
+;;     (cider)
+;;     (repl :server true)
+;;     (wait)))

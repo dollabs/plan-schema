@@ -7,6 +7,17 @@ All notable changes to this project will be documented in this file. This change
 Changes
 * _TBD_
 
+### [0.3.5] - 2017-06-24
+
+Changes
+* Added coercion support for additional keys: :cost :reward
+* Significant improvements to testing macro match-eval-out-err
+  - Support Java pattern matching options (e.g. :case-insensitive)
+  - Add invert matching option (returns opposite of match result)
+  - Prints first form to EVAL on STDOUT (to better track down
+    which part of the test passes or fails)
+* Added fs-basename and fs-dirname to utils
+
 ### [0.3.4] - 2017-06-23
 
 Changes
@@ -211,4 +222,6 @@ Added
 [0.3.1]: https://github.com/dollabs/plan-schema/compare/0.3.0...0.3.1
 [0.3.2]: https://github.com/dollabs/plan-schema/compare/0.3.1...0.3.2
 [0.3.3]: https://github.com/dollabs/plan-schema/compare/0.3.2...0.3.3
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.3...HEAD
+[0.3.4]: https://github.com/dollabs/plan-schema/compare/0.3.3...0.3.4
+[0.3.5]: https://github.com/dollabs/plan-schema/compare/0.3.4...0.3.5
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.5...HEAD

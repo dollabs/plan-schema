@@ -148,10 +148,16 @@
 (defmethod convert-property :plant-part [key value]
   (to-keyword key value))
 
+(defmethod convert-property :cost [key value]
+  {key value})
+
+(defmethod convert-property :reward [key value]
+  {key value})
+
 (def delay-activity-slots #{:uid :tpn-type :name :htn-node :constraints :controllable :end-node})
 (def delay-activity-slots-optional #{:label :display-name})
 (def activity-slots #{:uid :tpn-type :name :htn-node :constraints :controllable :end-node :args :argsmap :command}) ;FIXME :args-mapping
-(def activity-slots-optional #{:interface :plantid :plant-part :label :display-name}) ;FIXME :args-mapping
+(def activity-slots-optional #{:interface :plantid :plant-part :label :display-name :cost :reward}) ;FIXME :args-mapping
 (def null-activity-slots #{:constraints :uid :tpn-type :end-node})
 (def state-slots #{:uid :tpn-type :constraints :activities :incidence-set})
 (def state-slots-optional #{:end-node :htn-node :sequence-label :sequence-end})

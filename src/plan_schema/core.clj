@@ -9,11 +9,12 @@
   (:require [clojure.string :as string]
             [clojure.set :as set]
             [plan-schema.coerce :as records]
-            [plan-schema.utils :refer [synopsis sort-map strict? fs-basename
+            [plan-schema.utils :refer [synopsis strict? fs-basename
                                        error? stdout-option?
                                        read-json-str write-json-str
                                        log-trace log-debug log-info
                                        log-warn log-error]]
+            [plan-schema.sorting :refer [sort-map]]
             [clojure.pprint :refer [pprint]]
             [avenir.utils :as au
              :refer [keywordize assoc-if concatv]]

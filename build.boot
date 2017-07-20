@@ -5,7 +5,7 @@
 ;; the file LICENSE at the root of this distribution.
 
 (def project 'dollabs/plan-schema)
-(def version "0.3.5")
+(def version "0.3.6")
 (def description "Temporal Planning Network schema utilities")
 (def project-url "https://github.com/dollabs/plan-schema")
 (def main 'plan-schema.cli)
@@ -43,7 +43,9 @@
        :license     {"Apache-2.0" "http://opensource.org/licenses/Apache-2.0"}}
   aot {:namespace   #{main}}
   jar {:main        main}
-  test {:namespaces #{'testing.plan-schema.cli 'testing.plan-schema.core}}
+  test {:namespaces #{'testing.plan-schema.cli
+                      'testing.plan-schema.core
+                      'testing.plan-schema.sorting}}
   codox {:language :clojure
          :source-paths ["src"]
          :name (name project)

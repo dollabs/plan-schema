@@ -7,9 +7,9 @@
 (ns plan-schema.coerce
   (:require [clojure.set :as set]
             [clojure.pprint :refer [pprint]]
-            [plan-schema.utils :as putils :refer [sort-map
-                                                  log-trace log-debug log-info
-                                                  log-warn log-error]]))
+            [plan-schema.utils :as putils :refer [log-trace log-debug log-info
+                                                  log-warn log-error]]
+            [plan-schema.sorting :refer [sort-map]]))
 
 ; TODO network and network-id serve the same purpose.
 ; Consider network-id deprecated and removed in future.

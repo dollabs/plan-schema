@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file. This change
 Changes
 * _TBD_
 
+### [0.3.6] - 2017-07-19
+
+Changes
+* Implemented sort-map for heterogeneous keys (Closes #37)
+
 ### [0.3.5] - 2017-06-24
 
 Changes
@@ -224,4 +229,5 @@ Added
 [0.3.3]: https://github.com/dollabs/plan-schema/compare/0.3.2...0.3.3
 [0.3.4]: https://github.com/dollabs/plan-schema/compare/0.3.3...0.3.4
 [0.3.5]: https://github.com/dollabs/plan-schema/compare/0.3.4...0.3.5
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.5...HEAD
+[0.3.6]: https://github.com/dollabs/plan-schema/compare/0.3.5...0.3.6
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.6...HEAD

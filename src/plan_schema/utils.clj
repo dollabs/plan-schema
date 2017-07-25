@@ -12,26 +12,12 @@
             [clojure.pprint :refer [pprint]]
             [avenir.utils :as au
              :refer [keywordize assoc-if concatv]]
-            [me.raynes.fs :as fs])
+            [me.raynes.fs :as fs]
+            [plan-schema.sorting :refer [sort-map]])
   (:import [java.io ;; for fs-file-name
             File]
            [java.util.regex ;; for match-eval-out-err
             Pattern]))
-
-(defn sort-map
-  "Ensures that it an all values which are maps are in sorted order"
-  {:added "0.3.3"}
-  ([v]
-   (cond
-     (map? v)
-     (into (sorted-map) (reduce-kv sort-map {} v))
-     :else v))
-  ([m k v]
-   (assoc m k
-     (cond
-       (map? v)
-       (into (sorted-map) (reduce-kv sort-map {} v))
-       :else v))))
 
 (defn synopsis [s]
   (let [max-len 256

@@ -37,6 +37,35 @@
     (log-warn "Warning: to-boolean. value is not boolean."))
   {key value})
 
+;; convert an arg properly
+(defn to-arg
+  ([v]
+   (cond
+     (map? v) (reduce-kv to-arg {} v)
+     ;; Warning NO WAY to determine if a string in JSON without context
+     ;; should be a string, keyword or symbol
+     (string? v) (symbol v)
+     :else v))
+  ([m k v]
+   (let [kk (keyword k)]
+     (assoc m kk
+       (cond
+         (= :type kk)
+         (keyword v)
+         (and (= :names kk) (vector? v))
+         (mapv symbol v)
+         :else v)))))
+
+;; convert each arg properly
+(defn to-args [args]
+  (mapv to-arg args))
+
+;; convert each map value properly
+(defn to-argsmap [argsmap]
+  (into {}
+    (mapv #(let [[k v] %] [k (to-arg v)])
+      (seq argsmap))))
+
 ;;; Functions for each HTN and/or TPN key ;;;
 (defmulti convert-property "Coercion functions for each key" (fn [key value]
                                                                key))
@@ -106,7 +135,7 @@
   (to-keyword key value))
 
 (defmethod convert-property :argsmap [key value]
-  {key value})
+  {key (to-argsmap value)})
 
 (defmethod convert-property :command [key value]
   ;(log-warn "Warning: deprecated key" key)                   ;TODO
@@ -114,6 +143,9 @@
 
 (defmethod convert-property :display-name [key value]
   {key value})
+
+(defmethod convert-property :display-args [key value]
+  {key (to-args value)})
 
 (defmethod convert-property :activities [key value]
   (to-set-of-keywords key value))
@@ -125,7 +157,7 @@
   {key value})
 
 (defmethod convert-property :args [key value]
-  {key value})
+  {key (to-args value)})
 
 (defmethod convert-property :htn-expanded-nonprimitive-task [key value]
   (to-keyword key value))
@@ -139,10 +171,14 @@
 (defmethod convert-property :rootnodes [key value]
   (to-set-of-keywords key value))
 
-(defmethod convert-property :interface [key value]
+(defmethod convert-property :plant-interface [key value]
   (to-keyword key value))
 
+;; NOTE legacy
 (defmethod convert-property :plantid [key value]
+  (to-keyword key value))
+
+(defmethod convert-property :plant-id [key value]
   (to-keyword key value))
 
 (defmethod convert-property :plant-part [key value]
@@ -157,7 +193,7 @@
 (def delay-activity-slots #{:uid :tpn-type :name :htn-node :constraints :controllable :end-node})
 (def delay-activity-slots-optional #{:label :display-name})
 (def activity-slots #{:uid :tpn-type :name :htn-node :constraints :controllable :end-node :args :argsmap :command}) ;FIXME :args-mapping
-(def activity-slots-optional #{:interface :plantid :plant-part :label :display-name :cost :reward}) ;FIXME :args-mapping
+(def activity-slots-optional #{:plant-interface :plantid :plant-id :plant-part :label :display-name :display-args :cost :reward}) ;FIXME :args-mapping
 (def null-activity-slots #{:constraints :uid :tpn-type :end-node})
 (def state-slots #{:uid :tpn-type :constraints :activities :incidence-set})
 (def state-slots-optional #{:end-node :htn-node :sequence-label :sequence-end})
@@ -174,16 +210,18 @@
 (def htn-network-slots-optional #{:display-name})
 
 (def htn-expanded-nonprimitive-task-slots #{:uid :type :incidence-set :edges})
-(def htn-expanded-nonprimitive-task-slots-optional #{:name :display-name :args})
+(def htn-expanded-nonprimitive-task-slots-optional #{:name :display-name :args
+                                                     :display-args})
 
 (def htn-expanded-method-slots #{:uid :type :network :incidence-set :edges})
-(def htn-expanded-method-slots-optional #{:display-name :args})
+(def htn-expanded-method-slots-optional #{:display-name :args
+                                          :display-args})
 
 (def edge-slots #{:uid :type :end-node})
 (def edge-slots-optional #{:display-name :args :edge-type})
 
 (def htn-primitive-task-slots #{:uid :name :type :display-name :incidence-set :edges})
-(def htn-primitive-task-slots-optional #{:args :argsmap :interface :plantid :plant-part})
+(def htn-primitive-task-slots-optional #{:display-args :args :argsmap :plant-interface :plantid :plant-id :plant-part})
 
 ; Check for nil values
 ; Check for nil keys

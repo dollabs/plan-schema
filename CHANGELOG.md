@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file. This change
 Changes
 * _TBD_
 
+### [0.3.7] - 2017-10-04
+
+Changes
+* Began some name harmonization work as part of pamela issue 136.
+
 ### [0.3.6] - 2017-07-19
 
 Changes
@@ -230,4 +235,5 @@ Added
 [0.3.4]: https://github.com/dollabs/plan-schema/compare/0.3.3...0.3.4
 [0.3.5]: https://github.com/dollabs/plan-schema/compare/0.3.4...0.3.5
 [0.3.6]: https://github.com/dollabs/plan-schema/compare/0.3.5...0.3.6
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.6...HEAD
+[0.3.7]: https://github.com/dollabs/plan-schema/compare/0.3.6...0.3.7
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.7...HEAD

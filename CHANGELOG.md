@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file. This change
 Changes
 * _TBD_
 
+### [0.3.8] - 2010-09-21
+
+Changes
+* Add argsmap declaration for HTNs
+
 ### [0.3.7] - 2017-10-04
 
 Changes
@@ -236,4 +241,5 @@ Added
 [0.3.5]: https://github.com/dollabs/plan-schema/compare/0.3.4...0.3.5
 [0.3.6]: https://github.com/dollabs/plan-schema/compare/0.3.5...0.3.6
 [0.3.7]: https://github.com/dollabs/plan-schema/compare/0.3.6...0.3.7
-[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.7...HEAD
+[0.3.7]: https://github.com/dollabs/plan-schema/compare/0.3.7...0.3.8
+[Unreleased]: https://github.com/dollabs/plan-schema/compare/0.3.8...HEAD

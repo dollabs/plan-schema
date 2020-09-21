@@ -210,11 +210,11 @@
 (def htn-network-slots-optional #{:display-name})
 
 (def htn-expanded-nonprimitive-task-slots #{:uid :type :incidence-set :edges})
-(def htn-expanded-nonprimitive-task-slots-optional #{:name :display-name :args
+(def htn-expanded-nonprimitive-task-slots-optional #{:name :display-name :args :argsmap
                                                      :display-args})
 
 (def htn-expanded-method-slots #{:uid :type :network :incidence-set :edges})
-(def htn-expanded-method-slots-optional #{:display-name :args
+(def htn-expanded-method-slots-optional #{:display-name :args :argsmap
                                           :display-args})
 
 (def edge-slots #{:uid :type :end-node})
